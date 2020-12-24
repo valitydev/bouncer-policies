@@ -1,7 +1,5 @@
 package service.authz.decision
 
-import data.service.authz.api
-
 decide(assertions) = d {
     count(assertions.forbidden) > 0
     d := {
