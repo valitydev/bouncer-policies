@@ -10,10 +10,13 @@ import data.service.authz.roles
 import data.service.authz.org
 import data.service.authz.judgement
 
-assertions := {
-    "forbidden" : { why | forbidden[why] },
-    "allowed"   : { why | allowed[why] },
-    "restrictions": { what.type: what.restrictions[what.type] | restrictions[what] }
+assertions = a {
+    a0 := {
+        "forbidden" : { why | forbidden[why] },
+        "allowed"   : { why | allowed[why] },
+        "restrictions": { what.type: what.restrictions[what.type] | restrictions[what] }
+    }
+    a := { name: values | values := a0[name]; count(values) > 0 }
 }
 
 judgement := judgement.judge(assertions)
