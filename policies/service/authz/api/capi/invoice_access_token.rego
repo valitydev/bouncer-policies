@@ -1,4 +1,4 @@
-package service.authz.api.invoice_access_token
+package service.authz.api.capi.invoice_access_token
 
 # Set of assertions which tell why operation under the input context is allowed.
 # Each element must be an object of the following form:
@@ -18,7 +18,7 @@ allowed[why] {
 }
 
 allowed[why] {
-    operation_allowed
+    is_invoice_access_token_operation
     invoice_matches_token_scope
     why := {
         "code": "invoice_access_token_allows_operation",
@@ -37,10 +37,9 @@ invoice_matches_token_scope {
     scope.invoice.id == op.invoice.id
 }
 
-operation_allowed
+is_invoice_access_token_operation
     { op.id == "GetInvoiceByID" }
     { op.id == "GetInvoiceEvents" }
     { op.id == "GetInvoicePaymentMethods" }
     { op.id == "CreatePayment" }
-    { op.id == "GetPayments" }
     { op.id == "GetPaymentByID" }

@@ -1,4 +1,4 @@
-package test.service.authz.api.invoice_access_token
+package test.service.authz.api.capi.invoice_access_token
 
 import data.service.authz.api
 import data.test.service.authz.util
@@ -108,17 +108,6 @@ test_invoice_access_token_valid_capi_create_payment{
         fixtures.requester_default,
         fixtures.invoice_access_token_valid,
         fixtures.op_capi_create_payment
-    ])
-    not result.forbidden
-    count(result.allowed) == 1
-}
-
-test_invoice_access_token_valid_capi_get_payments{
-    result := api.assertions with input as util.deepmerge([
-        fixtures.env_default,
-        fixtures.requester_default,
-        fixtures.invoice_access_token_valid,
-        fixtures.op_capi_get_payments
     ])
     not result.forbidden
     count(result.allowed) == 1
