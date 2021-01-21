@@ -49,7 +49,7 @@ forbidden[why] {
 
 forbidden[why] {
     ip := input.requester.ip
-    blacklist := blacklists.source_ip_range
+    blacklist := blacklists.source_ip_range.entries
     matches := net.cidr_contains_matches(blacklist, ip)
     matches[_]
     ranges := [ range | matches[_][0] = i; range := blacklist[i] ]
@@ -58,6 +58,27 @@ forbidden[why] {
         "description": sprintf(
             "Requester IP address is blacklisted with ranges: %v",
             [concat(", ", ranges)]
+        )
+    }
+}
+
+forbidden[why] {
+    not input.auth.token.id
+    why := {
+        "code": "auth_token_missing_id",
+        "description": "Requester auth token is missing ID"
+    }
+}
+
+forbidden[why] {
+    token := input.auth.token
+    blacklist := blacklists.auth_token.entries
+    token.id == blacklist[_]
+    why := {
+        "code": "auth_token_blacklisted",
+        "description": sprintf(
+            "Requester auth token is blacklisted with id: %s",
+            [token.id]
         )
     }
 }
@@ -73,8 +94,13 @@ forbidden[why] {
 }
 
 warnings[why] {
-    not blacklists.source_ip_range
+    not blacklists.source_ip_range.entries
     why := "Blacklist 'source_ip_range' is not defined, blacklisting by IP will NOT WORK."
+}
+
+warnings[why] {
+    not blacklists.auth_token.entries
+    why := "Blacklist 'auth_token' is not defined, blacklisting by specific JWTs will NOT WORK."
 }
 
 warnings[why] {
