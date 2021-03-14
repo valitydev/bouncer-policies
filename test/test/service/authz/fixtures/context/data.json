@@ -1,4 +1,7 @@
 {
+    "$metadata": {
+        "type": "Context"
+    },
 
     "env_default": {
         "env": {
@@ -644,10 +647,7 @@
         "anapi": {
             "op": {
                 "id": "SearchInvoices",
-                "party": { "id": "PARTY"},
-                "shops": [
-                    { "id": "SHOP" }
-                ]
+                "party": { "id": "PARTY"}
             }
         }
     },
@@ -656,8 +656,7 @@
         "anapi": {
             "op": {
                 "id": "SearchInvoices",
-                "party": { "id": "PARTY"},
-                "shops": []
+                "party": { "id": "PARTY"}
             }
         }
     },
@@ -666,12 +665,7 @@
         "anapi": {
             "op": {
                 "id": "SearchInvoices",
-                "party": { "id": "PARTY"},
-                "shops": [
-                    { "id": "SHOP" },
-                    { "id": "SHOP2" },
-                    { "id": "SHOP3" }
-                ]
+                "party": { "id": "PARTY"}
             }
         }
     },
@@ -680,37 +674,74 @@
         "anapi": {
             "op": {
                 "id": "SearchReports",
+                "party": { "id": "PARTY"}
+            }
+        }
+    },
+
+    "op_anapi_get_report": {
+        "anapi": {
+            "op": {
+                "id": "GetReport",
                 "party": { "id": "PARTY"},
-                "shops": [
-                    { "id": "SHOP" }
-                ]
+                "report": {"id": "REPORT"}
             }
         }
     },
 
-    "op_anapi_restrictions": {
+    "op_anapi_create_report": {
         "anapi": {
             "op": {
-                "shops": [
-                    {
-                        "id": "SHOP"
-                    }
-                ]
+                "id": "CreateReport",
+                "party": { "id": "PARTY"},
+                "shop": {"id": "SHOP"}
             }
         }
     },
 
-    "op_anapi_restrictions_several_shops": {
+    "op_anapi_download_file": {
         "anapi": {
             "op": {
-                "shops": [
-                    {
-                        "id": "SHOP"
-                    },
-                    {
-                        "id": "SHOP2"
-                    }
-                ]
+                "id": "DownloadFile",
+                "party": {"id": "PARTY"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "FILE"}
+            }
+        }
+    },
+
+    "op_anapi_download_missing_file": {
+        "anapi": {
+            "op": {
+                "id": "DownloadFile",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
+            }
+        }
+    },
+
+    "op_anapi_download_file_invalid_shop": {
+        "anapi": {
+            "op": {
+                "id": "DownloadFile",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP_2"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
+            }
+        }
+    },
+
+    "op_anapi_download_file_invalid_party": {
+        "anapi": {
+            "op": {
+                "id": "DownloadFile",
+                "party": {"id": "PARTY_2"},
+                "shop": {"id": "SHOP"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
             }
         }
     },
@@ -761,6 +792,29 @@
         }
     },
 
+    "user_bookkeeper": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Bookkeeper",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
     "user_administrator": {
         "user": {
             "id": "USER",
@@ -772,6 +826,32 @@
                     "roles": [
                         {
                             "id": "Administrator"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_administrator_manager": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Administrator"
+                        },
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
                         }
                     ]
                 }
@@ -877,6 +957,60 @@
                             "scope": {
                                 "shop": {
                                     "id": "SHOP3"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_several_roles_another_party": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
+                        },
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP2"
+                                }
+                            }
+                        },
+                        {
+                            "id": "OtherRole",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP3"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ORG_2",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY_2" },
+                    "roles": [
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP4"
                                 }
                             }
                         }
