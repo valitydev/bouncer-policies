@@ -131,6 +131,10 @@ known_auth_method {
 tolerate_no_expiration {
     input.auth.method == "ApiKeyToken"
 }
+tolerate_no_expiration {
+    # Invoice template access tokens currently have unlimited(undefined) expiration
+    input.auth.method == "InvoiceTemplateAccessToken"
+}
 
 tolerate_expired_token {
     input.capi
