@@ -261,3 +261,109 @@ api:
       operations:
         - "getClaimByID"
         - "searchClaims"
+
+  WalletAPI:
+    mandatory:
+      identity:
+        operations:
+          - 'CreateReport'
+          - 'CreateWebhook'
+          - 'CreateWallet'
+          - 'CreateDestination'
+
+          - 'GetIdentity'
+          - 'ListIdentityChallenges'
+          - 'StartIdentityChallenge'
+          - 'GetIdentityChallenge'
+          - 'PollIdentityChallengeEvents'
+          - 'GetIdentityChallengeEvent'
+          - 'GetWebhooks'
+          - 'GetReports'
+
+      wallet:
+        operations:
+          - 'CreateQuote'
+          - 'CreateWithdrawal'
+          - 'CreateW2WTransfer'
+          - 'GetWallet'
+          - 'GetWalletByExternalID'
+          - 'GetWalletAccount'
+          - 'IssueWalletGrant'
+
+      destination:
+        operations:
+          - 'CreateWithdrawal'
+          - 'GetDestination'
+          - 'GetDestinationByExternalID'
+          - 'IssueDestinationGrant'
+
+      withdrawal:
+        operations:
+          - 'GetWithdrawal'
+          - 'GetWithdrawalByExternalID'
+          - 'PollWithdrawalEvents'
+          - 'GetWithdrawalEvents'
+
+      w2w_transfer:
+        operations:
+          - 'GetW2WTransfer'
+
+      webhook:
+        operations:
+          - 'GetWebhookByID'
+          - 'DeleteWebhookByID'
+
+      report:
+        operations:
+          - 'GetReport'
+
+      party:
+        operations:
+          - 'CreateIdentity'
+          - 'ListIdentities'
+
+    discretionary:
+      identity:
+        operations:
+          - 'ListWallets'
+          - 'ListDestinations'
+          - 'ListWithdrawals'
+          - 'ListDeposits'
+          - 'ListDepositReverts'
+          - 'ListDepositAdjustments'
+
+      destination:
+        operations:
+          - 'CreateQuote'
+          - 'ListWithdrawals'
+
+      wallet:
+        operations:
+          - 'ListWithdrawals'
+          - 'ListDeposits'
+          - 'ListDepositReverts'
+          - 'ListDepositAdjustments'
+
+      withdrawal:
+        operations:
+          - 'ListWithdrawals'
+
+    universal:
+      operations:
+      - 'GetResidence'
+      - 'GetCurrency'
+
+      - 'ListProviders'
+      - 'GetProvider'
+      - 'ListProviderIdentityClasses'
+      - 'GetProviderIdentityClass'
+      - 'ListProviderIdentityLevels'
+      - 'GetProviderIdentityLevel'
+
+      - 'ListWallets'
+      - 'ListDestinations'
+      - 'ListWithdrawals'
+      - 'ListDeposits'
+      - 'ListDepositReverts'
+      - 'ListDepositAdjustments'
+      - 'DownloadFile'

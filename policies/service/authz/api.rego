@@ -6,6 +6,7 @@ import data.service.authz.api.binapi
 import data.service.authz.api.anapi
 import data.service.authz.api.capi
 import data.service.authz.api.orgmgmt
+import data.service.authz.api.wapi
 import data.service.authz.api.claimmgmt
 import data.service.authz.blacklists
 import data.service.authz.whitelists
@@ -120,6 +121,11 @@ forbidden[why] {
 }
 
 forbidden[why] {
+    input.wapi
+    wapi.forbidden[why]
+}
+
+forbidden[why] {
     input.claimmgmt
     claimmgmt.forbidden[why]
 }
@@ -143,6 +149,11 @@ tolerate_expired_token {
 
 tolerate_expired_token {
     input.anapi
+    input.auth.method == "SessionToken"
+}
+
+tolerate_expired_token {
+    input.wapi
     input.auth.method == "SessionToken"
 }
 
@@ -190,6 +201,11 @@ allowed[why] {
 allowed[why] {
     input.orgmgmt
     orgmgmt.allowed[why]
+}
+
+allowed[why] {
+    input.wapi
+    wapi.allowed[why]
 }
 
 allowed[why] {

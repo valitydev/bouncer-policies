@@ -22,6 +22,10 @@ deepmerge([o1, o2, o3, o4, o5, o6]) = out {
     out := object.union(object.union(object.union(object.union(object.union(o1, o2), o3), o4), o5), o6)
 }
 
+concat(arrs) = out {
+    out := [ v | arr := arrs[_]; v := arr[_] ]
+}
+
 is_allowed {
     judgement := data.service.authz.api.judgement
     trace(sprintf("<!> judgement = %v", [judgement]))
