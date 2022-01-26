@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: valitydev/action-setup-thrift@v0.0.5
       - run: make validate
       - run: make test
       - run: make test-coverage
@@ -32,7 +33,6 @@ jobs:
             type=sha
 
       - name: Log in to the Container registry
-        if: ${{ github.event_name == 'push' }}
         uses: docker/login-action@v1.12.0
         with:
           registry: ghcr.io
