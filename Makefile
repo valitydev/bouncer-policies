@@ -1,34 +1,11 @@
-SUBMODULES = build_utils
-SUBTARGETS = $(patsubst %,%/.git,$(SUBMODULES))
+SERVICE := bouncer-policies
 
-UTILS_PATH := build_utils
-TEMPLATES_PATH := .
+-include Makefile.env
 
-SERVICE_NAME := bouncer-policies
-BUILD_IMAGE_NAME := build-erlang
-BUILD_IMAGE_TAG := 1333d0926b203e00c47e4fad7e10d2252a020305
-CALL_ANYWHERE := \
-	submodules \
-	manifest \
-	test
-CALL_W_CONTAINER := \
-	validate
+DOCKER ?= docker
 
--include $(UTILS_PATH)/make_lib/utils_container.mk
-
-SERVICE_IMAGE_TAG ?= $(shell git rev-parse HEAD)
-SERVICE_IMAGE_PUSH_TAG ?= $(SERVICE_IMAGE_TAG)
-BASE_IMAGE_NAME := openpolicyagent/opa
+BASE_IMAGE_NAME := docker.io/openpolicyagent/opa
 BASE_IMAGE_TAG := 0.26.0
-
--include $(UTILS_PATH)/make_lib/utils_image.mk
-
-# CALL_ANYWHERE
-$(SUBTARGETS): %/.git: %
-	git submodule update --init $<
-	touch $@
-
-submodules: $(SUBTARGETS)
 
 .PHONY: manifest test repl
 
@@ -63,24 +40,22 @@ TEST_VOLUMES := $(foreach bundle, $(TEST_BUNDLES), -v $(CURDIR)/$(bundle):/$(bun
 TEST_BUNDLE_DIRS := $(foreach bundle, $(TEST_BUNDLES), /$(bundle))
 TEST_COVERAGE_THRESHOLD := 99
 
+TEST_CMD := $(DOCKER) run --rm $(TEST_VOLUMES) $(TEST_IMAGE) test $(TEST_BUNDLE_DIRS)
+
 test: manifest
-	$(DOCKER) run --rm $(TEST_VOLUMES) \
-		$(TEST_IMAGE) test $(TEST_BUNDLE_DIRS) \
-			--explain full \
-			--ignore input.json
+	$(TEST_CMD) \
+		--explain full \
+		--ignore input.json
 
-run_%:
-	$(DOCKER) run --rm $(TEST_VOLUMES) \
-		$(TEST_IMAGE) test $(TEST_BUNDLE_DIRS) \
-			--explain full \
-			--ignore input.json \
-			-v \
-			--run $*
+run-%:
+	$(TEST_CMD) \
+		--explain full \
+		--ignore input.json \
+		-v \
+		--run $*
 
-RUN_TEST_COVERAGE = $(DOCKER) run --rm $(TEST_VOLUMES) $(TEST_IMAGE) test --coverage $(TEST_BUNDLE_DIRS)
-
-test_coverage: manifest
-	python3 test_coverage.py "$(RUN_TEST_COVERAGE)" $(TEST_COVERAGE_THRESHOLD)
+test-coverage: manifest
+	python3 test_coverage.py "$(TEST_CMD) --coverage" $(TEST_COVERAGE_THRESHOLD)
 
 repl: manifest
 	$(DOCKER) run --rm -it -v $$PWD:$$PWD --workdir $$PWD $(TEST_IMAGE) run --watch --bundle policies --bundle test
