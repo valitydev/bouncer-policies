@@ -176,6 +176,8 @@ api:
       - "GetCountryByID"
       - "GetTradeBlocs"
       - "GetTradeBlocByID"
+      - "GetServiceProviders"
+      - "GetServiceProviderByID"
       - "GetLocationsNames"
       - "GetPaymentInstitutions"
       - "GetPaymentInstitutionByRef"
