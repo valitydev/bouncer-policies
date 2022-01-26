@@ -43,8 +43,8 @@ Running `make build_image` will produce another Docker image tagged with HEAD co
 
 Most of the usual OPA API operations are secured with the help of a system authorization policy defined under `/policies/system`.
 
-[1]: https://github.com/rbkmoney/bouncer
+[1]: https://github.com/valitydev/bouncer
 [2]: https://www.openpolicyagent.org/docs/latest/policy-language/
 [3]: https://www.openpolicyagent.org/docs/latest/management/#bundle-file-format
-[4]: https://github.com/rbkmoney/bouncer-proto/blob/master/proto/context_v1.thrift
+[4]: https://github.com/valitydev/bouncer-proto/blob/master/proto/context_v1.thrift
 [5]: https://www.openpolicyagent.org/docs/latest/policy-testing/

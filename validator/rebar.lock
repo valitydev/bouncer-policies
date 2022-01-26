@@ -1,12 +1,12 @@
 {"1.2.0",
 [{<<"bouncer_proto">>,
-  {git,"https://github.com/rbkmoney/bouncer-proto.git",
-       {ref,"19bd3d674fd4182927063e17e274559a08d422c5"}},
+  {git,"https://github.com/valitydev/bouncer-proto.git",
+       {ref,"96bd74dbf1db33ce1cbc6f6d3ce5a9b598ee29f5"}},
   0},
  {<<"jsx">>,{pkg,<<"jsx">>,<<"3.1.0">>},0},
  {<<"thrift">>,
-  {git,"https://github.com/rbkmoney/thrift_erlang.git",
-       {ref,"846a0819d9b6d09d0c31f160e33a78dbad2067b4"}},
+  {git,"https://github.com/valitydev/thrift_erlang.git",
+       {ref,"c280ff266ae1c1906fb0dcee8320bb8d8a4a3c75"}},
   0}]}.
 [
 {pkg_hash,[
