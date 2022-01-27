@@ -146,6 +146,10 @@ permissions:
           - "GetPaymentInstitutionPayoutMethods"
           - "GetPaymentInstitutionPayoutSchedules"
 
+          # ServiceProviders
+          - "GetServiceProviders"
+          - "GetServiceProviderByID"
+
           # Webhooks
           - "CreateWebhook"
           - "GetWebhooks"
@@ -346,6 +350,10 @@ permissions:
           - "GetPaymentInstitutionPaymentTerms"
           - "GetPaymentInstitutionPayoutMethods"
           - "GetPaymentInstitutionPayoutSchedules"
+
+          # ServiceProviders
+          - "GetServiceProviders"
+          - "GetServiceProviderByID"
 
           # Webhooks
           - "CreateWebhook"

@@ -152,52 +152,40 @@ test_get_tradeblocs_allowed_by_session_token {
     util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetTradeBlocs"}
 }
 
+test_get_service_provider_allowed_by_session_token {
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetServiceProviderByID"}
+}
+
 test_capi_allowed_by_session_token_3 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetCategoryByRef"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetCategoryByRef"}
 }
 
 test_capi_allowed_by_session_token_4 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetLocationsNames"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetLocationsNames"}
 }
 
 test_capi_allowed_by_session_token_5 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutions"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutions"}
 }
 
 test_capi_allowed_by_session_token_6 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionByRef"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionByRef"}
 }
 
 test_capi_allowed_by_session_token_7 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPaymentTerms"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPaymentTerms"}
 }
 
 test_capi_allowed_by_session_token_8 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutMethods"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutMethods"}
 }
 
 test_capi_allowed_by_session_token_9 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutSchedules"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutSchedules"}
 }
 
 test_capi_allowed_by_session_token_10 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
 }
 
 test_update_invoice_template_allowed {
@@ -511,52 +499,40 @@ test_get_tradeblocs_allowed_by_api_token {
     util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetTradeBlocs"}
 }
 
+test_get_service_providers_allowed_by_api_token {
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetServiceProviders"}
+}
+
 test_capi_allowed_by_api_token_3 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetCategoryByRef"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetCategoryByRef"}
 }
 
 test_capi_allowed_by_api_token_4 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetLocationsNames"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetLocationsNames"}
 }
 
 test_capi_allowed_by_api_token_5 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutions"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutions"}
 }
 
 test_capi_allowed_by_api_token_6 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionByRef"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionByRef"}
 }
 
 test_capi_allowed_by_api_token_7 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPaymentTerms"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPaymentTerms"}
 }
 
 test_capi_allowed_by_api_token_8 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutMethods"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutMethods"}
 }
 
 test_capi_allowed_by_api_token_9 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutSchedules"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutSchedules"}
 }
 
 test_capi_allowed_by_api_token_10 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
-    not result.forbidden
-    count(result.allowed) == 1
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
 }
 
 
