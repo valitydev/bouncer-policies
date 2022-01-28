@@ -500,7 +500,7 @@ test_get_tradeblocs_allowed_by_api_token {
 }
 
 test_get_service_providers_allowed_by_api_token {
-    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetServiceProviders"}
+    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetServiceProviderByID"}
 }
 
 test_capi_allowed_by_api_token_3 {
