@@ -36,8 +36,14 @@ wapi_public_operation_session_token_ctx = util.deepmerge([
 wapi_public_operation_api_key_token_ctx = util.deepmerge([
     context.env_default,
     context.requester_default,
-    context.user_administrator,
     context.api_key_token_valid,
+    context.op_wapi_empty
+])
+
+wapi_public_operation_invalid_token_ctx = util.deepmerge([
+    context.env_default,
+    context.requester_default,
+    context.invoice_access_token_valid,
     context.op_wapi_empty
 ])
 
@@ -150,6 +156,10 @@ test_store_bank_card_allowed {
         "id" : "StoreBankCard",
         "party" : "PARTY"
     }
+    util.is_allowed with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
+        "id" : "StoreBankCard",
+        "party" : "PARTY"
+    }
 }
 
 test_get_bank_card_allowed {
@@ -157,17 +167,21 @@ test_get_bank_card_allowed {
         "id" : "GetBankCard",
         "party" : "PARTY"
     }
+    util.is_allowed with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
+        "id" : "GetBankCard",
+        "party" : "PARTY"
+    }
 }
 
 test_store_bank_card_forbidden {
-    util.is_forbidden with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
+    util.is_forbidden with input as wapi_public_operation_invalid_token_ctx with input.wapi.op as {
         "id" : "StoreBankCard",
         "party" : "PARTY"
     }
 }
 
 test_get_bank_card_forbidden {
-    util.is_forbidden with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
+    util.is_forbidden with input as wapi_public_operation_invalid_token_ctx with input.wapi.op as {
         "id" : "GetBankCard",
         "party" : "PARTY"
     }

@@ -422,9 +422,8 @@ permissions:
           - 'GetProviderIdentityClass'
           - 'ListProviderIdentityLevels'
           - 'GetProviderIdentityLevel'
-          # Only allow tokenization via SessionToken
-          # - 'StoreBankCard'
-          # - 'GetBankCard'
+          - 'StoreBankCard'
+          - 'GetBankCard'
 
   InvoiceAccessToken:
     apis:
