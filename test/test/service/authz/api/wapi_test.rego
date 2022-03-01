@@ -33,6 +33,14 @@ wapi_public_operation_session_token_ctx = util.deepmerge([
     context.op_wapi_empty
 ])
 
+wapi_public_operation_api_key_token_ctx = util.deepmerge([
+    context.env_default,
+    context.requester_default,
+    context.user_administrator,
+    context.api_key_token_valid,
+    context.op_wapi_empty
+])
+
 test_get_residence_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : "GetResidence"}
 }
@@ -133,6 +141,34 @@ test_create_identity_allowed {
 test_list_identities_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "ListIdentities",
+        "party" : "PARTY"
+    }
+}
+
+test_store_bank_card_allowed {
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "StoreBankCard",
+        "party" : "PARTY"
+    }
+}
+
+test_get_bank_card_allowed {
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "GetBankCard",
+        "party" : "PARTY"
+    }
+}
+
+test_store_bank_card_forbidden {
+    util.is_forbidden with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
+        "id" : "StoreBankCard",
+        "party" : "PARTY"
+    }
+}
+
+test_get_bank_card_forbidden {
+    util.is_forbidden with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
+        "id" : "GetBankCard",
         "party" : "PARTY"
     }
 }

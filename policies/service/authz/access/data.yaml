@@ -328,6 +328,8 @@ api:
         operations:
           - 'CreateIdentity'
           - 'ListIdentities'
+          - 'StoreBankCard'
+          - 'GetBankCard'
 
     discretionary:
       identity:
@@ -374,6 +376,3 @@ api:
       - 'ListDepositReverts'
       - 'ListDepositAdjustments'
       - 'DownloadFile'
-
-      - 'StoreBankCard'
-      - 'GetBankCard'
