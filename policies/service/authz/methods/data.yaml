@@ -216,6 +216,8 @@ permissions:
           - 'GetProviderIdentityClass'
           - 'ListProviderIdentityLevels'
           - 'GetProviderIdentityLevel'
+          - 'StoreBankCard'
+          - 'GetBankCard'
 
   ApiKeyToken:
     apis:
@@ -420,6 +422,8 @@ permissions:
           - 'GetProviderIdentityClass'
           - 'ListProviderIdentityLevels'
           - 'GetProviderIdentityLevel'
+          - 'StoreBankCard'
+          - 'GetBankCard'
 
   InvoiceAccessToken:
     apis:

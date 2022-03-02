@@ -374,3 +374,5 @@ api:
       - 'ListDepositReverts'
       - 'ListDepositAdjustments'
       - 'DownloadFile'
+      - 'StoreBankCard'
+      - 'GetBankCard'

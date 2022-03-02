@@ -294,3 +294,5 @@ roles:
           - 'GetReport'
           - 'GetReports'
           - 'DownloadFile'
+          - 'StoreBankCard'
+          - 'GetBankCard'
