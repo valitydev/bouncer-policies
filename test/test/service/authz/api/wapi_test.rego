@@ -153,37 +153,31 @@ test_list_identities_allowed {
 
 test_store_bank_card_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "StoreBankCard",
-        "party" : "PARTY"
+        "id" : "StoreBankCard"
     }
     util.is_allowed with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
-        "id" : "StoreBankCard",
-        "party" : "PARTY"
+        "id" : "StoreBankCard"
     }
 }
 
 test_get_bank_card_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "GetBankCard",
-        "party" : "PARTY"
+        "id" : "GetBankCard"
     }
     util.is_allowed with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
-        "id" : "GetBankCard",
-        "party" : "PARTY"
+        "id" : "GetBankCard"
     }
 }
 
 test_store_bank_card_forbidden {
     util.is_forbidden with input as wapi_public_operation_invalid_token_ctx with input.wapi.op as {
-        "id" : "StoreBankCard",
-        "party" : "PARTY"
+        "id" : "StoreBankCard"
     }
 }
 
 test_get_bank_card_forbidden {
     util.is_forbidden with input as wapi_public_operation_invalid_token_ctx with input.wapi.op as {
-        "id" : "GetBankCard",
-        "party" : "PARTY"
+        "id" : "GetBankCard"
     }
 }
 
