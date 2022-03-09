@@ -441,8 +441,11 @@ permissions:
           - "GetPayments"
           - "GetPaymentByID"
 
-        # Tokenization
+          # Tokenization
           - "CreatePaymentResource"
+
+          # ServiceProviders
+          - "GetServiceProviderByID"
 
   CustomerAccessToken:
     apis:
@@ -455,8 +458,11 @@ permissions:
           - "GetBinding"
           - "GetCustomerPaymentMethods"
 
-        # Tokenization
+          # Tokenization
           - "CreatePaymentResource"
+
+          # ServiceProviders
+          - "GetServiceProviderByID"
 
   InvoiceTemplateAccessToken:
     apis:

@@ -8,6 +8,21 @@ package service.authz.api.capi.customer_access_token
 
 import input.capi.op
 import input.payment_processing
+import data.service.authz.access
+
+api_name := "CommonAPI"
+access_matrix := access.api[api_name]
+
+allowed[why] {
+    # NOTE
+    # Set of allowed universal operations here additionally restricted with
+    # `data.service.authz.methods` document.
+    op.id == access_matrix.universal.operations[_]
+    why := {
+        "code": "customer_access_token_allows_universal_operation",
+        "description": "Customer access token allows universal operations"
+    }
+}
 
 allowed[why] {
     op.id == "CreatePaymentResource"
