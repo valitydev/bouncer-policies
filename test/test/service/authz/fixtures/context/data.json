@@ -288,6 +288,14 @@
         }
     },
 
+    "op_capi_get_service_provider": {
+        "capi": {
+            "op": {
+                "id": "GetServiceProviderByID"
+            }
+        }
+    },
+
     "op_capi_create_payment_insufficient_input": {
         "capi": {
             "op": {

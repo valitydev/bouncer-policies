@@ -141,6 +141,15 @@ test_invoice_access_token_allows_get_payments {
     ])
 }
 
+test_invoice_access_token_allows_get_service_provider {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.invoice_access_token_valid,
+        context.op_capi_get_service_provider
+    ])
+}
+
 test_invoice_access_token_forbids_cancel_payment {
     util.is_forbidden with input as util.deepmerge([
         context.env_default,
