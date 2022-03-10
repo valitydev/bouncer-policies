@@ -39,3 +39,12 @@ test_invoice_template_access_token_valid_capi_get_invoice_payment_methods_by_tem
     not result.forbidden
     count(result.allowed) == 1
 }
+
+test_invoice_template_access_token_allows_capi_get_service_provider {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.invoice_template_access_token_valid,
+        context.op_capi_get_service_provider
+    ])
+}

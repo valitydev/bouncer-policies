@@ -468,7 +468,10 @@ permissions:
     apis:
       CommonAPI:
         operations:
-        # Invoice Template
+          # Invoice Template
           - "GetInvoiceTemplateByID"
           - "CreateInvoiceWithTemplate"
           - "GetInvoicePaymentMethodsByTemplateID"
+
+          # ServiceProviders
+          - "GetServiceProviderByID"
