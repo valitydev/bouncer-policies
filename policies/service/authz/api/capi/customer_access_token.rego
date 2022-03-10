@@ -8,10 +8,9 @@ package service.authz.api.capi.customer_access_token
 
 import input.capi.op
 import input.payment_processing
-import data.service.authz.access
 
 api_name := "CommonAPI"
-access_matrix := access.api[api_name]
+access_matrix := data.service.authz.access.api[api_name]
 
 allowed[why] {
     # NOTE
