@@ -228,6 +228,14 @@ test_get_identity_allowed {
     with input.wallet as context.wallet_pool_with_identity.wallet
 }
 
+test_get_identity_withdrawal_methods_allowed {
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "GetWithdrawalMethods",
+        "identity" : "IdentityId"
+    }
+    with input.wallet as context.wallet_pool_with_identity.wallet
+}
+
 test_list_identity_challenges_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "ListIdentityChallenges",
