@@ -378,6 +378,7 @@ permissions:
         operations:
           - 'ListIdentities'
           - 'GetIdentity'
+          - 'GetWithdrawalMethods'
           - 'CreateIdentity'
           - 'ListIdentityChallenges'
           - 'StartIdentityChallenge'
