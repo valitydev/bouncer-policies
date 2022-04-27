@@ -14,6 +14,11 @@ allowed[why] {
     allowed_for_session_token[why]
 }
 
+allowed[why] {
+    input.auth.method == ["InvoiceAccessToken", "CustomerAccessToken"][_]
+    allowed_for_access_token[why]
+}
+
 allowed_for_session_token[why] {
     operation_allowed
     shortened_url_owner_matches_user_id
@@ -28,6 +33,14 @@ allowed_for_session_token[why] {
     why := {
         "code": "session_token_allows_operation",
         "description": "Session token allows this operation"
+    }
+}
+
+allowed_for_access_token[why] {
+    op.id == "ShortenUrl"
+    why := {
+        "code": "access_token_allows_operation",
+        "description": "Access token allows this operation"
     }
 }
 
