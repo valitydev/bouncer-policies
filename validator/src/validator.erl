@@ -1,7 +1,7 @@
 -module(validator).
 
--include_lib("bouncer_proto/include/bouncer_context_v1_thrift.hrl").
--include_lib("bouncer_proto/include/bouncer_restriction_thrift.hrl").
+-include_lib("bouncer_proto/include/bouncer_ctx_v1_thrift.hrl").
+-include_lib("bouncer_proto/include/bouncer_rstn_thrift.hrl").
 
 -export([main/1]).
 
@@ -12,7 +12,7 @@
 -define(VALIDATION_FAILED, 2).
 
 -type struct() ::
-    {struct, struct, {bouncer_context_v1_thrift, 'ContextFragment'} | {bouncer_restriction_thrift, 'Restrictions'}}.
+    {struct, struct, {bouncer_ctx_v1_thrift, 'ContextFragment'} | {bouncer_rstn_thrift, 'Restrictions'}}.
 
 %%
 
@@ -86,9 +86,9 @@ get_json_metadata(_MapWithoutMeta) ->
 
 -spec validate_struct(string()) -> struct() | no_return().
 validate_struct(<<"Context">>) ->
-    {struct, struct, {bouncer_context_v1_thrift, 'ContextFragment'}};
+    {struct, struct, {bouncer_ctx_v1_thrift, 'ContextFragment'}};
 validate_struct(<<"Restrictions">>) ->
-    {struct, struct, {bouncer_restriction_thrift, 'Restrictions'}};
+    {struct, struct, {bouncer_rstn_thrift, 'Restrictions'}};
 validate_struct(StructName) ->
     abort(?INPUT_ERROR, "Invalid metadata: type '~s' is not one of: 'Context', 'Restrictions'", [StructName]).
 
