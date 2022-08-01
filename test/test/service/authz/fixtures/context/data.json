@@ -1788,7 +1788,7 @@
     "wachter": {
       "op": {
         "id": "Checkout",
-        "service": "domain",
+        "service_name": "domain",
         "party": {
           "id": "PARTY"
         }
@@ -1799,7 +1799,7 @@
     "wachter": {
       "op": {
         "id": "Checkout",
-        "service": "domain"
+        "service_name": "domain"
       }
     }
   },
@@ -1807,7 +1807,7 @@
     "wachter": {
       "op": {
         "id": "Checkout",
-        "service": "repairer",
+        "service_name": "repairer",
         "party": {
           "id": "PARTY"
         }
@@ -1818,7 +1818,7 @@
     "wachter": {
       "op": {
         "id": "Unknown",
-        "service": "domain",
+        "service_name": "domain",
         "party": {
           "id": "PARTY"
         }
@@ -1829,7 +1829,7 @@
     "wachter": {
       "op": {
         "id": "Checkout",
-        "service": "Unknown",
+        "service_name": "Unknown",
         "party": {
           "id": "PARTY"
         }

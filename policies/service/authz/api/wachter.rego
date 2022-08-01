@@ -124,7 +124,7 @@ operation_access_request[requirement] = names {
     names := { name | entities[name].operations[_] == op.id }
 }
 
-entity_access_status[op.service] = status {
+entity_access_status[op.service_name] = status {
     status := party_access_status(op.party.id)
 }
 
