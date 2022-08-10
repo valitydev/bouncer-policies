@@ -334,7 +334,7 @@ webhook_access_status(id) = status {
 }
 
 ip_replacement_allowed {
-    whitelists.ip_replacement_party_ids.entries[_] == op.party.id
+    true
 }
 
 allowed_operation_for_auth_method {
