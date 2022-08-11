@@ -198,12 +198,3 @@ restrictions[what] {
         "restrictions": rstns
     }
 }
-
-restrictions[what] {
-    input.capi
-    rstns := capi.restrictions[_]
-    what := {
-        "type": "capi",
-        "restrictions": rstns,
-    }
-}

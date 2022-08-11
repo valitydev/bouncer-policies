@@ -3,7 +3,6 @@ package test.service.authz.api.capi
 import data.service.authz.api
 import data.test.service.authz.util
 import data.test.service.authz.fixtures.context
-import data.test.service.authz.fixtures.restrictions
 
 test_get_refunds_allowed {
     result := api.assertions with input as util.deepmerge([
@@ -535,16 +534,6 @@ test_capi_allowed_by_api_token_10 {
     util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
 }
 
-
-test_allowed_without_ip_replacement {
-  util.is_allowed with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.customer_access_token_valid,
-        context.op_capi_create_payment_resource
-    ])
-}
-
 test_allowed_ip_replacement {
     util.is_allowed with input as util.deepmerge([
         context.env_default,
@@ -552,28 +541,5 @@ test_allowed_ip_replacement {
         context.op_capi_create_payment_resource_allow_ip,
         context.op_capi_create_payment_resource_client_ip,
         context.customer_access_token_valid_allow_ip
-    ])
-}
-
-test_restricted_ip_replacement_with_empty_dataset {
-    rs := restrictions.op_capi_restrictions_ip_replacement_forbidden
-    util.is_restricted_with(rs) with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.op_capi_create_payment_resource_allow_ip,
-        context.op_capi_create_payment_resource_client_ip,
-        context.customer_access_token_valid_allow_ip
-      ])
-      with data.service.authz.whitelists.ip_replacement_party_ids.entries as []
-}
-
-test_restricted_ip_replacement {
-    rs := restrictions.op_capi_restrictions_ip_replacement_forbidden
-    util.is_restricted_with(rs) with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.op_capi_create_payment_resource,
-        context.op_capi_create_payment_resource_client_ip,
-        context.customer_access_token_valid
     ])
 }

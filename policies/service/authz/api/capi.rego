@@ -46,18 +46,6 @@ forbidden[why] {
     capi.payment_tool.forbidden[why]
 }
 
-# Restrictions
-
-restrictions[restriction] {
-    op.client_info.ip
-    not ip_replacement_allowed
-    restriction := {
-        "capi": {
-            "ip_replacement_forbidden": true
-        }
-    }
-}
-
 # Set of assertions which tell why operation under the input context is allowed.
 # Each element must be an object of the following form:
 # ```
@@ -331,10 +319,6 @@ webhook_access_status(id) = status {
     webhook := webhooks.webhook
     webhook.id == id
     status := party_access_status(webhook.party.id)
-}
-
-ip_replacement_allowed {
-    whitelists.ip_replacement_party_ids.entries[_] == op.party.id
 }
 
 allowed_operation_for_auth_method {
