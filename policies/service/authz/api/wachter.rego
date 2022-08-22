@@ -34,69 +34,36 @@ forbidden[why] {
     not allowed_operation_for_auth_method
     why := {
         "code": "unknown_auth_method_forbids_operation",
-        "description": sprintf("Unknown auth method for this operation: %v", [input.auth.method])
+        "description": sprintf("Unknown auth method for this operation: %v", [op.id])
     }
 }
 
 forbidden[why] {
-    input.auth.method == "SessionToken"
-    access_violations[why]
+    not allowed_operation_for_service
+    why := {
+        "code": "unknown_service_forbids_operation",
+        "description": sprintf("Unknown service %v for this operation: %v", [op.service_name, op.id])
+    }
 }
 
-# Set of assertions which tell why operation under the input context is allowed.
-# Each element must be an object of the following form:
-# ```
-# {"code": "auth_expired", "description": "..."}
-# ```
+forbidden[why] {
+    not allowed_operation_for_role
+    why := {
+        "code": "unknown_role_forbids_operation",
+        "description": sprintf("Have no roles for this service: %v and operation: %v",
+        [op.service_name, op.id])
+    }
+}
 
 allowed[why] {
-    allowed_operation_for_auth_method
-    auth_method_allowed[why]
-}
-
-auth_method_allowed[why] {
     input.auth.method == "SessionToken"
-    count(access_violations) == 0
-    session_token_allowed[why]
-}
-
-session_token_allowed[why] {
-    access_status.owner
+    allowed_operation_for_auth_method
+    allowed_operation_for_service
+    allowed_operation_for_role
     why := {
-        "code": "org_ownership_allows_operation",
-        "description": "User is owner of organization that is subject of this operation"
+        "code": "allowed_operation",
+        "description": sprintf("Allowed operation %v for service %v", [op.id, op.service_name])
     }
-}
-
-session_token_allowed[why] {
-    role := operation_roles[_]
-    why := {
-        "code": "org_role_allows_operation",
-        "description": sprintf("User has role that permits this operation: %v", [role.id])
-    }
-}
-
-access_status = status {
-    # NOTE
-    # This is intentional. In there are no violations then the access status set
-    # MUST NOT contain conflicting (i.e. more than one) status assertions.
-    # Otherwise evaluation will end with a runtime error. Usually it would mean
-    # that either incoming context or access matrix (access/data.yaml) is
-    # malformed.
-    count(access_violations) == 0
-    status := access_status_set[_]
-}
-
-access_status_set[status] {
-    operation_access_request[requirement][name]
-    status := entity_access_requirement_status(name, requirement)
-    # NOTE
-    # This discards discretionary access status assertions (i.e. `status := true`).
-    is_object(status)
-}
-
-access_violations[violation] {
-    violation := access_status_set[_].violation
 }
 
 allowed_operation_for_auth_method {
@@ -104,42 +71,21 @@ allowed_operation_for_auth_method {
     operations_available[_] == op.id
 }
 
-entity_access_requirement_status(name, req) = status {
-    req == access_mandatory
-    status := entity_access_status[name]
-} else = status {
-    violation := {
-        "code": "missing_access",
-        "description": sprintf(
-            "Missing %s access for %s with operation id = %s",
-            [req, name, op.id]
-        )
+
+allowed_operation_for_service {
+    operations_available := access.api[api_name].mandatory[op.service_name].operations
+    operations_available[_] == op.id
+}
+
+allowed_operation_for_role {
+      operations_available := operations_by_role
+      operations_available[_] == op.id
+
+}
+
+operations_by_role = operations {
+    operations := {
+        operation |
+            operation := roles.internal.apis[op.access[_].id].roles[op.access[_].roles[_]].operations[_]
     }
-    status := {"violation": violation}
-}
-
-operation_access_request[requirement] = names {
-    requirement := access_requirements[_]
-    entities := access_matrix[requirement]
-    names := { name | entities[name].operations[_] == op.id }
-}
-
-entity_access_status[op.service_name] = status {
-    status := party_access_status(op.party.id)
-}
-
-party_access_status(id) = status {
-    user.is_owner(id)
-    status := {"owner": true}
-} else = status {
-    userorg := user.org_by_party(id)
-    roles := { role | role := userorg.roles[_] }
-    roles[_]
-    status := {"roles": roles}
-}
-
-operation_roles[role] {
-    role := access_status.roles[_]
-    operations := user.operations_by_role(api_name, role)
-    operations[_] == op.id
 }

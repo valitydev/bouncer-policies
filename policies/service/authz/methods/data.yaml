@@ -260,6 +260,11 @@ permissions:
           - 'SearchClaims'
           - 'GetClaim'
           - 'AcceptClaim'
+          - 'RequestClaimReview'
+          - 'RequestClaimChanges'
+          - 'DenyClaim'
+          - 'RevokeClaim'
+          - 'UpdateClaim'
 
   ApiKeyToken:
     apis:

@@ -1784,22 +1784,81 @@
       ]
     }
   },
-  "op_wachter_checkout": {
+  "op_wachter_support": {
     "wachter": {
       "op": {
-        "id": "Checkout",
-        "service_name": "domain",
-        "party": {
-          "id": "PARTY"
-        }
+        "id": "CreateDeposit",
+        "service_name": "fistfulAdmin",
+        "access": [
+          {
+            "id": "claim-management",
+            "roles": [
+              "accept_claim",
+              "add_claim_mod",
+              "add_party_mod",
+              "create_claim",
+              "deny_claim",
+              "request_claim_changes",
+              "request_claim_review",
+              "revoke_claim",
+              "update_claim"
+            ]
+          },
+          {
+            "id": "control-center",
+            "roles": [
+              "deposit:write",
+              "manage_chargebacks",
+              "search_deposits",
+              "search_invoices",
+              "search_ops",
+              "search_payments",
+              "view_chargebacks"
+            ]
+          },
+          {
+            "id": "private-api",
+            "roles": [
+              "accounting_report:get",
+              "adjustment:get",
+              "adjustment:update",
+              "claim.action:get",
+              "claim.comment:add",
+              "claim.comment:get",
+              "claim:accept",
+              "claim:get",
+              "claim:update",
+              "dmt:checkout",
+              "dmt:commit",
+              "dmt:pull",
+              "internal_report:get",
+              "merchant:create",
+              "merchant:update",
+              "party:get",
+              "payout:cancel",
+              "payout:confirm",
+              "payout:generate",
+              "payout:pay",
+              "payout:read"
+            ]
+          }
+        ]
       }
     }
   },
-  "op_wachter_checkout_without_party": {
+  "op_wachter_with_unknown_role": {
     "wachter": {
       "op": {
-        "id": "Checkout",
-        "service_name": "domain"
+        "id": "CreateClaim",
+        "service_name": "claimManagement",
+        "access": [
+          {
+            "id": "claim-management",
+            "roles": [
+              "unknown"
+            ]
+          }
+        ]
       }
     }
   },
@@ -1808,9 +1867,21 @@
       "op": {
         "id": "Checkout",
         "service_name": "repairer",
-        "party": {
-          "id": "PARTY"
-        }
+        "access": [
+          {
+            "id": "claim-management",
+            "roles": [
+              "accept_claim",
+              "add_claim_mod",
+              "add_party_mod",
+              "deny_claim",
+              "request_claim_changes",
+              "request_claim_review",
+              "revoke_claim",
+              "update_claim"
+            ]
+          }
+        ]
       }
     }
   },
@@ -1819,9 +1890,21 @@
       "op": {
         "id": "Unknown",
         "service_name": "domain",
-        "party": {
-          "id": "PARTY"
-        }
+        "access": [
+          {
+            "id": "claim-management",
+            "roles": [
+              "accept_claim",
+              "add_claim_mod",
+              "add_party_mod",
+              "deny_claim",
+              "request_claim_changes",
+              "request_claim_review",
+              "revoke_claim",
+              "update_claim"
+            ]
+          }
+        ]
       }
     }
   },
@@ -1830,9 +1913,21 @@
       "op": {
         "id": "Checkout",
         "service_name": "Unknown",
-        "party": {
-          "id": "PARTY"
-        }
+        "access": [
+          {
+            "id": "claim-management",
+            "roles": [
+              "accept_claim",
+              "add_claim_mod",
+              "add_party_mod",
+              "deny_claim",
+              "request_claim_changes",
+              "request_claim_review",
+              "revoke_claim",
+              "update_claim"
+            ]
+          }
+        ]
       }
     }
   },
@@ -1840,9 +1935,21 @@
     "wachter": {
       "op": {
         "id": "Checkout",
-        "party": {
-          "id": "PARTY"
-        }
+        "access": [
+          {
+            "id": "claim-management",
+            "roles": [
+              "accept_claim",
+              "add_claim_mod",
+              "add_party_mod",
+              "deny_claim",
+              "request_claim_changes",
+              "request_claim_review",
+              "revoke_claim",
+              "update_claim"
+            ]
+          }
+        ]
       }
     }
   }

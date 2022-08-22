@@ -321,6 +321,11 @@ api:
           - 'SearchClaims'
           - 'GetClaim'
           - 'AcceptClaim'
+          - 'RequestClaimReview'
+          - 'RequestClaimChanges'
+          - 'DenyClaim'
+          - 'RevokeClaim'
+          - 'UpdateClaim'
 
   WalletAPI:
     mandatory:
