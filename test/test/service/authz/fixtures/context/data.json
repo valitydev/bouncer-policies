@@ -1869,16 +1869,9 @@
         "service_name": "repairer",
         "access": [
           {
-            "id": "claim-management",
+            "id": "private-api",
             "roles": [
-              "accept_claim",
-              "add_claim_mod",
-              "add_party_mod",
-              "deny_claim",
-              "request_claim_changes",
-              "request_claim_review",
-              "revoke_claim",
-              "update_claim"
+              "dmt:checkout"
             ]
           }
         ]
