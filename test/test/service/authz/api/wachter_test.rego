@@ -12,6 +12,14 @@ test_wachter_support_roles {
     ])
 }
 
+test_wachter_forbidden_operation_auth_invalid {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.invoice_access_token_valid,
+        context.op_wachter_support
+    ])
+}
+
 test_wachter_support_op_wachter_with_unknown_role {
     util.is_forbidden with input as util.deepmerge([
         context.env_default,
