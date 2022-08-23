@@ -73,8 +73,13 @@ allowed_operation_for_auth_method {
 
 
 allowed_operation_for_service {
-    operations_available := access.api[api_name].mandatory[op.service_name].operations
-    operations_available[_] == op.id
+    operation_access_request[requirement][name]
+}
+
+operation_access_request[requirement] = names {
+    requirement := access_requirements[_]
+    entities := access_matrix[requirement]
+    names := { name | entities[name].operations[_] == op.id }
 }
 
 allowed_operation_for_role {
