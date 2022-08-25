@@ -1524,7 +1524,14 @@
         "wachter": {
             "op": {
                 "id": "CreateDeposit",
-                "service_name": "fistfulAdmin",
+                "service_name": "fistfulAdmin"
+            }
+        }
+    },
+
+    "auth_resource_access_techsuppoort": {
+        "auth": {
+            "token": {
                 "access": [
                     {
                         "id": "claim-management",
@@ -1582,11 +1589,20 @@
             }
         }
     },
-    "op_wachter_with_unknown_role": {
+
+    "op_wachter_create_claim": {
         "wachter": {
             "op": {
                 "id": "CreateClaim",
-                "service_name": "claimManagement",
+                "service_name": "claimManagement"
+
+            }
+        }
+    },
+
+    "auth_resource_access_with_unknown_role": {
+        "auth": {
+            "token": {
                 "access": [
                     {
                         "id": "claim-management",
@@ -1598,87 +1614,39 @@
             }
         }
     },
-    "op_wachter_checkout_method_with_another_service": {
+
+
+    "op_wachter_checkout_method_with_repairer_service": {
         "wachter": {
             "op": {
                 "id": "Checkout",
-                "service_name": "repairer",
-                "access": [
-                    {
-                        "id": "private-api",
-                        "roles": [
-                            "dmt:checkout"
-                        ]
-                    }
-                ]
+                "service_name": "repairer"
             }
         }
     },
+
     "op_wachter_unknown_method": {
         "wachter": {
             "op": {
                 "id": "Unknown",
-                "service_name": "domain",
-                "access": [
-                    {
-                        "id": "claim-management",
-                        "roles": [
-                            "accept_claim",
-                            "add_claim_mod",
-                            "add_party_mod",
-                            "deny_claim",
-                            "request_claim_changes",
-                            "request_claim_review",
-                            "revoke_claim",
-                            "update_claim"
-                        ]
-                    }
-                ]
+                "service_name": "domain"
             }
         }
     },
+
     "op_wachter_unknown_service": {
         "wachter": {
             "op": {
                 "id": "Checkout",
-                "service_name": "Unknown",
-                "access": [
-                    {
-                        "id": "claim-management",
-                        "roles": [
-                            "accept_claim",
-                            "add_claim_mod",
-                            "add_party_mod",
-                            "deny_claim",
-                            "request_claim_changes",
-                            "request_claim_review",
-                            "revoke_claim",
-                            "update_claim"
-                        ]
-                    }
-                ]
+                "service_name": "Unknown"
             }
         }
     },
+
     "op_wachter_without_service": {
         "wachter": {
             "op": {
-                "id": "Checkout",
-                "access": [
-                    {
-                        "id": "claim-management",
-                        "roles": [
-                            "accept_claim",
-                            "add_claim_mod",
-                            "add_party_mod",
-                            "deny_claim",
-                            "request_claim_changes",
-                            "request_claim_review",
-                            "revoke_claim",
-                            "update_claim"
-                        ]
-                    }
-                ]
+                "id": "Checkout"
             }
         }
     }

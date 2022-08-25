@@ -11,12 +11,6 @@ import input.wachter.op
 api_name := "Wachter"
 access_matrix := access.api[api_name]
 
-access_mandatory := "mandatory"
-
-access_requirements := {
-    access_mandatory
-}
-
 # Set of assertions which tell why operation under the input context is forbidden.
 # Each element must be an object of the following form:
 # ```
@@ -73,8 +67,7 @@ allowed_operation_for_auth_method {
 
 
 allowed_operation_for_service {
-    requirement := access_requirements[_]
-    entities := access_matrix[requirement]
+    entities := access_matrix.mandatory
     operations_available := entities[op.service_name].operations
     operations_available[_] == op.id
 }
@@ -85,9 +78,7 @@ allowed_operation_for_role {
 
 }
 
-operations_by_role = operations {
-    operations := {
-        operation |
-            operation := roles.internal.apis[op.access[_].id].roles[op.access[_].roles[_]].operations[_]
-    }
+operations_by_role[operation] {
+    access := input.auth.token.access[_]
+    operation := roles.internal.apis[access.id].roles[access.roles[_]].operations[_]
 }
