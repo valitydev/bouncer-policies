@@ -1,1949 +1,1685 @@
 {
-  "$metadata": {
-    "type": "Context"
-  },
-  "env_default": {
-    "env": {
-      "now": "2020-02-02T12:34:56Z"
-    }
-  },
-  "op_orgmgmt_create_invitation": {
-    "orgmgmt": {
-      "op": {
-        "id": "createInvitation",
-        "organization": {
-          "id": "PARTY"
+    "$metadata": {
+        "type": "Context"
+    },
+
+    "env_default": {
+        "env": {
+            "now": "2020-02-02T12:34:56Z"
         }
-      }
-    }
-  },
-  "op_orgmgmt_get_org_member": {
-    "orgmgmt": {
-      "op": {
-        "id": "getOrgMember",
-        "organization": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_orgmgmt_not_exist_operation": {
-    "orgmgmt": {
-      "op": {
-        "id": "nonExist",
-        "organization": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_orgmgmt_foreign_org": {
-    "orgmgmt": {
-      "op": {
-        "id": "getOrgMember",
-        "organization": {
-          "id": "PARTY3"
-        }
-      }
-    }
-  },
-  "op_orgmgmt_without_org": {
-    "orgmgmt": {
-      "op": {
-        "id": "getOrgMember"
-      }
-    }
-  },
-  "op_orgmgmt_create_org": {
-    "orgmgmt": {
-      "op": {
-        "id": "createOrg",
-        "organization": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_orgmgmt_join_org": {
-    "orgmgmt": {
-      "op": {
-        "id": "joinOrg",
-        "organization": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_orgmgmt_expel_member_from_another_org": {
-    "orgmgmt": {
-      "op": {
-        "id": "expelOrgMember",
-        "organization": {
-          "id": "PARTY"
-        },
-        "member": {
-          "id": "MEMBER",
-          "orgs": [
-            {
-              "id": "ANOTHER_PARTY"
+    },
+
+    "op_orgmgmt_create_invitation": {
+        "orgmgmt": {
+            "op": {
+                "id": "createInvitation",
+                "organization": {"id": "PARTY"}
             }
-          ]
         }
-      }
-    }
-  },
-  "op_orgmgmt_expel_member_from_org": {
-    "orgmgmt": {
-      "op": {
-        "id": "expelOrgMember",
-        "organization": {
-          "id": "PARTY"
-        },
-        "member": {
-          "id": "MEMBER",
-          "orgs": [
-            {
-              "id": "PARTY"
+    },
+
+    "op_orgmgmt_get_org_member": {
+        "orgmgmt": {
+            "op": {
+                "id": "getOrgMember",
+                "organization": {"id": "PARTY"}
             }
-          ]
         }
-      }
-    }
-  },
-  "op_orgmgmt_cancel_org_membership": {
-    "orgmgmt": {
-      "op": {
-        "id": "cancelOrgMembership",
-        "organization": {
-          "id": "PARTY"
-        },
-        "member": {
-          "id": "MEMBER",
-          "orgs": [
-            {
-              "id": "PARTY"
+    },
+
+    "op_orgmgmt_not_exist_operation": {
+        "orgmgmt": {
+            "op": {
+                "id": "nonExist",
+                "organization": {"id": "PARTY"}
             }
-          ]
         }
-      }
-    }
-  },
-  "op_orgmgmt_assign_member_role": {
-    "orgmgmt": {
-      "op": {
-        "id": "assignMemberRole",
-        "organization": {
-          "id": "PARTY"
-        },
-        "member": {
-          "id": "MEMBER",
-          "orgs": [
-            {
-              "id": "PARTY"
+    },
+
+    "op_orgmgmt_foreign_org": {
+        "orgmgmt": {
+            "op": {
+                "id": "getOrgMember",
+                "organization": {"id": "PARTY3"}
             }
-          ]
-        },
-        "role": {
-          "id": "ROLE"
         }
-      }
-    }
-  },
-  "op_orgmgmt_remove_member_role_in_another_org": {
-    "orgmgmt": {
-      "op": {
-        "id": "removeMemberRole",
-        "organization": {
-          "id": "PARTY"
-        },
-        "member": {
-          "id": "MEMBER",
-          "orgs": [
-            {
-              "id": "ANOTHER_PARTY"
+    },
+
+    "op_orgmgmt_without_org": {
+        "orgmgmt": {
+            "op": {
+                "id": "getOrgMember"
             }
-          ]
-        },
-        "role": {
-          "id": "ROLE"
         }
-      }
-    }
-  },
-  "op_claimmgmt_createClaim": {
-    "claimmgmt": {
-      "op": {
-        "id": "createClaim",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_claimmgmt_searchClaims": {
-    "claimmgmt": {
-      "op": {
-        "id": "searchClaims",
-        "party": {
-          "id": "ANOTHER_PARTY"
-        }
-      }
-    }
-  },
-  "op_claimmgmt_not_exist_operation": {
-    "claimmgmt": {
-      "op": {
-        "id": "nonExist",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_capi_create_payment_resource": {
-    "capi": {
-      "op": {
-        "id": "CreatePaymentResource",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_capi_create_payment_resource_allow_ip": {
-    "capi": {
-      "op": {
-        "id": "CreatePaymentResource",
-        "party": {
-          "id": "PARTY_ALLOWED_IP_REPLACEMENT"
-        }
-      }
-    }
-  },
-  "op_capi_create_payment_resource_client_ip": {
-    "capi": {
-      "op": {
-        "client_info": {
-          "ip": "1.1.1.1"
-        }
-      }
-    }
-  },
-  "op_capi_create_webhook": {
-    "capi": {
-      "op": {
-        "id": "CreateWebhook",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_capi_create_invoice": {
-    "capi": {
-      "op": {
-        "id": "CreateInvoice",
-        "shop": {
-          "id": "SHOP"
-        },
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_capi_get_invoice": {
-    "capi": {
-      "op": {
-        "id": "GetInvoiceByID",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_create_refund": {
-    "capi": {
-      "op": {
-        "id": "CreateRefund",
-        "invoice": {
-          "id": "INVOICE"
-        },
-        "payment": {
-          "id": "PAYMENT"
-        }
-      }
-    }
-  },
-  "op_capi_get_invoice_2": {
-    "capi": {
-      "op": {
-        "id": "GetInvoiceByID",
-        "invoice": {
-          "id": "INVOICE_2"
-        }
-      }
-    }
-  },
-  "op_capi_get_refunds": {
-    "capi": {
-      "op": {
-        "id": "GetRefunds",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_get_invoice_payment_methods": {
-    "capi": {
-      "op": {
-        "id": "GetInvoicePaymentMethods",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_get_invoice_events": {
-    "capi": {
-      "op": {
-        "id": "GetInvoiceEvents",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_create_payment": {
-    "capi": {
-      "op": {
-        "id": "CreatePayment",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_get_service_provider": {
-    "capi": {
-      "op": {
-        "id": "GetServiceProviderByID"
-      }
-    }
-  },
-  "op_capi_create_payment_insufficient_input": {
-    "capi": {
-      "op": {
-        "id": "CreatePayment",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        }
-      }
-    }
-  },
-  "op_capi_cancel_payment": {
-    "capi": {
-      "op": {
-        "id": "CancelPayment",
-        "invoice": {
-          "id": "INVOICE"
-        },
-        "payment": {
-          "id": "PAYMENT"
-        }
-      }
-    }
-  },
-  "op_capi_get_refund_by_id": {
-    "capi": {
-      "op": {
-        "id": "GetRefundByID",
-        "invoice": {
-          "id": "INVOICE"
-        },
-        "payment": {
-          "id": "PAYMENT"
-        },
-        "refund": {
-          "id": "REFUND"
-        }
-      }
-    }
-  },
-  "op_capi_fulfill_invoice": {
-    "capi": {
-      "op": {
-        "id": "FulfillInvoice",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_create_invoice_access_token": {
-    "capi": {
-      "op": {
-        "id": "CreateInvoiceAccessToken",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_get_payment_institution_payout_schedules": {
-    "capi": {
-      "op": {
-        "id": "GetPaymentInstitutionPayoutSchedules"
-      }
-    }
-  },
-  "op_capi_update_invoice_template": {
-    "capi": {
-      "op": {
-        "id": "UpdateInvoiceTemplate",
-        "invoice_template": {
-          "id": "INVOICE_TEMPLATE"
-        }
-      }
-    }
-  },
-  "op_capi_create_binding": {
-    "capi": {
-      "op": {
-        "id": "CreateBinding",
-        "customer": {
-          "id": "CUSTOMER"
-        }
-      }
-    }
-  },
-  "op_capi_get_binding": {
-    "capi": {
-      "op": {
-        "id": "GetBinding",
-        "customer": {
-          "id": "CUSTOMER"
-        },
-        "binding": {
-          "id": "BINDING"
-        }
-      }
-    }
-  },
-  "op_capi_get_payments": {
-    "capi": {
-      "op": {
-        "id": "GetPayments",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_get_payment_by_id": {
-    "capi": {
-      "op": {
-        "id": "GetPaymentByID",
-        "invoice": {
-          "id": "INVOICE"
-        },
-        "payment": {
-          "id": "PAYMENT"
-        }
-      }
-    }
-  },
-  "op_capi_capture_payment": {
-    "capi": {
-      "op": {
-        "id": "CapturePayment",
-        "invoice": {
-          "id": "INVOICE"
-        },
-        "payment": {
-          "id": "PAYMENT"
-        }
-      }
-    }
-  },
-  "op_capi_get_invoice_template_by_id": {
-    "capi": {
-      "op": {
-        "id": "GetInvoiceTemplateByID",
-        "invoice_template": {
-          "id": "INVOICE_TEMPLATE"
-        }
-      }
-    }
-  },
-  "op_capi_create_invoice_with_template": {
-    "capi": {
-      "op": {
-        "id": "CreateInvoiceWithTemplate",
-        "invoice_template": {
-          "id": "INVOICE_TEMPLATE"
-        }
-      }
-    }
-  },
-  "op_capi_get_invoice_payment_methods_by_template_id": {
-    "capi": {
-      "op": {
-        "id": "GetInvoicePaymentMethodsByTemplateID",
-        "invoice_template": {
-          "id": "INVOICE_TEMPLATE"
-        }
-      }
-    }
-  },
-  "op_capi_get_customer_by_id": {
-    "capi": {
-      "op": {
-        "id": "GetCustomerById",
-        "customer": {
-          "id": "CUSTOMER"
-        }
-      }
-    }
-  },
-  "op_capi_empty": {
-    "capi": {
-      "op": {}
-    }
-  },
-  "op_wapi_empty": {
-    "wapi": {
-      "op": {}
-    }
-  },
-  "op_capi_get_customer_events": {
-    "capi": {
-      "op": {
-        "id": "GetCustomerEvents",
-        "customer": {
-          "id": "CUSTOMER"
-        }
-      }
-    }
-  },
-  "op_capi_get_customer_payment_methods": {
-    "capi": {
-      "op": {
-        "id": "GetCustomerPaymentMethods",
-        "customer": {
-          "id": "CUSTOMER"
-        }
-      }
-    }
-  },
-  "op_capi_rescind_invoice": {
-    "capi": {
-      "op": {
-        "id": "RescindInvoice",
-        "invoice": {
-          "id": "INVOICE"
-        }
-      }
-    }
-  },
-  "op_capi_search_invoices": {
-    "capi": {
-      "op": {
-        "id": "SearchInvoices",
-        "shop": {
-          "id": "SHOP"
-        },
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_capi_search_specific_invoice": {
-    "capi": {
-      "op": {
-        "id": "SearchInvoices",
-        "invoice": {
-          "id": "INVOICE"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_capi_search_specific_payout": {
-    "capi": {
-      "op": {
-        "id": "SearchPayouts",
-        "payout": {
-          "id": "PAYOUT"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_capi_delete_webhook": {
-    "capi": {
-      "op": {
-        "id": "DeleteWebhookByID",
-        "webhook": {
-          "id": "WEBHOOK"
-        }
-      }
-    }
-  },
-  "op_capi_download_file": {
-    "capi": {
-      "op": {
-        "id": "DownloadFileForParty",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "report": {
-          "id": "REPORT"
-        },
-        "file": {
-          "id": "FILE"
-        }
-      }
-    }
-  },
-  "op_capi_download_missing_file": {
-    "capi": {
-      "op": {
-        "id": "DownloadFileForParty",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "report": {
-          "id": "REPORT"
-        },
-        "file": {
-          "id": "NOFILE"
-        }
-      }
-    }
-  },
-  "op_capi_download_file_invalid_shop": {
-    "capi": {
-      "op": {
-        "id": "DownloadFileForParty",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP_2"
-        },
-        "report": {
-          "id": "REPORT"
-        },
-        "file": {
-          "id": "NOFILE"
-        }
-      }
-    }
-  },
-  "op_capi_download_file_invalid_party": {
-    "capi": {
-      "op": {
-        "id": "DownloadFileForParty",
-        "party": {
-          "id": "PARTY_2"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "report": {
-          "id": "REPORT"
-        },
-        "file": {
-          "id": "NOFILE"
-        }
-      }
-    }
-  },
-  "payment_tool_unlinked": {
-    "payment_tool": {
-      "expiration": "2021-01-01T00:00:00Z"
-    }
-  },
-  "payment_tool_expiration": {
-    "payment_tool": {
-      "expiration": "2020-01-01T00:00:00Z"
-    }
-  },
-  "payment_tool_shop": {
-    "payment_tool": {
-      "scope": {
-        "shop": {
-          "id": "SHOP"
-        },
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "payment_tool_shop2": {
-    "payment_tool": {
-      "scope": {
-        "shop": {
-          "id": "SHOP2"
-        },
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "payment_tool_invoice2": {
-    "payment_tool": {
-      "scope": {
-        "invoice": {
-          "id": "INVOICE2"
-        }
-      }
-    }
-  },
-  "payment_tool_customer2": {
-    "payment_tool": {
-      "scope": {
-        "customer": {
-          "id": "CUSTOMER2"
-        }
-      }
-    }
-  },
-  "payproc_invoice": {
-    "payment_processing": {
-      "invoice": {
-        "id": "INVOICE",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        }
-      }
-    }
-  },
-  "payproc_insufficient_input": {
-    "payment_processing": {}
-  },
-  "payproc_invoice_no_party_context": {
-    "payment_processing": {
-      "invoice": {
-        "id": "INVOICE",
-        "shop": {
-          "id": "SHOP"
-        }
-      }
-    }
-  },
-  "payproc_invoice_no_shop_context": {
-    "payment_processing": {
-      "invoice": {
-        "id": "INVOICE",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "payproc_invoice_2": {
-    "payment_processing": {
-      "invoice": {
-        "id": "INVOICE_2",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        }
-      }
-    }
-  },
-  "payproc_invoice_another_shop": {
-    "payment_processing": {
-      "invoice": {
-        "id": "INVOICE",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP_2"
-        }
-      }
-    }
-  },
-  "payproc_invoice_foreign": {
-    "payment_processing": {
-      "invoice": {
-        "id": "INVOICE",
-        "party": {
-          "id": "PARTY_2"
-        },
-        "shop": {
-          "id": "SHOP"
-        }
-      }
-    }
-  },
-  "payproc_invoice_template": {
-    "payment_processing": {
-      "invoice_template": {
-        "id": "INVOICE_TEMPLATE",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        }
-      }
-    }
-  },
-  "payproc_customer": {
-    "payment_processing": {
-      "customer": {
-        "id": "CUSTOMER",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "bindings": [
-          {
-            "id": "BINDING"
-          }
-        ]
-      }
-    }
-  },
-  "webhooks_webhook": {
-    "webhooks": {
-      "webhook": {
-        "id": "WEBHOOK",
-        "party": {
-          "id": "PARTY"
-        },
-        "filter": {
-          "topic": "invoice",
-          "shop": {
-            "id": "SHOP"
-          }
-        }
-      }
-    }
-  },
-  "webhooks_webhook_foreign": {
-    "webhooks": {
-      "webhook": {
-        "id": "WEBHOOK",
-        "party": {
-          "id": "PARTY_2"
-        },
-        "filter": {
-          "topic": "invoice",
-          "shop": {
-            "id": "SHOP"
-          }
-        }
-      }
-    }
-  },
-  "reports_report": {
-    "reports": {
-      "report": {
-        "id": "REPORT",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "files": [
-          {
-            "id": "FILE"
-          }
-        ]
-      }
-    }
-  },
-  "reports_report_without_shop": {
-    "reports": {
-      "report": {
-        "id": "REPORT",
-        "party": {
-          "id": "PARTY"
-        },
-        "files": [
-          {
-            "id": "FILE"
-          }
-        ]
-      }
-    }
-  },
-  "payouts_payout": {
-    "payouts": {
-      "payout": {
-        "id": "PAYOUT",
-        "party": {
-          "id": "PARTY"
-        },
-        "contract": {
-          "id": "CONTRACT"
-        },
-        "shop": {
-          "id": "SHOP"
-        }
-      }
-    }
-  },
-  "session_token_valid": {
-    "auth": {
-      "method": "SessionToken",
-      "expiration": "2021-01-01T00:00:00Z"
-    }
-  },
-  "session_token_no_expiration": {
-    "auth": {
-      "method": "SessionToken"
-    }
-  },
-  "api_key_token_valid": {
-    "auth": {
-      "method": "ApiKeyToken",
-      "scope": [
-        {
-          "party": {
-            "id": "PARTY"
-          }
-        }
-      ]
-    }
-  },
-  "api_key_token_different_party": {
-    "auth": {
-      "method": "ApiKeyToken",
-      "scope": [
-        {
-          "party": {
-            "id": "PARTY_2"
-          }
-        }
-      ]
-    }
-  },
-  "api_key_token_no_scope": {
-    "auth": {
-      "method": "ApiKeyToken",
-      "token": {
-        "id": "TÓKEN"
-      },
-      "scope": []
-    }
-  },
-  "invoice_access_token_valid": {
-    "auth": {
-      "method": "InvoiceAccessToken",
-      "expiration": "2021-01-01T00:00:00Z",
-      "scope": [
-        {
-          "invoice": {
-            "id": "INVOICE"
-          },
-          "shop": {
-            "id": "SHOP"
-          },
-          "party": {
-            "id": "PARTY"
-          }
-        }
-      ]
-    }
-  },
-  "invoice_access_token_valid_party_2": {
-    "auth": {
-      "method": "InvoiceAccessToken",
-      "expiration": "2021-01-01T00:00:00Z",
-      "scope": [
-        {
-          "invoice": {
-            "id": "INVOICE"
-          },
-          "party": {
-            "id": "PARTY_2"
-          }
-        }
-      ]
-    }
-  },
-  "invoice_access_token_expired": {
-    "auth": {
-      "method": "InvoiceAccessToken",
-      "expiration": "2020-02-02T00:00:00Z",
-      "scope": [
-        {
-          "invoice": {
-            "id": "INVOICE"
-          }
-        }
-      ]
-    }
-  },
-  "invoice_template_access_token_valid": {
-    "auth": {
-      "method": "InvoiceTemplateAccessToken",
-      "expiration": "2021-01-01T00:00:00Z",
-      "scope": [
-        {
-          "invoice_template": {
-            "id": "INVOICE_TEMPLATE"
-          },
-          "party": {
-            "id": "PARTY"
-          }
-        }
-      ]
-    }
-  },
-  "customer_access_token_valid": {
-    "auth": {
-      "method": "CustomerAccessToken",
-      "expiration": "2021-01-01T00:00:00Z",
-      "scope": [
-        {
-          "customer": {
-            "id": "CUSTOMER"
-          },
-          "party": {
-            "id": "PARTY"
-          }
-        }
-      ]
-    }
-  },
-  "customer_access_token_valid_allow_ip": {
-    "auth": {
-      "method": "CustomerAccessToken",
-      "expiration": "2021-01-01T00:00:00Z",
-      "scope": [
-        {
-          "customer": {
-            "id": "CUSTOMER"
-          },
-          "party": {
-            "id": "PARTY_ALLOWED_IP_REPLACEMENT"
-          }
-        }
-      ]
-    }
-  },
-  "op_shortener_shorten_url": {
-    "shortener": {
-      "op": {
-        "id": "ShortenUrl"
-      }
-    }
-  },
-  "op_shortener_get_shorten_url": {
-    "shortener": {
-      "op": {
-        "id": "GetShortenedUrl",
-        "shortened_url": {
-          "owner": {
-            "id": "USER"
-          }
-        }
-      }
-    }
-  },
-  "op_shortener_delete_shorten_url": {
-    "shortener": {
-      "op": {
-        "id": "DeleteShortenedUrl",
-        "shortened_url": {
-          "owner": {
-            "id": "USER"
-          }
-        }
-      }
-    }
-  },
-  "op_binapi_lookup_card_info": {
-    "binapi": {
-      "op": {
-        "id": "LookupCardInfo",
-        "party": {
-          "id": "PARTY_2"
-        }
-      }
-    }
-  },
-  "op_anapi": {
-    "anapi": {
-      "op": {
-        "id": "SearchInvoices",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_anapi_no_shops": {
-    "anapi": {
-      "op": {
-        "id": "SearchInvoices",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_anapi_several_shops": {
-    "anapi": {
-      "op": {
-        "id": "SearchInvoices",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_anapi_reports": {
-    "anapi": {
-      "op": {
-        "id": "SearchReports",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_anapi_get_report": {
-    "anapi": {
-      "op": {
-        "id": "GetReport",
-        "party": {
-          "id": "PARTY"
-        },
-        "report": {
-          "id": "REPORT"
-        }
-      }
-    }
-  },
-  "op_anapi_create_report": {
-    "anapi": {
-      "op": {
-        "id": "CreateReport",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        }
-      }
-    }
-  },
-  "op_anapi_create_report_without_shop": {
-    "anapi": {
-      "op": {
-        "id": "CreateReport",
-        "party": {
-          "id": "PARTY"
-        }
-      }
-    }
-  },
-  "op_anapi_download_file": {
-    "anapi": {
-      "op": {
-        "id": "DownloadFile",
-        "party": {
-          "id": "PARTY"
-        },
-        "report": {
-          "id": "REPORT"
-        },
-        "file": {
-          "id": "FILE"
-        }
-      }
-    }
-  },
-  "op_anapi_download_missing_file": {
-    "anapi": {
-      "op": {
-        "id": "DownloadFile",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "report": {
-          "id": "REPORT"
-        },
-        "file": {
-          "id": "NOFILE"
-        }
-      }
-    }
-  },
-  "op_anapi_download_file_invalid_shop": {
-    "anapi": {
-      "op": {
-        "id": "DownloadFile",
-        "party": {
-          "id": "PARTY"
-        },
-        "shop": {
-          "id": "SHOP_2"
-        },
-        "report": {
-          "id": "REPORT"
-        },
-        "file": {
-          "id": "NOFILE"
-        }
-      }
-    }
-  },
-  "op_anapi_download_file_invalid_party": {
-    "anapi": {
-      "op": {
-        "id": "DownloadFile",
-        "party": {
-          "id": "PARTY_2"
-        },
-        "shop": {
-          "id": "SHOP"
-        },
-        "report": {
-          "id": "REPORT"
-        },
-        "file": {
-          "id": "NOFILE"
-        }
-      }
-    }
-  },
-  "user_default_other_role": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "OtherRole",
-              "scope": {
-                "shop": {
-                  "id": "SHOP"
+    },
+
+    "op_orgmgmt_create_org": {
+        "orgmgmt": {
+            "op": {
+                "id": "createOrg",
+                "organization": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_orgmgmt_join_org": {
+        "orgmgmt": {
+            "op": {
+                "id": "joinOrg",
+                "organization": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_orgmgmt_expel_member_from_another_org": {
+        "orgmgmt": {
+            "op": {
+                "id": "expelOrgMember",
+                "organization": {"id": "PARTY"},
+                "member": {
+                    "id": "MEMBER",
+                    "orgs": [ {
+                        "id": "ANOTHER_PARTY"
+                    }]
                 }
-              }
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_default": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Manager",
-              "scope": {
-                "shop": {
-                  "id": "SHOP"
+    },
+
+
+    "op_orgmgmt_expel_member_from_org": {
+        "orgmgmt": {
+            "op": {
+                "id": "expelOrgMember",
+                "organization": {"id": "PARTY"},
+                "member": {
+                    "id": "MEMBER",
+                    "orgs": [ {
+                        "id": "PARTY"
+                    }]
                 }
-              }
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_accountant": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Accountant",
-              "scope": {
-                "shop": {
-                  "id": "SHOP"
+    },
+
+    "op_orgmgmt_cancel_org_membership": {
+        "orgmgmt": {
+            "op": {
+                "id": "cancelOrgMembership",
+                "organization": {"id": "PARTY"},
+                "member": {
+                    "id": "MEMBER",
+                    "orgs": [ {
+                        "id": "PARTY"
+                    }]
                 }
-              }
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_administrator": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Administrator"
+    },
+
+    "op_orgmgmt_assign_member_role": {
+        "orgmgmt": {
+            "op": {
+                "id": "assignMemberRole",
+                "organization": {"id": "PARTY"},
+                "member": {
+                    "id": "MEMBER",
+                    "orgs": [ {
+                        "id": "PARTY"
+                    }]
+                },
+                "role": {"id": "ROLE"}
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_administrator_manager": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Administrator"
-            },
-            {
-              "id": "Manager",
-              "scope": {
-                "shop": {
-                  "id": "SHOP"
+    },
+
+    "op_orgmgmt_remove_member_role_in_another_org": {
+        "orgmgmt": {
+            "op": {
+                "id": "removeMemberRole",
+                "organization": {"id": "PARTY"},
+                "member": {
+                    "id": "MEMBER",
+                    "orgs": [ {
+                        "id": "ANOTHER_PARTY"
+                    }]
+                },
+                "role": {"id": "ROLE"}
+            }
+        }
+    },
+
+    "op_claimmgmt_createClaim": {
+        "claimmgmt": {
+            "op": {
+                "id": "createClaim",
+                "party": { "id": "PARTY"}
+            }
+        }
+    },
+
+    "op_claimmgmt_searchClaims": {
+        "claimmgmt": {
+            "op": {
+                "id": "searchClaims",
+                "party": { "id": "ANOTHER_PARTY"}
+            }
+        }
+    },
+
+    "op_claimmgmt_not_exist_operation": {
+        "claimmgmt": {
+            "op": {
+              "id": "nonExist",
+              "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_create_payment_resource": {
+        "capi": {
+            "op": {
+                "id": "CreatePaymentResource",
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_create_payment_resource_allow_ip": {
+        "capi": {
+            "op": {
+                "id": "CreatePaymentResource",
+                "party": {"id": "PARTY_ALLOWED_IP_REPLACEMENT"}
+            }
+        }
+    },
+
+    "op_capi_create_payment_resource_client_ip": {
+        "capi": {
+            "op": {
+                "client_info": {
+                    "ip": "1.1.1.1"
                 }
-              }
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_administrator_shop": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Administrator",
-              "scope": {
-                "shop": {
-                  "id": "SHOP"
-                }
-              }
+    },
+
+    "op_capi_create_webhook": {
+        "capi": {
+            "op": {
+                "id": "CreateWebhook",
+                "party": {"id": "PARTY"}
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_administrator_owner_another_party": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Administrator"
+    },
+
+    "op_capi_create_invoice": {
+        "capi": {
+            "op": {
+                "id": "CreateInvoice",
+                "shop": {"id": "SHOP"},
+                "party": {"id": "PARTY"}
             }
-          ]
-        },
-        {
-          "id": "ORG_2",
-          "owner": {
-            "id": "USER"
-          },
-          "party": {
-            "id": "PARTY_2"
-          },
-          "roles": []
         }
-      ]
-    }
-  },
-  "user_administrator_manager_another_party": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Administrator"
+    },
+
+    "op_capi_get_invoice": {
+        "capi": {
+            "op": {
+                "id": "GetInvoiceByID",
+                "invoice": { "id": "INVOICE" }
             }
-          ]
-        },
-        {
-          "id": "ORG_2",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY_2"
-          },
-          "roles": [
-            {
-              "id": "Manager",
-              "scope": {
-                "shop": {
-                  "id": "SHOP_2"
-                }
-              }
+        }
+    },
+
+    "op_capi_create_refund": {
+        "capi": {
+            "op": {
+                "id": "CreateRefund",
+                "invoice": { "id": "INVOICE" },
+                "payment": { "id": "PAYMENT" }
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_several_roles": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Manager",
-              "scope": {
-                "shop": {
-                  "id": "SHOP"
-                }
-              }
-            },
-            {
-              "id": "Manager",
-              "scope": {
-                "shop": {
-                  "id": "SHOP2"
-                }
-              }
-            },
-            {
-              "id": "OtherRole",
-              "scope": {
-                "shop": {
-                  "id": "SHOP3"
-                }
-              }
+    },
+
+
+    "op_capi_get_invoice_2": {
+        "capi": {
+            "op": {
+                "id": "GetInvoiceByID",
+                "invoice": { "id": "INVOICE_2" }
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_several_roles_another_party": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Manager",
-              "scope": {
-                "shop": {
-                  "id": "SHOP"
-                }
-              }
-            },
-            {
-              "id": "Manager",
-              "scope": {
-                "shop": {
-                  "id": "SHOP2"
-                }
-              }
-            },
-            {
-              "id": "OtherRole",
-              "scope": {
-                "shop": {
-                  "id": "SHOP3"
-                }
-              }
+    },
+
+    "op_capi_get_refunds": {
+        "capi": {
+            "op": {
+                "id": "GetRefunds",
+                "invoice": { "id": "INVOICE" }
             }
-          ]
-        },
-        {
-          "id": "ORG_2",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY_2"
-          },
-          "roles": [
-            {
-              "id": "Manager",
-              "scope": {
-                "shop": {
-                  "id": "SHOP4"
+        }
+    },
+
+    "op_capi_get_invoice_payment_methods": {
+        "capi": {
+            "op": {
+                "id": "GetInvoicePaymentMethods",
+                "invoice": { "id": "INVOICE" }
+            }
+        }
+    },
+
+    "op_capi_get_invoice_events": {
+        "capi": {
+            "op": {
+                "id": "GetInvoiceEvents",
+                "invoice": { "id": "INVOICE" }
+            }
+        }
+    },
+
+    "op_capi_create_payment": {
+        "capi": {
+            "op": {
+                "id": "CreatePayment",
+                "invoice": { "id": "INVOICE" }
+            }
+        }
+    },
+
+    "op_capi_get_service_provider": {
+        "capi": {
+            "op": {
+                "id": "GetServiceProviderByID"
+            }
+        }
+    },
+
+    "op_capi_create_payment_insufficient_input": {
+        "capi": {
+            "op": {
+                "id": "CreatePayment",
+                "party": { "id": "PARTY" },
+                "shop": { "id": "SHOP" }
+            }
+        }
+    },
+
+    "op_capi_cancel_payment": {
+        "capi": {
+            "op": {
+                "id": "CancelPayment",
+                "invoice": { "id": "INVOICE" },
+                "payment": { "id": "PAYMENT" }
+            }
+        }
+    },
+
+    "op_capi_get_refund_by_id": {
+        "capi": {
+            "op": {
+                "id": "GetRefundByID",
+                "invoice": { "id": "INVOICE" },
+                "payment": { "id": "PAYMENT" },
+                "refund": { "id": "REFUND" }
+            }
+        }
+    },
+
+    "op_capi_fulfill_invoice": {
+        "capi": {
+            "op": {
+                "id": "FulfillInvoice",
+                "invoice": { "id": "INVOICE" }
+            }
+        }
+    },
+
+    "op_capi_create_invoice_access_token": {
+        "capi": {
+            "op": {
+                "id": "CreateInvoiceAccessToken",
+                "invoice": { "id": "INVOICE" }
+            }
+        }
+    },
+
+    "op_capi_get_payment_institution_payout_schedules": {
+        "capi": {
+            "op": {
+                "id": "GetPaymentInstitutionPayoutSchedules"
+            }
+        }
+    },
+
+    "op_capi_update_invoice_template": {
+        "capi": {
+            "op": {
+                "id": "UpdateInvoiceTemplate",
+                "invoice_template": { "id": "INVOICE_TEMPLATE" }
+            }
+        }
+    },
+
+    "op_capi_create_binding": {
+        "capi": {
+            "op": {
+                "id": "CreateBinding",
+                "customer": { "id": "CUSTOMER" }
+            }
+        }
+    },
+
+
+    "op_capi_get_binding": {
+        "capi": {
+            "op": {
+                "id": "GetBinding",
+                "customer": { "id": "CUSTOMER" },
+                "binding": { "id": "BINDING" }
+            }
+        }
+    },
+
+    "op_capi_get_payments": {
+        "capi": {
+            "op": {
+                "id": "GetPayments",
+                "invoice": { "id": "INVOICE" }
+            }
+        }
+    },
+
+    "op_capi_get_payment_by_id": {
+        "capi": {
+            "op": {
+                "id": "GetPaymentByID",
+                "invoice": { "id": "INVOICE" },
+                "payment": { "id": "PAYMENT" }
+            }
+        }
+    },
+
+    "op_capi_capture_payment": {
+        "capi": {
+            "op": {
+                "id": "CapturePayment",
+                "invoice": { "id": "INVOICE" },
+                "payment": { "id": "PAYMENT" }
+            }
+        }
+    },
+
+    "op_capi_get_invoice_template_by_id": {
+        "capi": {
+            "op": {
+                "id": "GetInvoiceTemplateByID",
+                "invoice_template": { "id": "INVOICE_TEMPLATE" }
+            }
+        }
+    },
+
+    "op_capi_create_invoice_with_template": {
+        "capi": {
+            "op": {
+                "id": "CreateInvoiceWithTemplate",
+                "invoice_template": { "id": "INVOICE_TEMPLATE" }
+            }
+        }
+    },
+
+    "op_capi_get_invoice_payment_methods_by_template_id": {
+        "capi": {
+            "op": {
+                "id": "GetInvoicePaymentMethodsByTemplateID",
+                "invoice_template": { "id": "INVOICE_TEMPLATE" }
+            }
+        }
+    },
+
+    "op_capi_get_customer_by_id": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerById",
+                "customer": { "id": "CUSTOMER" }
+            }
+        }
+    },
+
+    "op_capi_empty": {
+        "capi": {
+            "op": {}
+        }
+    },
+
+    "op_wapi_empty": {
+        "wapi": {
+            "op": {}
+        }
+    },
+
+    "op_capi_get_customer_events": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerEvents",
+                "customer": { "id": "CUSTOMER" }
+            }
+        }
+    },
+
+    "op_capi_get_customer_payment_methods": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerPaymentMethods",
+                "customer": { "id": "CUSTOMER" }
+            }
+        }
+    },
+
+    "op_capi_rescind_invoice": {
+        "capi": {
+            "op": {
+                "id": "RescindInvoice",
+                "invoice": { "id": "INVOICE" }
+            }
+        }
+    },
+
+    "op_capi_search_invoices": {
+        "capi": {
+            "op": {
+                "id": "SearchInvoices",
+                "shop": { "id": "SHOP" },
+                "party": { "id": "PARTY" }
+            }
+        }
+    },
+
+    "op_capi_search_specific_invoice": {
+        "capi": {
+            "op": {
+                "id": "SearchInvoices",
+                "invoice": { "id": "INVOICE" },
+                "shop": { "id": "SHOP" },
+                "party": { "id": "PARTY" }
+            }
+        }
+    },
+
+    "op_capi_search_specific_payout": {
+        "capi": {
+            "op": {
+                "id": "SearchPayouts",
+                "payout": { "id": "PAYOUT" },
+                "shop": { "id": "SHOP" },
+                "party": { "id": "PARTY" }
+            }
+        }
+    },
+
+    "op_capi_delete_webhook": {
+        "capi": {
+            "op": {
+                "id": "DeleteWebhookByID",
+                "webhook": {"id": "WEBHOOK"}
+            }
+        }
+    },
+
+    "op_capi_download_file": {
+        "capi": {
+            "op": {
+                "id": "DownloadFileForParty",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "FILE"}
+            }
+        }
+    },
+
+    "op_capi_download_missing_file": {
+        "capi": {
+            "op": {
+                "id": "DownloadFileForParty",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
+            }
+        }
+    },
+
+    "op_capi_download_file_invalid_shop": {
+        "capi": {
+            "op": {
+                "id": "DownloadFileForParty",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP_2"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
+            }
+        }
+    },
+
+    "op_capi_download_file_invalid_party": {
+        "capi": {
+            "op": {
+                "id": "DownloadFileForParty",
+                "party": {"id": "PARTY_2"},
+                "shop": {"id": "SHOP"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
+            }
+        }
+    },
+
+    "payment_tool_unlinked": {
+        "payment_tool": {
+            "expiration": "2021-01-01T00:00:00Z"
+        }
+     },
+
+    "payment_tool_expiration": {
+        "payment_tool": {
+            "expiration": "2020-01-01T00:00:00Z"
+        }
+     },
+
+    "payment_tool_shop": {
+        "payment_tool": {
+            "scope": {
+                "shop": { "id": "SHOP" },
+                "party": { "id": "PARTY" }
+            }
+        }
+     },
+
+    "payment_tool_shop2": {
+        "payment_tool": {
+            "scope": {
+                "shop": { "id": "SHOP2" },
+                "party": { "id": "PARTY" }
+            }
+        }
+     },
+
+    "payment_tool_invoice2": {
+        "payment_tool": {
+            "scope": {
+                "invoice": { "id": "INVOICE2" }
+            }
+        }
+     },
+
+    "payment_tool_customer2": {
+        "payment_tool": {
+            "scope": {
+                "customer": { "id": "CUSTOMER2" }
+            }
+        }
+     },
+
+    "payproc_invoice": {
+        "payment_processing": {
+            "invoice": {
+                "id" : "INVOICE",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP"}
+            }
+        }
+    },
+
+    "payproc_insufficient_input": {
+        "payment_processing": {}
+    },
+
+    "payproc_invoice_no_party_context": {
+        "payment_processing": {
+            "invoice": {
+                "id" : "INVOICE",
+                "shop": {"id": "SHOP"}
+            }
+        }
+    },
+
+    "payproc_invoice_no_shop_context": {
+        "payment_processing": {
+            "invoice": {
+                "id" : "INVOICE",
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "payproc_invoice_2": {
+        "payment_processing": {
+            "invoice": {
+                "id" : "INVOICE_2",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP"}
+            }
+        }
+    },
+
+    "payproc_invoice_another_shop": {
+        "payment_processing": {
+            "invoice": {
+                "id" : "INVOICE",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP_2"}
+            }
+        }
+    },
+
+    "payproc_invoice_foreign": {
+        "payment_processing": {
+            "invoice": {
+                "id" : "INVOICE",
+                "party": {"id": "PARTY_2"},
+                "shop": {"id": "SHOP"}
+            }
+        }
+    },
+
+    "payproc_invoice_template": {
+        "payment_processing": {
+            "invoice_template": {
+                "id": "INVOICE_TEMPLATE",
+                "party": { "id": "PARTY" },
+                "shop": { "id": "SHOP" }
+            }
+        }
+    },
+
+    "payproc_customer": {
+        "payment_processing": {
+            "customer": {
+                "id": "CUSTOMER",
+                "party": { "id": "PARTY" },
+                "shop": { "id": "SHOP" },
+                "bindings": [
+                    { "id": "BINDING" }
+                ]
+            }
+        }
+    },
+
+    "webhooks_webhook": {
+        "webhooks": {
+            "webhook": {
+                "id": "WEBHOOK",
+                "party": {"id": "PARTY"},
+                "filter": {
+                    "topic": "invoice",
+                    "shop": {"id": "SHOP"}
                 }
-              }
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_with_role_without_scope": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": [
-            {
-              "id": "Manager"
+    },
+
+    "webhooks_webhook_foreign": {
+        "webhooks": {
+            "webhook": {
+                "id": "WEBHOOK",
+                "party": {"id": "PARTY_2"},
+                "filter": {
+                    "topic": "invoice",
+                    "shop": {"id": "SHOP"}
+                }
             }
-          ]
         }
-      ]
-    }
-  },
-  "user_no_roles": {
-    "user": {
-      "id": "USER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": []
+    },
+
+    "reports_report": {
+        "reports": {
+            "report": {
+                "id": "REPORT",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP"},
+                "files": [
+                    {"id": "FILE"}
+                ]
+            }
         }
-      ]
-    }
-  },
-  "user_owner": {
-    "user": {
-      "id": "OWNER",
-      "orgs": [
-        {
-          "id": "ORG",
-          "owner": {
-            "id": "OWNER"
-          },
-          "party": {
-            "id": "PARTY"
-          },
-          "roles": []
+    },
+
+    "reports_report_without_shop": {
+        "reports": {
+            "report": {
+                "id": "REPORT",
+                "party": {"id": "PARTY"},
+                "files": [
+                    {"id": "FILE"}
+                ]
+            }
         }
-      ]
-    }
-  },
-  "user_without_orgs": {
-    "user": {
-      "id": "OWNER"
-    }
-  },
-  "requester_default": {
-    "requester": {
-      "ip": "95.217.228.176"
-    }
-  },
-  "requester_local": {
-    "requester": {
-      "ip": "10.1.17.141"
-    }
-  },
-  "requester_local_ipv6": {
-    "requester": {
-      "ip": "fd12:3456:789a:1::42"
-    }
-  },
-  "wallet_pool_with_identity": {
-    "wallet": [
-      {
-        "id": "IdentityId",
-        "type": "Identity",
-        "party": "PARTY"
-      }
-    ]
-  },
-  "wallet_pool_with_wallet": {
-    "wallet": [
-      {
-        "id": "WalletId",
-        "type": "Wallet",
-        "party": "PARTY"
-      }
-    ]
-  },
-  "wallet_pool_with_destination": {
-    "wallet": [
-      {
-        "id": "DestinationId",
-        "type": "Destination",
-        "party": "PARTY"
-      }
-    ]
-  },
-  "wallet_pool_with_withdrawal": {
-    "wallet": [
-      {
-        "id": "WithdrawalId",
-        "type": "Withdrawal",
-        "party": "PARTY",
-        "wallet": {
-          "wallet": "WalletId"
+    },
+
+    "payouts_payout": {
+        "payouts": {
+            "payout": {
+                "id": "PAYOUT",
+                "party": { "id": "PARTY" },
+                "contract": { "id": "CONTRACT" },
+                "shop": { "id": "SHOP" }
+            }
         }
-      }
-    ]
-  },
-  "wallet_pool_with_w2w_transfer": {
-    "wallet": [
-      {
-        "id": "W2WTransferId",
-        "type": "W2WTransfer",
-        "party": "PARTY",
-        "wallet": {
-          "wallet": "WalletId"
+    },
+
+    "session_token_valid": {
+        "auth": {
+            "method": "SessionToken",
+            "expiration": "2021-01-01T00:00:00Z"
         }
-      }
-    ]
-  },
-  "wallet_pool_with_webhook": {
-    "wallet": [
-      {
-        "id": "WebhookId",
-        "type": "WalletWebhook",
-        "wallet": {
-          "identity": "IdentityId"
+    },
+
+    "session_token_no_expiration": {
+        "auth": {
+            "method": "SessionToken"
         }
-      }
-    ]
-  },
-  "wallet_pool_with_report": {
-    "wallet": [
-      {
-        "id": "ReportId",
-        "type": "WalletReport",
-        "wallet": {
-          "identity": "IdentityId",
-          "report": {
-            "files": [
-              "FileId"
+    },
+
+    "api_key_token_valid": {
+        "auth": {
+            "method": "ApiKeyToken",
+            "scope": [
+                {
+                    "party": { "id": "PARTY" }
+                }
             ]
-          }
         }
-      }
-    ]
-  },
-  "wallet_pool_with_file": {
-    "wallet": [
-      {
-        "id": "FileId",
-        "type": "WalletReportFile",
-        "party": "PARTY",
-        "wallet": {
-          "identity": "IdentityId"
+    },
+
+    "api_key_token_different_party": {
+        "auth": {
+            "method": "ApiKeyToken",
+            "scope": [
+                {
+                    "party": { "id": "PARTY_2" }
+                }
+            ]
         }
-      }
-    ]
-  },
-  "wapi_wallet_grant": {
-    "wapi": {
-      "grants": [
-        {
-          "wallet": "WalletId",
-          "body": {
-            "amount": "123",
-            "currency": "RUB"
-          },
-          "created_at": "2021-01-01T00:00:00Z",
-          "expires_on": "2022-01-01T00:00:00Z"
+    },
+
+    "api_key_token_no_scope": {
+        "auth": {
+            "method": "ApiKeyToken",
+            "token": {"id": "TÓKEN"},
+            "scope": []
         }
-      ]
-    }
-  },
-  "wallet_pool_with_another_wallet": {
-    "wallet": [
-      {
-        "id": "WalletId",
-        "type": "Wallet",
-        "party": "PARTY2",
-        "wallet": {
-          "body": {
-            "amount": "123",
-            "currency": "RUB"
-          }
+    },
+
+    "invoice_access_token_valid": {
+        "auth": {
+            "method": "InvoiceAccessToken",
+            "expiration": "2021-01-01T00:00:00Z",
+            "scope": [
+                {
+                    "invoice": { "id": "INVOICE" },
+                    "shop": { "id": "SHOP" },
+                    "party": { "id": "PARTY" }
+                }
+            ]
         }
-      }
-    ]
-  },
-  "wapi_destination_grant": {
-    "wapi": {
-      "grants": [
-        {
-          "destination": "DestinationId",
-          "created_at": "2021-01-01T00:00:00Z",
-          "expires_on": "2022-01-01T00:00:00Z"
+    },
+
+    "invoice_access_token_valid_party_2": {
+        "auth": {
+            "method": "InvoiceAccessToken",
+            "expiration": "2021-01-01T00:00:00Z",
+            "scope": [
+                {
+                    "invoice": { "id": "INVOICE" },
+                    "party": { "id": "PARTY_2" }
+                }
+            ]
         }
-      ]
-    }
-  },
-  "op_wachter_support": {
-    "wachter": {
-      "op": {
-        "id": "CreateDeposit",
-        "service_name": "fistfulAdmin",
-        "access": [
-          {
-            "id": "claim-management",
-            "roles": [
-              "accept_claim",
-              "add_claim_mod",
-              "add_party_mod",
-              "create_claim",
-              "deny_claim",
-              "request_claim_changes",
-              "request_claim_review",
-              "revoke_claim",
-              "update_claim"
+    },
+
+    "invoice_access_token_expired": {
+        "auth": {
+            "method": "InvoiceAccessToken",
+            "expiration": "2020-02-02T00:00:00Z",
+            "scope": [
+                {
+                    "invoice": { "id": "INVOICE" }
+                }
             ]
-          },
-          {
-            "id": "control-center",
-            "roles": [
-              "deposit:write",
-              "manage_chargebacks",
-              "search_deposits",
-              "search_invoices",
-              "search_ops",
-              "search_payments",
-              "view_chargebacks"
+        }
+    },
+
+    "invoice_template_access_token_valid": {
+        "auth": {
+            "method": "InvoiceTemplateAccessToken",
+            "expiration": "2021-01-01T00:00:00Z",
+            "scope": [
+                {
+                    "invoice_template": { "id": "INVOICE_TEMPLATE" },
+                    "party": { "id": "PARTY" }
+                }
             ]
-          },
-          {
-            "id": "private-api",
-            "roles": [
-              "accounting_report:get",
-              "adjustment:get",
-              "adjustment:update",
-              "claim.action:get",
-              "claim.comment:add",
-              "claim.comment:get",
-              "claim:accept",
-              "claim:get",
-              "claim:update",
-              "dmt:checkout",
-              "dmt:commit",
-              "dmt:pull",
-              "internal_report:get",
-              "merchant:create",
-              "merchant:update",
-              "party:get",
-              "payout:cancel",
-              "payout:confirm",
-              "payout:generate",
-              "payout:pay",
-              "payout:read"
+        }
+    },
+
+    "customer_access_token_valid": {
+        "auth": {
+            "method": "CustomerAccessToken",
+            "expiration": "2021-01-01T00:00:00Z",
+            "scope": [
+                {
+                    "customer": { "id": "CUSTOMER" },
+                    "party": { "id": "PARTY" }
+                }
             ]
-          }
+        }
+    },
+
+    "customer_access_token_valid_allow_ip": {
+        "auth": {
+            "method": "CustomerAccessToken",
+            "expiration": "2021-01-01T00:00:00Z",
+            "scope": [
+                {
+                    "customer": { "id": "CUSTOMER" },
+                    "party": { "id": "PARTY_ALLOWED_IP_REPLACEMENT"}
+                }
+            ]
+        }
+    },
+
+    "op_shortener_shorten_url": {
+        "shortener": {
+            "op": {
+                "id": "ShortenUrl"
+            }
+        }
+    },
+
+    "op_shortener_get_shorten_url": {
+        "shortener": {
+            "op": {
+                "id": "GetShortenedUrl",
+                "shortened_url": {
+                    "owner": { "id": "USER" }
+                }
+            }
+        }
+    },
+
+    "op_shortener_delete_shorten_url": {
+        "shortener": {
+            "op": {
+                "id": "DeleteShortenedUrl",
+                "shortened_url": {
+                    "owner": { "id": "USER" }
+                }
+            }
+        }
+    },
+
+    "op_binapi_lookup_card_info": {
+        "binapi": {
+            "op": {
+                "id": "LookupCardInfo",
+                "party": {
+                    "id": "PARTY_2"
+                }
+            }
+        }
+    },
+
+    "op_anapi": {
+        "anapi": {
+            "op": {
+                "id": "SearchInvoices",
+                "party": { "id": "PARTY"}
+            }
+        }
+    },
+
+    "op_anapi_no_shops": {
+        "anapi": {
+            "op": {
+                "id": "SearchInvoices",
+                "party": { "id": "PARTY"}
+            }
+        }
+    },
+
+    "op_anapi_several_shops": {
+        "anapi": {
+            "op": {
+                "id": "SearchInvoices",
+                "party": { "id": "PARTY"}
+            }
+        }
+    },
+
+    "op_anapi_reports": {
+        "anapi": {
+            "op": {
+                "id": "SearchReports",
+                "party": { "id": "PARTY"}
+            }
+        }
+    },
+
+    "op_anapi_get_report": {
+        "anapi": {
+            "op": {
+                "id": "GetReport",
+                "party": { "id": "PARTY"},
+                "report": {"id": "REPORT"}
+            }
+        }
+    },
+
+    "op_anapi_create_report": {
+        "anapi": {
+            "op": {
+                "id": "CreateReport",
+                "party": { "id": "PARTY"},
+                "shop": {"id": "SHOP"}
+            }
+        }
+    },
+
+    "op_anapi_create_report_without_shop": {
+        "anapi": {
+            "op": {
+                "id": "CreateReport",
+                "party": { "id": "PARTY"}
+            }
+        }
+    },
+
+    "op_anapi_download_file": {
+        "anapi": {
+            "op": {
+                "id": "DownloadFile",
+                "party": {"id": "PARTY"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "FILE"}
+            }
+        }
+    },
+
+    "op_anapi_download_missing_file": {
+        "anapi": {
+            "op": {
+                "id": "DownloadFile",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
+            }
+        }
+    },
+
+    "op_anapi_download_file_invalid_shop": {
+        "anapi": {
+            "op": {
+                "id": "DownloadFile",
+                "party": {"id": "PARTY"},
+                "shop": {"id": "SHOP_2"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
+            }
+        }
+    },
+
+    "op_anapi_download_file_invalid_party": {
+        "anapi": {
+            "op": {
+                "id": "DownloadFile",
+                "party": {"id": "PARTY_2"},
+                "shop": {"id": "SHOP"},
+                "report": {"id": "REPORT"},
+                "file": {"id": "NOFILE"}
+            }
+        }
+    },
+
+    "user_default_other_role": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "OtherRole",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_default": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_accountant": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Accountant",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_administrator": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Administrator"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_administrator_manager": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Administrator"
+                        },
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_administrator_shop": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Administrator",
+                            "scope": {"shop": {"id": "SHOP"}}
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_administrator_owner_another_party": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ]
+                },
+                {
+                    "id": "ORG_2",
+                    "owner": { "id": "USER" },
+                    "party": { "id": "PARTY_2" },
+                    "roles": []
+                }
+            ]
+        }
+    },
+
+    "user_administrator_manager_another_party": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ]
+                },
+                {
+                    "id": "ORG_2",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY_2" },
+                    "roles": [
+                        {
+                            "id": "Manager",
+                            "scope": { "shop": { "id": "SHOP_2" } }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_several_roles": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
+                        },
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP2"
+                                }
+                            }
+                        },
+                        {
+                            "id": "OtherRole",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP3"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_several_roles_another_party": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP"
+                                }
+                            }
+                        },
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP2"
+                                }
+                            }
+                        },
+                        {
+                            "id": "OtherRole",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP3"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ORG_2",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY_2" },
+                    "roles": [
+                        {
+                            "id": "Manager",
+                            "scope": {
+                                "shop": {
+                                    "id": "SHOP4"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_with_role_without_scope": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {
+                            "id": "Manager"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_no_roles": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": []
+                }
+            ]
+        }
+    },
+
+    "user_owner": {
+        "user": {
+            "id": "OWNER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": []
+                }
+            ]
+        }
+    },
+
+    "user_without_orgs": {
+        "user": {
+            "id": "OWNER"
+        }
+    },
+
+    "requester_default": {
+        "requester": {
+            "ip": "95.217.228.176"
+        }
+    },
+
+    "requester_local": {
+        "requester": {
+            "ip": "10.1.17.141"
+        }
+    },
+
+    "requester_local_ipv6": {
+        "requester": {
+            "ip": "fd12:3456:789a:1::42"
+        }
+    },
+
+    "wallet_pool_with_identity": {
+        "wallet": [
+            {
+                "id" : "IdentityId",
+                "type" : "Identity",
+                "party" : "PARTY"
+            }
         ]
-      }
-    }
-  },
-  "op_wachter_with_unknown_role": {
-    "wachter": {
-      "op": {
-        "id": "CreateClaim",
-        "service_name": "claimManagement",
-        "access": [
-          {
-            "id": "claim-management",
-            "roles": [
-              "unknown"
-            ]
-          }
+    },
+
+    "wallet_pool_with_wallet": {
+        "wallet": [
+            {
+                "id" : "WalletId",
+                "type" : "Wallet",
+                "party" : "PARTY"
+            }
         ]
-      }
-    }
-  },
-  "op_wachter_checkout_method_with_another_service": {
-    "wachter": {
-      "op": {
-        "id": "Checkout",
-        "service_name": "repairer",
-        "access": [
-          {
-            "id": "private-api",
-            "roles": [
-              "dmt:checkout"
-            ]
-          }
+    },
+
+    "wallet_pool_with_destination": {
+        "wallet": [
+            {
+                "id" : "DestinationId",
+                "type" : "Destination",
+                "party" : "PARTY"
+            }
         ]
-      }
-    }
-  },
-  "op_wachter_unknown_method": {
-    "wachter": {
-      "op": {
-        "id": "Unknown",
-        "service_name": "domain",
-        "access": [
-          {
-            "id": "claim-management",
-            "roles": [
-              "accept_claim",
-              "add_claim_mod",
-              "add_party_mod",
-              "deny_claim",
-              "request_claim_changes",
-              "request_claim_review",
-              "revoke_claim",
-              "update_claim"
-            ]
-          }
+    },
+
+    "wallet_pool_with_withdrawal": {
+        "wallet": [
+            {
+                "id" : "WithdrawalId",
+                "type" : "Withdrawal",
+                "party" : "PARTY",
+                "wallet" : {
+                    "wallet" : "WalletId"
+                }
+            }
         ]
-      }
-    }
-  },
-  "op_wachter_unknown_service": {
-    "wachter": {
-      "op": {
-        "id": "Checkout",
-        "service_name": "Unknown",
-        "access": [
-          {
-            "id": "claim-management",
-            "roles": [
-              "accept_claim",
-              "add_claim_mod",
-              "add_party_mod",
-              "deny_claim",
-              "request_claim_changes",
-              "request_claim_review",
-              "revoke_claim",
-              "update_claim"
-            ]
-          }
+    },
+
+    "wallet_pool_with_w2w_transfer": {
+        "wallet": [
+            {
+                "id" : "W2WTransferId",
+                "type" : "W2WTransfer",
+                "party" : "PARTY",
+                "wallet" : {
+                    "wallet" : "WalletId"
+                }
+            }
         ]
-      }
-    }
-  },
-  "op_wachter_without_service": {
-    "wachter": {
-      "op": {
-        "id": "Checkout",
-        "access": [
-          {
-            "id": "claim-management",
-            "roles": [
-              "accept_claim",
-              "add_claim_mod",
-              "add_party_mod",
-              "deny_claim",
-              "request_claim_changes",
-              "request_claim_review",
-              "revoke_claim",
-              "update_claim"
-            ]
-          }
+    },
+
+    "wallet_pool_with_webhook": {
+        "wallet": [
+            {
+                "id" : "WebhookId",
+                "type" : "WalletWebhook",
+                "wallet" : {
+                    "identity" : "IdentityId"
+                }
+            }
         ]
-      }
+    },
+
+    "wallet_pool_with_report": {
+        "wallet": [
+            {
+                "id" : "ReportId",
+                "type" : "WalletReport",
+                "wallet" : {
+                    "identity" : "IdentityId",
+                    "report" : {
+                        "files" : ["FileId"]
+                    }
+                }
+            }
+        ]
+    },
+
+    "wallet_pool_with_file": {
+        "wallet": [
+            {
+                "id" : "FileId",
+                "type" : "WalletReportFile",
+                "party" : "PARTY",
+                "wallet" : {
+                    "identity" : "IdentityId"
+                }
+            }
+        ]
+    },
+
+    "wapi_wallet_grant": {
+        "wapi": {
+            "grants": [
+                {
+                    "wallet": "WalletId",
+                    "body": {"amount": "123", "currency": "RUB"},
+                    "created_at": "2021-01-01T00:00:00Z",
+                    "expires_on": "2022-01-01T00:00:00Z"
+                }
+            ]
+        }
+    },
+
+    "wallet_pool_with_another_wallet": {
+        "wallet": [
+            {
+                "id" : "WalletId",
+                "type" : "Wallet",
+                "party" : "PARTY2",
+                "wallet" : {
+                    "body" : {"amount": "123", "currency": "RUB"}
+                }
+            }
+        ]
+    },
+
+    "wapi_destination_grant": {
+        "wapi": {
+            "grants": [
+                {
+                    "destination": "DestinationId",
+                    "created_at": "2021-01-01T00:00:00Z",
+                    "expires_on": "2022-01-01T00:00:00Z"
+                }
+            ]
+        }
+    },
+
+    "op_wachter_create_deposit": {
+        "wachter": {
+            "op": {
+                "id": "CreateDeposit",
+                "service_name": "fistfulAdmin",
+                "access": [
+                    {
+                        "id": "claim-management",
+                        "roles": [
+                            "accept_claim",
+                            "add_claim_mod",
+                            "add_party_mod",
+                            "create_claim",
+                            "deny_claim",
+                            "request_claim_changes",
+                            "request_claim_review",
+                            "revoke_claim",
+                            "update_claim"
+                        ]
+                    },
+                    {
+                        "id": "control-center",
+                        "roles": [
+                            "deposit:write",
+                            "manage_chargebacks",
+                            "search_deposits",
+                            "search_invoices",
+                            "search_ops",
+                            "search_payments",
+                            "view_chargebacks"
+                        ]
+                    },
+                    {
+                        "id": "private-api",
+                        "roles": [
+                            "accounting_report:get",
+                            "adjustment:get",
+                            "adjustment:update",
+                            "claim.action:get",
+                            "claim.comment:add",
+                            "claim.comment:get",
+                            "claim:accept",
+                            "claim:get",
+                            "claim:update",
+                            "dmt:checkout",
+                            "dmt:commit",
+                            "dmt:pull",
+                            "internal_report:get",
+                            "merchant:create",
+                            "merchant:update",
+                            "party:get",
+                            "payout:cancel",
+                            "payout:confirm",
+                            "payout:generate",
+                            "payout:pay",
+                            "payout:read"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "op_wachter_with_unknown_role": {
+        "wachter": {
+            "op": {
+                "id": "CreateClaim",
+                "service_name": "claimManagement",
+                "access": [
+                    {
+                        "id": "claim-management",
+                        "roles": [
+                            "unknown"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "op_wachter_checkout_method_with_another_service": {
+        "wachter": {
+            "op": {
+                "id": "Checkout",
+                "service_name": "repairer",
+                "access": [
+                    {
+                        "id": "private-api",
+                        "roles": [
+                            "dmt:checkout"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "op_wachter_unknown_method": {
+        "wachter": {
+            "op": {
+                "id": "Unknown",
+                "service_name": "domain",
+                "access": [
+                    {
+                        "id": "claim-management",
+                        "roles": [
+                            "accept_claim",
+                            "add_claim_mod",
+                            "add_party_mod",
+                            "deny_claim",
+                            "request_claim_changes",
+                            "request_claim_review",
+                            "revoke_claim",
+                            "update_claim"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "op_wachter_unknown_service": {
+        "wachter": {
+            "op": {
+                "id": "Checkout",
+                "service_name": "Unknown",
+                "access": [
+                    {
+                        "id": "claim-management",
+                        "roles": [
+                            "accept_claim",
+                            "add_claim_mod",
+                            "add_party_mod",
+                            "deny_claim",
+                            "request_claim_changes",
+                            "request_claim_review",
+                            "revoke_claim",
+                            "update_claim"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "op_wachter_without_service": {
+        "wachter": {
+            "op": {
+                "id": "Checkout",
+                "access": [
+                    {
+                        "id": "claim-management",
+                        "roles": [
+                            "accept_claim",
+                            "add_claim_mod",
+                            "add_party_mod",
+                            "deny_claim",
+                            "request_claim_changes",
+                            "request_claim_review",
+                            "revoke_claim",
+                            "update_claim"
+                        ]
+                    }
+                ]
+            }
+        }
     }
-  }
 }

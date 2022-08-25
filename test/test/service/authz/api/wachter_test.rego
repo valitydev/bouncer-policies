@@ -4,11 +4,11 @@ import data.service.authz.api
 import data.test.service.authz.util
 import data.test.service.authz.fixtures.context
 
-test_wachter_support_roles {
+test_wachter_allowed_create_deposit {
     util.is_allowed with input as util.deepmerge([
         context.env_default,
         context.session_token_valid,
-        context.op_wachter_support
+        context.op_wachter_create_deposit
     ])
 }
 
