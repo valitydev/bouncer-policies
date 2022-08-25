@@ -8,6 +8,7 @@ import data.service.authz.api.capi
 import data.service.authz.api.orgmgmt
 import data.service.authz.api.wapi
 import data.service.authz.api.claimmgmt
+import data.service.authz.api.wachter
 import data.service.authz.blacklists
 import data.service.authz.whitelists
 import data.service.authz.roles
@@ -109,6 +110,11 @@ forbidden[why] {
     claimmgmt.forbidden[why]
 }
 
+forbidden[why] {
+    input.wachter
+    wachter.forbidden[why]
+}
+
 known_auth_method {
     methods.methods[_] == input.auth.method
 }
@@ -134,6 +140,11 @@ tolerate_expired_token {
 
 tolerate_expired_token {
     input.wapi
+    input.auth.method == "SessionToken"
+}
+
+tolerate_expired_token {
+    input.wachter
     input.auth.method == "SessionToken"
 }
 
@@ -186,6 +197,11 @@ allowed[why] {
 allowed[why] {
     input.claimmgmt
     claimmgmt.allowed[why]
+}
+
+allowed[why] {
+    input.wachter
+    wachter.allowed[why]
 }
 
 # Restrictions
