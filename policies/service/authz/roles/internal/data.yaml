@@ -1,0 +1,124 @@
+title: Role Operation Access Matrix
+description: >
+  This document defines which roles do have access to which operations in our
+  public APIs.
+
+  Only those APIs which are accessible with regular session tokens and defined
+  under role-base access model are listed here. For example, UrlShortener is
+  notably absent, since its access model lacks a concept of roles.
+
+  Document has the following structure:
+   * a set of role names,
+   * a set of available APIs per each of those role,
+   * a set of accessible operations per each of those APIs.
+
+apis:
+  claim-management:
+    roles:
+      accept_claim:
+        operations:
+          - "AcceptClaim"
+      create_claim:
+        operations:
+          - "CreateClaim"
+      deny_claim:
+        operations:
+          - "DenyClaim"
+      request_claim_changes:
+        operations:
+          - "RequestClaimChanges"
+      request_claim_review:
+        operations:
+          - "RequestClaimReview"
+      revoke_claim:
+        operations:
+          - "RevokeClaim"
+      update_claim:
+        operations:
+          - "UpdateClaim"
+
+  control-center:
+    roles:
+      deposit:write:
+        operations:
+          - "CreateDeposit"
+      manage_chargebacks:
+        operations:
+          - "CreateChargeback"
+          - "GetPaymentChargeback"
+      search_deposits:
+        operations:
+          - "GetDeposits"
+          - "GetDepositReverts"
+      search_payments:
+        operations:
+          - "GetPayments"
+      view_chargebacks:
+        operations:
+          - "GetPaymentChargeback"
+      GetStatistics:
+        operations:
+          - "GetStatistics"
+      RepairWithScenario:
+        operations:
+          - "RepairWithScenario"
+      CreateNewFile:
+        operations:
+          - "CreateNewFile"
+      GenerateDownloadUrl:
+        operations:
+          - "GenerateDownloadUrl"
+      Repair:
+        operations:
+          - "Repair"
+      SimpleRepair:
+        operations:
+          - "SimpleRepair"
+      GetMachine:
+        operations:
+          - "GetMachine"
+      GetConversations:
+        operations:
+          - "GetConversations"
+      SaveConversations:
+        operations:
+          - "SaveConversations"
+
+  private-api:
+    roles:
+      accounting_report:get:
+        operations:
+          - "GetFileData"
+      adjustment:get:
+        operations:
+          - "GetPaymentAdjustment"
+      adjustment:update:
+        operations:
+          - "CreatePaymentAdjustment"
+          - "CapturePaymentAdjustment"
+          - "CancelPaymentAdjustment"
+      claim:accept:
+        operations:
+          - "AcceptClaim"
+      claim:get:
+        operations:
+          - "SearchClaims"
+          - "GetClaim"
+      claim:update:
+        operations:
+          - "UpdateClaim"
+      dmt:checkout:
+        operations:
+          - "Checkout"
+      dmt:commit:
+        operations:
+          - "Commit"
+      dmt:pull:
+        operations:
+          - "PullRange"
+      internal_report:get:
+        operations:
+          - "GetFileData"
+      party:get:
+        operations:
+          - "searchParty"
