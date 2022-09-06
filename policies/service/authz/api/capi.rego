@@ -10,7 +10,6 @@ import input.capi.op
 import input.payment_processing
 import input.payouts
 import input.webhooks
-import input.reports
 
 api_name := "CommonAPI"
 access_matrix := access.api[api_name]
@@ -216,12 +215,6 @@ entity_access_status["invoice_template"] = status {
 entity_access_status["customer"] = status {
     status := customer_access_status(op.customer.id)
 }
-entity_access_status["report"] = status {
-    status := report_access_status(op.report.id)
-}
-entity_access_status["file"] = status {
-    status := file_access_status(op.file.id)
-}
 entity_access_status["payout"] = status {
     status := payout_access_status(op.payout.id)
 }
@@ -295,18 +288,6 @@ customer_access_status(id) = status {
     customer := payment_processing.customer
     customer.id == id
     status := shop_access_status(customer.shop.id, customer.party.id)
-}
-
-report_access_status(id) = status {
-    report := reports.report
-    report.id == id
-    status := shop_access_status(report.shop.id, report.party.id)
-}
-
-file_access_status(id) = status {
-    report := reports.report
-    report.files[_].id == id
-    status := report_access_status(report.id)
 }
 
 payout_access_status(id) = status {

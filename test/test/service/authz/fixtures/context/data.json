@@ -527,54 +527,6 @@
         }
     },
 
-    "op_capi_download_file": {
-        "capi": {
-            "op": {
-                "id": "DownloadFileForParty",
-                "party": {"id": "PARTY"},
-                "shop": {"id": "SHOP"},
-                "report": {"id": "REPORT"},
-                "file": {"id": "FILE"}
-            }
-        }
-    },
-
-    "op_capi_download_missing_file": {
-        "capi": {
-            "op": {
-                "id": "DownloadFileForParty",
-                "party": {"id": "PARTY"},
-                "shop": {"id": "SHOP"},
-                "report": {"id": "REPORT"},
-                "file": {"id": "NOFILE"}
-            }
-        }
-    },
-
-    "op_capi_download_file_invalid_shop": {
-        "capi": {
-            "op": {
-                "id": "DownloadFileForParty",
-                "party": {"id": "PARTY"},
-                "shop": {"id": "SHOP_2"},
-                "report": {"id": "REPORT"},
-                "file": {"id": "NOFILE"}
-            }
-        }
-    },
-
-    "op_capi_download_file_invalid_party": {
-        "capi": {
-            "op": {
-                "id": "DownloadFileForParty",
-                "party": {"id": "PARTY_2"},
-                "shop": {"id": "SHOP"},
-                "report": {"id": "REPORT"},
-                "file": {"id": "NOFILE"}
-            }
-        }
-    },
-
     "payment_tool_unlinked": {
         "payment_tool": {
             "expiration": "2021-01-01T00:00:00Z"

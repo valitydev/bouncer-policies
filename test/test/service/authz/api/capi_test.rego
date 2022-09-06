@@ -131,13 +131,7 @@ capi_public_operation_session_token_ctx = util.deepmerge([
     context.op_capi_empty
 ])
 
-test_capi_allowed_by_session_token_1 {
-    result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetAccountByID"}
-    not result.forbidden
-    count(result.allowed) == 1
-}
-
-test_capi_allowed_by_session_token_2 {
+test_get_categories_allowed_by_session_token {
     result := api.assertions with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetCategories"}
     not result.forbidden
     count(result.allowed) == 1
@@ -157,10 +151,6 @@ test_get_service_provider_allowed_by_session_token {
 
 test_capi_allowed_by_session_token_3 {
     util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetCategoryByRef"}
-}
-
-test_capi_allowed_by_session_token_4 {
-    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetLocationsNames"}
 }
 
 test_capi_allowed_by_session_token_5 {
@@ -363,50 +353,6 @@ test_delete_webhook_forbidden_default_user {
     ])
 }
 
-test_download_file_allowed_administrator {
-    util.is_allowed with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_administrator_shop,
-        context.session_token_valid,
-        context.op_capi_download_file,
-        context.reports_report
-    ])
-}
-
-test_download_missing_file_forbidden {
-    util.is_forbidden with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_administrator_shop,
-        context.session_token_valid,
-        context.op_capi_download_missing_file,
-        context.reports_report
-    ])
-}
-
-test_download_file_invalid_shop_forbidden {
-    util.is_forbidden with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_administrator_shop,
-        context.session_token_valid,
-        context.op_capi_download_file_invalid_shop,
-        context.reports_report
-    ])
-}
-
-test_download_file_invalid_party_forbidden {
-    util.is_forbidden with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_administrator_owner_another_party,
-        context.session_token_valid,
-        context.op_capi_download_file_invalid_party,
-        context.reports_report
-    ])
-}
-
 test_unknown_operation_forbidden_no_access {
     util.is_forbidden with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "NewOperation"}
 }
@@ -478,13 +424,7 @@ capi_public_operation_api_token_ctx = util.deepmerge([
     context.op_capi_empty
 ])
 
-test_capi_allowed_by_api_token_1 {
-    result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetAccountByID"}
-    not result.forbidden
-    count(result.allowed) == 1
-}
-
-test_capi_allowed_by_api_token_2 {
+test_get_categories_allowed_by_api_token {
     result := api.assertions with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetCategories"}
     not result.forbidden
     count(result.allowed) == 1
@@ -504,10 +444,6 @@ test_get_service_providers_allowed_by_api_token {
 
 test_capi_allowed_by_api_token_3 {
     util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetCategoryByRef"}
-}
-
-test_capi_allowed_by_api_token_4 {
-    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetLocationsNames"}
 }
 
 test_capi_allowed_by_api_token_5 {
