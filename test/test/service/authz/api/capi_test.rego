@@ -469,13 +469,3 @@ test_capi_allowed_by_api_token_9 {
 test_capi_allowed_by_api_token_10 {
     util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
 }
-
-test_allowed_ip_replacement {
-    util.is_allowed with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.op_capi_create_payment_resource_allow_ip,
-        context.op_capi_create_payment_resource_client_ip,
-        context.customer_access_token_valid_allow_ip
-    ])
-}
