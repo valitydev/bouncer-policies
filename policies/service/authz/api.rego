@@ -110,11 +110,6 @@ forbidden[why] {
     claimmgmt.forbidden[why]
 }
 
-forbidden[why] {
-    input.wachter
-    wachter.forbidden[why]
-}
-
 known_auth_method {
     methods.methods[_] == input.auth.method
 }
@@ -192,11 +187,6 @@ allowed[why] {
 allowed[why] {
     input.claimmgmt
     claimmgmt.allowed[why]
-}
-
-allowed[why] {
-    input.wachter
-    wachter.allowed[why]
 }
 
 # Restrictions
