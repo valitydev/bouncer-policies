@@ -6,7 +6,7 @@
  {<<"jsx">>,{pkg,<<"jsx">>,<<"3.1.0">>},0},
  {<<"thrift">>,
   {git,"https://github.com/valitydev/thrift_erlang.git",
-       {ref,"c280ff266ae1c1906fb0dcee8320bb8d8a4a3c75"}},
+       {ref,"6ce6d33af5346c84b99fc6a3cebb5070001d0b62"}},
   0}]}.
 [
 {pkg_hash,[
