@@ -8,7 +8,6 @@ import data.service.authz.api.capi
 import data.service.authz.api.orgmgmt
 import data.service.authz.api.wapi
 import data.service.authz.api.claimmgmt
-import data.service.authz.api.wachter
 import data.service.authz.blacklists
 import data.service.authz.whitelists
 import data.service.authz.roles
