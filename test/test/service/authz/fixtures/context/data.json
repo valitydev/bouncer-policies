@@ -185,25 +185,6 @@
         }
     },
 
-    "op_capi_create_payment_resource_allow_ip": {
-        "capi": {
-            "op": {
-                "id": "CreatePaymentResource",
-                "party": {"id": "PARTY_ALLOWED_IP_REPLACEMENT"}
-            }
-        }
-    },
-
-    "op_capi_create_payment_resource_client_ip": {
-        "capi": {
-            "op": {
-                "client_info": {
-                    "ip": "1.1.1.1"
-                }
-            }
-        }
-    },
-
     "op_capi_create_webhook": {
         "capi": {
             "op": {
@@ -527,54 +508,6 @@
         }
     },
 
-    "op_capi_download_file": {
-        "capi": {
-            "op": {
-                "id": "DownloadFileForParty",
-                "party": {"id": "PARTY"},
-                "shop": {"id": "SHOP"},
-                "report": {"id": "REPORT"},
-                "file": {"id": "FILE"}
-            }
-        }
-    },
-
-    "op_capi_download_missing_file": {
-        "capi": {
-            "op": {
-                "id": "DownloadFileForParty",
-                "party": {"id": "PARTY"},
-                "shop": {"id": "SHOP"},
-                "report": {"id": "REPORT"},
-                "file": {"id": "NOFILE"}
-            }
-        }
-    },
-
-    "op_capi_download_file_invalid_shop": {
-        "capi": {
-            "op": {
-                "id": "DownloadFileForParty",
-                "party": {"id": "PARTY"},
-                "shop": {"id": "SHOP_2"},
-                "report": {"id": "REPORT"},
-                "file": {"id": "NOFILE"}
-            }
-        }
-    },
-
-    "op_capi_download_file_invalid_party": {
-        "capi": {
-            "op": {
-                "id": "DownloadFileForParty",
-                "party": {"id": "PARTY_2"},
-                "shop": {"id": "SHOP"},
-                "report": {"id": "REPORT"},
-                "file": {"id": "NOFILE"}
-            }
-        }
-    },
-
     "payment_tool_unlinked": {
         "payment_tool": {
             "expiration": "2021-01-01T00:00:00Z"
@@ -871,19 +804,6 @@
                 {
                     "customer": { "id": "CUSTOMER" },
                     "party": { "id": "PARTY" }
-                }
-            ]
-        }
-    },
-
-    "customer_access_token_valid_allow_ip": {
-        "auth": {
-            "method": "CustomerAccessToken",
-            "expiration": "2021-01-01T00:00:00Z",
-            "scope": [
-                {
-                    "customer": { "id": "CUSTOMER" },
-                    "party": { "id": "PARTY_ALLOWED_IP_REPLACEMENT"}
                 }
             ]
         }

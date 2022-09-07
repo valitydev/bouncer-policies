@@ -21,31 +21,15 @@ permissions:
     apis:
       CommonAPI:
         operations:
-          # Analytics
-          - "GetPaymentMethodStats"
-          - "GetPaymentRateStats"
-          - "GetPaymentGeoStats"
-          - "GetPaymentRevenueStats"
-          - "GetPaymentConversionStats"
-
           #Search
           - "SearchInvoices"
           - "SearchPayments"
           - "SearchRefunds"
           - "SearchPayouts"
 
-          # Accounts
-          - "GetAccountByID"
-
           # Categories
           - "GetCategories"
           - "GetCategoryByRef"
-
-          # Claims
-          - "CreateClaim"
-          - "GetClaims"
-          - "GetClaimByID"
-          - "RevokeClaimByID"
 
           # Countries
           - "GetCountries"
@@ -155,18 +139,6 @@ permissions:
           - "GetWebhookByID"
           - "DeleteWebhookByID"
 
-          # Geo
-          - "GetLocationsNames"
-
-          # Reports
-          - "CreateReport"
-          - "CreateReportForParty"
-          - "DownloadFile"
-          - "DownloadFileForParty"
-          - "GetReports"
-          - "GetReportsForParty"
-          - "GetReport"
-          - "GetReportForParty"
       WalletAPI:
         operations:
           - 'ListIdentities'
@@ -270,33 +242,15 @@ permissions:
     apis:
       CommonAPI:
         operations:
-          # Analytics
-          # Those methods are meant to be used by the private office web app
-          # and are only to be authorized with SessionTokens
-          # - "GetPaymentMethodStats"
-          # - "GetPaymentRateStats"
-          # - "GetPaymentGeoStats"
-          # - "GetPaymentRevenueStats"
-          # - "GetPaymentConversionStats"
-
-          #Search
+          # Search
           - "SearchInvoices"
           - "SearchPayments"
           - "SearchRefunds"
           - "SearchPayouts"
 
-          # Accounts
-          - "GetAccountByID"
-
           # Categories
           - "GetCategories"
           - "GetCategoryByRef"
-
-          # Claims
-          - "CreateClaim"
-          - "GetClaims"
-          - "GetClaimByID"
-          - "RevokeClaimByID"
 
           # Countries
           - "GetCountries"
@@ -408,18 +362,6 @@ permissions:
           - "GetWebhookByID"
           - "DeleteWebhookByID"
 
-          # Geo
-          - "GetLocationsNames"
-
-          # Reports
-          - "CreateReport"
-          - "CreateReportForParty"
-          - "DownloadFile"
-          - "DownloadFileForParty"
-          - "GetReports"
-          - "GetReportsForParty"
-          - "GetReport"
-          - "GetReportForParty"
       WalletAPI:
         operations:
           - 'ListIdentities'
