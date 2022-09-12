@@ -166,7 +166,7 @@ membership_violations[violation]{
 membership_rights_status(id) = status {
    op.member
    org := op.member.orgs[_]
-   org.id == id
+   org.party.id == id
    status := {"member": true}
 } else = status {
    violation := {

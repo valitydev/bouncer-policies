@@ -95,7 +95,10 @@
                 "member": {
                     "id": "MEMBER",
                     "orgs": [ {
-                        "id": "PARTY"
+                        "id": "PARTY",
+                        "party": {
+                            "id": "PARTY"
+                        }
                     }]
                 }
             }
@@ -125,7 +128,10 @@
                 "member": {
                     "id": "MEMBER",
                     "orgs": [ {
-                        "id": "PARTY"
+                        "id": "PARTY",
+                        "party": {
+                            "id": "PARTY"
+                        }
                     }]
                 },
                 "role": {"id": "ROLE"}
@@ -145,6 +151,15 @@
                     }]
                 },
                 "role": {"id": "ROLE"}
+            }
+        }
+    },
+
+    "op_orgmgmt_switch_context": {
+        "orgmgmt": {
+            "op": {
+                "id": "switchContext",
+                "organization": {"id": "ANOTHER_ORG"}
             }
         }
     },
@@ -1276,6 +1291,25 @@
                     "id": "ORG",
                     "owner": { "id": "OWNER" },
                     "party": { "id": "PARTY" },
+                    "roles": []
+                }
+            ]
+        }
+    },
+
+    "user_owner_in_two_orgs": {
+        "user": {
+            "id": "OWNER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "ANOTHER_ORG" }
+                },
+                {
+                    "id": "ANOTHER_ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "ANOTHER_ORG" },
                     "roles": []
                 }
             ]
