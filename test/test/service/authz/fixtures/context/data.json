@@ -155,15 +155,6 @@
         }
     },
 
-    "op_orgmgmt_switch_context": {
-        "orgmgmt": {
-            "op": {
-                "id": "switchContext",
-                "organization": {"id": "ANOTHER_ORG"}
-            }
-        }
-    },
-
     "op_claimmgmt_createClaim": {
         "claimmgmt": {
             "op": {
@@ -1291,25 +1282,6 @@
                     "id": "ORG",
                     "owner": { "id": "OWNER" },
                     "party": { "id": "PARTY" },
-                    "roles": []
-                }
-            ]
-        }
-    },
-
-    "user_owner_in_two_orgs": {
-        "user": {
-            "id": "OWNER",
-            "orgs": [
-                {
-                    "id": "ORG",
-                    "owner": { "id": "OWNER" },
-                    "party": { "id": "ANOTHER_ORG" }
-                },
-                {
-                    "id": "ANOTHER_ORG",
-                    "owner": { "id": "OWNER" },
-                    "party": { "id": "ANOTHER_ORG" },
                     "roles": []
                 }
             ]
