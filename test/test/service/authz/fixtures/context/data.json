@@ -13,7 +13,7 @@
         "orgmgmt": {
             "op": {
                 "id": "createInvitation",
-                "organization": {"id": "PARTY"}
+                "organization": {"id": "ORG"}
             }
         }
     },
@@ -22,7 +22,7 @@
         "orgmgmt": {
             "op": {
                 "id": "getOrgMember",
-                "organization": {"id": "PARTY"}
+                "organization": {"id": "ORG"}
             }
         }
     },
@@ -31,7 +31,7 @@
         "orgmgmt": {
             "op": {
                 "id": "nonExist",
-                "organization": {"id": "PARTY"}
+                "organization": {"id": "ORG"}
             }
         }
     },
@@ -40,7 +40,7 @@
         "orgmgmt": {
             "op": {
                 "id": "getOrgMember",
-                "organization": {"id": "PARTY3"}
+                "organization": {"id": "ORG3"}
             }
         }
     },
@@ -57,7 +57,7 @@
         "orgmgmt": {
             "op": {
                 "id": "createOrg",
-                "organization": {"id": "PARTY"}
+                "organization": {"id": "ORG"}
             }
         }
     },
@@ -66,7 +66,7 @@
         "orgmgmt": {
             "op": {
                 "id": "joinOrg",
-                "organization": {"id": "PARTY"}
+                "organization": {"id": "ORG"}
             }
         }
     },
@@ -75,11 +75,14 @@
         "orgmgmt": {
             "op": {
                 "id": "expelOrgMember",
-                "organization": {"id": "PARTY"},
+                "organization": {"id": "ORG"},
                 "member": {
                     "id": "MEMBER",
                     "orgs": [ {
-                        "id": "ANOTHER_PARTY"
+                        "id": "ANOTHER_ORG",
+                        "party": {
+                            "id": "PARTY"
+                        }
                     }]
                 }
             }
@@ -91,11 +94,11 @@
         "orgmgmt": {
             "op": {
                 "id": "expelOrgMember",
-                "organization": {"id": "PARTY"},
+                "organization": {"id": "ORG"},
                 "member": {
                     "id": "MEMBER",
                     "orgs": [ {
-                        "id": "PARTY",
+                        "id": "ORG",
                         "party": {
                             "id": "PARTY"
                         }
@@ -109,11 +112,14 @@
         "orgmgmt": {
             "op": {
                 "id": "cancelOrgMembership",
-                "organization": {"id": "PARTY"},
+                "organization": {"id": "ORG"},
                 "member": {
                     "id": "MEMBER",
                     "orgs": [ {
-                        "id": "PARTY"
+                        "id": "ORG",
+                        "party": {
+                            "id": "PARTY"
+                        }
                     }]
                 }
             }
@@ -124,11 +130,11 @@
         "orgmgmt": {
             "op": {
                 "id": "assignMemberRole",
-                "organization": {"id": "PARTY"},
+                "organization": {"id": "ORG"},
                 "member": {
                     "id": "MEMBER",
                     "orgs": [ {
-                        "id": "PARTY",
+                        "id": "ORG",
                         "party": {
                             "id": "PARTY"
                         }
@@ -143,11 +149,14 @@
         "orgmgmt": {
             "op": {
                 "id": "removeMemberRole",
-                "organization": {"id": "PARTY"},
+                "organization": {"id": "ORG"},
                 "member": {
                     "id": "MEMBER",
                     "orgs": [ {
-                        "id": "ANOTHER_PARTY"
+                        "id": "ANOTHER_ORG",
+                        "party": {
+                            "id": "PARTY"
+                        }
                     }]
                 },
                 "role": {"id": "ROLE"}
