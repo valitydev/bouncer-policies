@@ -142,7 +142,7 @@ organization_access_status(id) = status {
     user.is_owner(id)
     status := {"owner": true}
 } else = status {
-    userorg := user.org_by_party(id)
+    userorg := user.org_by_org_id(id)
     roles := { role | role := userorg.roles[_] }
     roles[_]
     status := {"roles": roles}
