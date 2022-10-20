@@ -192,6 +192,13 @@ permissions:
           - 'StoreBankCard'
           - 'GetBankCard'
 
+      ApiKeyMgmt:
+        operations:
+          - "getApiKey"
+          - "revokeApiKey"
+          - "listApiKeys"
+          - "issueApiKey"
+
   ApiKeyToken:
     apis:
       CommonAPI:

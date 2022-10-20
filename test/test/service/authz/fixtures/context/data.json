@@ -9,6 +9,60 @@
         }
     },
 
+    "op_apikeymgmt_get_api_key_1": {
+        "apikeymgmt": {
+            "op": {
+                "id": "getApiKey",
+                "api_key": {"id": "APIKEY"},
+                "organization": {"id": "ORG"}
+            }
+        }
+    },
+
+    "op_apikeymgmt_get_api_key_2": {
+        "apikeymgmt": {
+            "op": {
+                "id": "getApiKey",
+                "api_key": {"id": "APIKEY2"},
+                "organization": {"id": "ORG2"}
+            }
+        }
+    },
+
+    "op_apikeymgmt_non_existant": {
+        "apikeymgmt": {
+            "op": {
+                "id": "nonExistant",
+                "api_key": {"id": "APIKEY2"},
+                "organization": {"id": "ORG2"}
+            }
+        }
+    },
+
+    "api_key_apikey_1": {
+        "api_key": [
+            {
+                "id" : "APIKEY",
+                "type" : "ApiKey",
+                "api_key" : {
+                    "organization" : "ORG"
+                }
+            }
+        ]
+    },
+
+    "api_key_apikey_2": {
+        "api_key": [
+            {
+                "id" : "APIKEY2",
+                "type" : "ApiKey",
+                "api_key" : {
+                    "organization" : "ORG2"
+                }
+            }
+        ]
+    },
+
     "op_orgmgmt_create_invitation": {
         "orgmgmt": {
             "op": {
