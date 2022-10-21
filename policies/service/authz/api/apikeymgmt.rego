@@ -6,7 +6,7 @@ import data.service.authz.roles
 import data.service.authz.methods
 
 import input.apikeymgmt.op
-import input.api_key as entities
+import input.entities
 
 api_name := "ApiKeyMgmt"
 access_matrix := access.api[api_name]
@@ -131,7 +131,7 @@ organization_access_status(id) = status {
 
 api_key_access_status(id) = status {
     entity := find_entity["ApiKey"][id]
-    status := organization_access_status(entity.api_key.organization)
+    status := organization_access_status(entity.organization)
 }
 
 operation_roles[role] {

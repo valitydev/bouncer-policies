@@ -40,25 +40,21 @@
     },
 
     "api_key_apikey_1": {
-        "api_key": [
+        "entities": [
             {
                 "id" : "APIKEY",
                 "type" : "ApiKey",
-                "api_key" : {
-                    "organization" : "ORG"
-                }
+                "organization" : "ORG"
             }
         ]
     },
 
     "api_key_apikey_2": {
-        "api_key": [
+        "entities": [
             {
                 "id" : "APIKEY2",
                 "type" : "ApiKey",
-                "api_key" : {
-                    "organization" : "ORG2"
-                }
+                "organization" : "ORG2"
             }
         ]
     },
