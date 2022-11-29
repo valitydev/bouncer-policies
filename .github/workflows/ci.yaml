@@ -15,6 +15,10 @@ jobs:
       - uses: valitydev/action-setup-thrift@v1.0.1
         with:
           thrift-version: 0.14.2.3
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: '25'
+          rebar3-version: '3.20'
       - run: make validate
       - run: make test
       - run: make test-coverage
