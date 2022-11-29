@@ -14,7 +14,7 @@
             "op": {
                 "id": "getApiKey",
                 "api_key": {"id": "APIKEY"},
-                "organization": {"id": "ORG"}
+                "party": {"id": "PARTY"}
             }
         }
     },
@@ -24,7 +24,7 @@
             "op": {
                 "id": "getApiKey",
                 "api_key": {"id": "APIKEY2"},
-                "organization": {"id": "ORG2"}
+                "party": {"id": "PARTY2"}
             }
         }
     },
@@ -34,7 +34,7 @@
             "op": {
                 "id": "nonExistant",
                 "api_key": {"id": "APIKEY2"},
-                "organization": {"id": "ORG2"}
+                "party": {"id": "PARTY2"}
             }
         }
     },
@@ -44,7 +44,7 @@
             {
                 "id" : "APIKEY",
                 "type" : "ApiKey",
-                "organization" : "ORG"
+                "party" : "PARTY"
             }
         ]
     },
@@ -54,7 +54,7 @@
             {
                 "id" : "APIKEY2",
                 "type" : "ApiKey",
-                "organization" : "ORG2"
+                "party" : "PARTY2"
             }
         ]
     },

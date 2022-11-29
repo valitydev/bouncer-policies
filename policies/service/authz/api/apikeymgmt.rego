@@ -83,8 +83,6 @@ access_status = status {
 access_status_set[status] {
     operation_access_request[requirement][name]
     status := entity_access_requirement_status(name, requirement)
-    # NOTE
-    # This discards discretionary access status assertions (i.e. `status := true`).
     is_object(status)
 }
 
@@ -112,26 +110,34 @@ entity_access_requirement_status(name, req) = status {
     status := {"violation": violation}
 }
 
-entity_access_status["organization"] = status {
-    status := organization_access_status(op.organization.id)
+entity_access_status["party"] = status {
+    status := party_access_status(op.party.id)
 }
 entity_access_status["api_key"] = status {
     status := api_key_access_status(op.api_key.id)
 }
 
-organization_access_status(id) = status {
-    user.is_owner(id)
+party_access_status(party_id) = status {
+    user.is_owner(party_id)
     status := {"owner": true}
 } else = status {
-    userorg := user.org_by_org_id(id)
-    roles := { role | role := userorg.roles[_] }
+    userorg := user.org_by_party(party_id)
+    roles := {
+        role |
+            role := userorg.roles[_]
+            user_role_has_party_access(role)
+    }
     roles[_]
     status := {"roles": roles}
 }
 
+user_role_has_party_access(role) {
+    not role.scope
+}
+
 api_key_access_status(id) = status {
-    entity := find_entity["ApiKey"][id]
-    status := organization_access_status(entity.organization)
+    entity := entities_by_type["ApiKey"][id]
+    status := party_access_status(entity.party)
 }
 
 operation_roles[role] {
@@ -140,7 +146,7 @@ operation_roles[role] {
     operations[_] == op.id
 }
 
-find_entity[type] = out {
+entities_by_type[type] = out {
     type := entities[_].type
     out := { id: entity |
         entity := entities[_]

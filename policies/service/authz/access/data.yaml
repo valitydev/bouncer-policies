@@ -222,7 +222,7 @@ api:
 
   ApiKeyMgmt:
     mandatory:
-      organization:
+      party:
         operations:
           - "getApiKey"
           - "revokeApiKey"
