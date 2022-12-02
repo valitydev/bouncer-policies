@@ -204,6 +204,12 @@ roles:
           - "cancelOrgMembership"
           - "inquireOrgMembership"
           - "listOrgMembership"
+      ApiKeyMgmt:
+        operations:
+          - "getApiKey"
+          - "revokeApiKey"
+          - "listApiKeys"
+          - "issueApiKey"
       ClaimManagement:
         operations:
           - "createClaim"
