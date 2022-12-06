@@ -1190,7 +1190,7 @@
         }
     },
 
-    "user_integrator_owner_another_party": {
+    "user_unknown_owner_another_party": {
         "user": {
             "id": "USER",
             "orgs": [
@@ -1199,7 +1199,7 @@
                     "owner": { "id": "OWNER" },
                     "party": { "id": "PARTY" },
                     "roles": [
-                        {"id": "Integrator"}
+                        {"id": "Superuser"}
                     ]
                 },
                 {
