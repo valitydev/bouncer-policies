@@ -11,7 +11,6 @@ api_name := "OrgManagement"
 access_matrix := access.api[api_name]
 
 access_mandatory := "mandatory"
-access_discretionary := "discretionary"
 
 access_requirements := {
     access_mandatory
