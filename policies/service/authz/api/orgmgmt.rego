@@ -191,7 +191,6 @@ membership_operation
 role_violations[violation]{
    role := access_status.roles[_]
    status := role_rights_status(role)
-   is_object(status)
    violation := status.violation
 }
 
