@@ -9,6 +9,56 @@
         }
     },
 
+    "op_apikeymgmt_get_api_key_1": {
+        "apikeymgmt": {
+            "op": {
+                "id": "getApiKey",
+                "api_key": {"id": "APIKEY"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_apikeymgmt_get_api_key_2": {
+        "apikeymgmt": {
+            "op": {
+                "id": "getApiKey",
+                "api_key": {"id": "APIKEY2"},
+                "party": {"id": "PARTY2"}
+            }
+        }
+    },
+
+    "op_apikeymgmt_non_existant": {
+        "apikeymgmt": {
+            "op": {
+                "id": "nonExistant",
+                "api_key": {"id": "APIKEY2"},
+                "party": {"id": "PARTY2"}
+            }
+        }
+    },
+
+    "api_key_apikey_1": {
+        "entities": [
+            {
+                "id" : "APIKEY",
+                "type" : "ApiKey",
+                "party" : "PARTY"
+            }
+        ]
+    },
+
+    "api_key_apikey_2": {
+        "entities": [
+            {
+                "id" : "APIKEY2",
+                "type" : "ApiKey",
+                "party" : "PARTY2"
+            }
+        ]
+    },
+
     "op_orgmgmt_create_invitation": {
         "orgmgmt": {
             "op": {

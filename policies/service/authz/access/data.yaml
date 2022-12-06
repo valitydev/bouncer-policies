@@ -220,6 +220,19 @@ api:
         - "listOrgMembership"
         - "getContext"
 
+  ApiKeyMgmt:
+    mandatory:
+      party:
+        operations:
+          - "getApiKey"
+          - "revokeApiKey"
+          - "listApiKeys"
+          - "issueApiKey"
+      api_key:
+        operations:
+          - "revokeApiKey"
+          - "getApiKey"
+
   ClaimManagement:
     mandatory:
       claim:
