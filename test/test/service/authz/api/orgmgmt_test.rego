@@ -163,3 +163,23 @@ test_allowed_cancel_org_membership {
         context.op_orgmgmt_cancel_org_membership
     ])
 }
+
+test_forbidden_switch_context {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_integrator_owner_another_party,
+        context.session_token_valid,
+        context.op_orgmgmt_switch_context
+    ])
+}
+
+test_allowed_switch_context {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_manager_another_party,
+        context.session_token_valid,
+        context.op_orgmgmt_switch_context
+    ])
+}

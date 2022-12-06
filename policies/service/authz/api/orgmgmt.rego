@@ -14,8 +14,7 @@ access_mandatory := "mandatory"
 access_discretionary := "discretionary"
 
 access_requirements := {
-    access_mandatory,
-    access_discretionary
+    access_mandatory
 }
 
 # Set of assertions which tell why operation under the input context is forbidden.
@@ -42,6 +41,11 @@ forbidden[why] {
     input.auth.method == "SessionToken"
     membership_operation
     membership_violations[why]
+}
+
+forbidden[why] {
+    input.auth.method == "SessionToken"
+    role_violations[why]
 }
 
 
@@ -184,3 +188,22 @@ membership_operation
     { op.id == "expelOrgMember" }
     { op.id == "assignMemberRole" }
     { op.id == "removeMemberRole" }
+
+role_violations[violation]{
+   role := access_status.roles[_]
+   status := role_rights_status(role)
+   is_object(status)
+   violation := status.violation
+}
+
+role_rights_status(role) = status {
+   operations := user.operations_by_role(api_name, role)
+   operations[_] == op.id
+   status := {"role": true}
+} else = status {
+   violation := {
+        "code": "missing_role_rights",
+        "description": sprintf("User with role '%v' does not have permission to perform operation", [role.id])
+   }
+   status := {"violation": violation}
+}
