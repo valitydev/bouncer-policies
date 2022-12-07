@@ -164,22 +164,28 @@ test_allowed_cancel_org_membership {
     ])
 }
 
-test_forbidden_switch_context {
-    util.is_forbidden with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_unknown_owner_another_party,
-        context.session_token_valid,
-        context.op_orgmgmt_switch_context
-    ])
+test_get_switch_context_forbidden {
+    result := api.assertions with input as util.deepmerge([
+           context.env_default,
+           context.requester_default,
+           context.user_unknown_owner_another_party,
+           context.session_token_valid,
+           context.op_orgmgmt_switch_context
+       ])
+    result.forbidden
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "missing_role_rights"
 }
 
-test_allowed_switch_context {
-    util.is_allowed with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_administrator_manager_another_party,
-        context.session_token_valid,
-        context.op_orgmgmt_switch_context
-    ])
+test_get_switch_context_allowed {
+    result := api.assertions with input as util.deepmerge([
+           context.env_default,
+           context.requester_default,
+           context.user_administrator_manager_another_party,
+           context.session_token_valid,
+           context.op_orgmgmt_switch_context
+       ])
+    not result.forbidden
+    count(result.allowed) == 1
+    result.allowed[_].code == "org_role_allows_operation"
 }
