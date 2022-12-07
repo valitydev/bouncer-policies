@@ -121,6 +121,15 @@
         }
     },
 
+    "op_orgmgmt_switch_context": {
+        "orgmgmt": {
+            "op": {
+                "id": "switchContext",
+                "organization": {"id": "ORG"}
+            }
+        }
+    },
+
     "op_orgmgmt_expel_member_from_another_org": {
         "orgmgmt": {
             "op": {
@@ -1169,6 +1178,28 @@
                     "party": { "id": "PARTY" },
                     "roles": [
                         {"id": "Administrator"}
+                    ]
+                },
+                {
+                    "id": "ORG_2",
+                    "owner": { "id": "USER" },
+                    "party": { "id": "PARTY_2" },
+                    "roles": []
+                }
+            ]
+        }
+    },
+
+    "user_unknown_owner_another_party": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {"id": "Superuser"}
                     ]
                 },
                 {

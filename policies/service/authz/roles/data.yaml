@@ -32,6 +32,7 @@ roles:
           - "cancelOrgMembership"
           - "inquireOrgMembership"
           - "listOrgMembership"
+          - "switchContext"
       AnalyticsAPI:
         operations:
           - "SearchInvoices"
@@ -56,6 +57,7 @@ roles:
       OrgManagement:
         operations:
           - "cancelOrgMembership"
+          - "switchContext"
       AnalyticsAPI:
         operations:
           - "SearchInvoices"
@@ -93,6 +95,7 @@ roles:
           - "cancelOrgMembership"
           - "inquireOrgMembership"
           - "listOrgMembership"
+          - "switchContext"
       AnalyticsAPI:
         operations:
           - "SearchInvoices"
@@ -204,6 +207,7 @@ roles:
           - "cancelOrgMembership"
           - "inquireOrgMembership"
           - "listOrgMembership"
+          - "switchContext"
       ApiKeyMgmt:
         operations:
           - "getApiKey"
