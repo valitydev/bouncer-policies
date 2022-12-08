@@ -194,10 +194,10 @@ permissions:
 
       ApiKeyMgmt:
         operations:
-          - "getApiKey"
-          - "revokeApiKey"
-          - "listApiKeys"
-          - "issueApiKey"
+          - "GetApiKey"
+          - "RevokeApiKey"
+          - "ListApiKeys"
+          - "IssueApiKey"
 
   ApiKeyToken:
     apis:
