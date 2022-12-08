@@ -210,10 +210,10 @@ roles:
           - "switchContext"
       ApiKeyMgmt:
         operations:
-          - "getApiKey"
-          - "revokeApiKey"
-          - "listApiKeys"
-          - "issueApiKey"
+          - "GetApiKey"
+          - "RevokeApiKey"
+          - "ListApiKeys"
+          - "IssueApiKey"
       ClaimManagement:
         operations:
           - "createClaim"

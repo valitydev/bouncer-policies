@@ -12,7 +12,7 @@
     "op_apikeymgmt_get_api_key_1": {
         "apikeymgmt": {
             "op": {
-                "id": "getApiKey",
+                "id": "GetApiKey",
                 "api_key": {"id": "APIKEY"},
                 "party": {"id": "PARTY"}
             }
@@ -22,7 +22,7 @@
     "op_apikeymgmt_get_api_key_2": {
         "apikeymgmt": {
             "op": {
-                "id": "getApiKey",
+                "id": "GetApiKey",
                 "api_key": {"id": "APIKEY2"},
                 "party": {"id": "PARTY2"}
             }

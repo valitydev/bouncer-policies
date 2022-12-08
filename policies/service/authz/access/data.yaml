@@ -224,14 +224,14 @@ api:
     mandatory:
       party:
         operations:
-          - "getApiKey"
-          - "revokeApiKey"
-          - "listApiKeys"
-          - "issueApiKey"
+          - "GetApiKey"
+          - "RevokeApiKey"
+          - "ListApiKeys"
+          - "IssueApiKey"
       api_key:
         operations:
-          - "revokeApiKey"
-          - "getApiKey"
+          - "RevokeApiKey"
+          - "GetApiKey"
 
   ClaimManagement:
     mandatory:
