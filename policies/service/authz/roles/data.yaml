@@ -29,6 +29,7 @@ roles:
         operations:
           - "getOrg"
           - "getOrgRole"
+          - "getOrgMember"
           - "cancelOrgMembership"
           - "inquireOrgMembership"
           - "listOrgMembership"
@@ -56,6 +57,7 @@ roles:
           - "CreatePayout"
       OrgManagement:
         operations:
+          - "getOrgMember"
           - "cancelOrgMembership"
           - "switchContext"
       AnalyticsAPI:
@@ -92,6 +94,7 @@ roles:
         operations:
           - "getOrg"
           - "getOrgRole"
+          - "getOrgMember"
           - "cancelOrgMembership"
           - "inquireOrgMembership"
           - "listOrgMembership"
