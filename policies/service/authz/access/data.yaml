@@ -26,6 +26,11 @@ description: >
 
 api:
   CommonAPI:
+    restricted:
+      shops:
+        operations:
+          - "GetShopsForParty"
+
     mandatory:
       shop:
         operations:
@@ -116,7 +121,6 @@ api:
           - "SuspendMyParty"
 
           - "GetShops"
-          - "GetShopsForParty"
 
           - "CreateWebhook"
           - "GetWebhooks"

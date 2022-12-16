@@ -18,6 +18,7 @@ roles:
       CommonAPI:
         operations:
           - "GetShops"
+          - "GetShopsForParty"
           - "GetMyParty"
           - "GetInvoiceByID"
           - "GetPayments"
@@ -52,6 +53,7 @@ roles:
           - "GetPaymentByID"
           - "CreateRefund"
           - "GetShops"
+          - "GetShopsForParty"
           - "GetRefunds"
           - "GetRefundByID"
           - "GetPayoutTools"
@@ -87,6 +89,7 @@ roles:
           - "RescindInvoice"
           - "GetInvoicePaymentMethods"
           - "GetShops"
+          - "GetShopsForParty"
           - "GetMyParty"
           - "GetPayments"
           - "GetPaymentByID"

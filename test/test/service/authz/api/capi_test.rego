@@ -3,6 +3,7 @@ package test.service.authz.api.capi
 import data.service.authz.api
 import data.test.service.authz.util
 import data.test.service.authz.fixtures.context
+import data.test.service.authz.fixtures.restrictions
 
 test_get_refunds_allowed {
     result := api.assertions with input as util.deepmerge([
@@ -468,4 +469,24 @@ test_capi_allowed_by_api_token_9 {
 
 test_capi_allowed_by_api_token_10 {
     util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
+}
+
+test_capi_restricted_shops {
+    util.is_restricted_with(restrictions.op_capi_restrictions_several_shops) with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_several_roles,
+        context.session_token_valid,
+        context.op_capi_get_shops_for_party
+    ])
+}
+
+test_capi_restricted_shops {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_shops_for_party
+    ])
 }

@@ -15,10 +15,12 @@ api_name := "CommonAPI"
 access_matrix := access.api[api_name]
 
 access_mandatory := "mandatory"
+access_restricted := "restricted"
 access_discretionary := "discretionary"
 
 access_requirements := {
     access_mandatory,
+    access_restricted,
     access_discretionary
 }
 
@@ -43,6 +45,19 @@ forbidden[why] {
 forbidden[why] {
     input.payment_tool
     capi.payment_tool.forbidden[why]
+}
+
+# Restrictions
+
+restrictions[restriction] {
+    count(access_violations) == 0
+    restriction := {
+        "capi": {
+            "op": {
+                "shops": access_restrictions["shops"]
+            }
+        }
+    }
 }
 
 # Set of assertions which tell why operation under the input context is allowed.
@@ -104,9 +119,7 @@ session_token_allowed[why] {
 }
 
 session_token_allowed[why] {
-    role := access_status.roles[_]
-    operations := user.operations_by_role(api_name, role)
-    operations[_] == op.id
+    role := operation_roles[_]
     why := {
         "code": "org_role_allows_operation",
         "description": sprintf("User has role that permits this operation: %v", [role.id])
@@ -155,9 +168,33 @@ access_violations[violation] {
     violation := access_status_set[_].violation
 }
 
+access_restrictions[name] = rs {
+    not access_status.owner
+    operation_access_request[access_restricted][name]
+    rs := entity_access_restrictions[name]
+}
+
+entity_access_restrictions["shops"] = shops {
+    roles := operation_roles
+    not user_has_party_access(roles)
+    shops := [
+        shop |
+            role := roles[_]
+            shop := role.scope.shop
+    ]
+}
+
+user_has_party_access(roles) {
+    role := roles[_]
+    user_role_has_party_access(role)
+}
+
 entity_access_requirement_status(name, req) = status {
     req == access_mandatory
     status := entity_access_status[name]
+} else = status {
+    req == access_restricted
+    status := entity_access_restrictions_status[name]
 } else = status {
     req == access_discretionary
     not op_entity_specified[name]
@@ -220,6 +257,22 @@ entity_access_status["payout"] = status {
 }
 entity_access_status["webhook"] = status {
     status := webhook_access_status(op.webhook.id)
+}
+
+entity_access_restrictions_status["shops"] = status {
+    # NOTE
+    # Restrictions on `shops` imply party access.
+    status := restriction_party_access_status(op.party.id)
+}
+
+restriction_party_access_status(party_id) = status {
+    user.is_owner(party_id)
+    status := {"owner": true}
+} else = status {
+    userorg := user.org_by_party(party_id)
+    roles := { role | role := userorg.roles[_] }
+    roles[_]
+    status := {"roles": roles}
 }
 
 party_access_status(party_id) = status {
@@ -305,4 +358,10 @@ webhook_access_status(id) = status {
 allowed_operation_for_auth_method {
     operations_available := methods.permissions[input.auth.method].apis[api_name].operations
     operations_available[_] == op.id
+}
+
+operation_roles[role] {
+    role := access_status.roles[_]
+    operations := user.operations_by_role(api_name, role)
+    operations[_] == op.id
 }

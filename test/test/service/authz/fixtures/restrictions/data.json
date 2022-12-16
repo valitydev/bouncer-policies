@@ -28,6 +28,20 @@
                 ]
             }
         }
-    }
+    },
 
+    "op_capi_restrictions_several_shops": {
+        "capi": {
+            "op": {
+                "shops": [
+                    {
+                        "id": "SHOP"
+                    },
+                    {
+                        "id": "SHOP2"
+                    }
+                ]
+            }
+        }
+    }
 }
