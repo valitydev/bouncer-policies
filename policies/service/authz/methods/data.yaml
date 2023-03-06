@@ -56,6 +56,7 @@ permissions:
 
           # Invoices
           - "GetInvoiceByExternalID"
+          - "GetInvoiceByExternalIDForParty"
           - "CreateInvoice"
           - "GetInvoiceByID"
           - "CreateInvoiceAccessToken"
@@ -98,7 +99,9 @@ permissions:
           - "CreateRefund"
           - "GetRefundByID"
           - "GetPaymentByExternalID"
+          - "GetPaymentByExternalIDForParty"
           - "GetRefundByExternalID"
+          - "GetRefundByExternalIDForParty"
 
           # Payouts
           - "CreatePayout"
@@ -128,7 +131,9 @@ permissions:
           - "GetPaymentInstitutionByRef"
           - "GetPaymentInstitutionPaymentTerms"
           - "GetPaymentInstitutionPayoutMethods"
+          - "GetPaymentInstitutionPayoutMethodsForParty"
           - "GetPaymentInstitutionPayoutSchedules"
+          - "GetPaymentInstitutionPayoutSchedulesForParty"
 
           # ServiceProviders
           - "GetServiceProviderByID"
@@ -238,6 +243,7 @@ permissions:
 
           # Invoices
           - "GetInvoiceByExternalID"
+          - "GetInvoiceByExternalIDForParty"
           - "CreateInvoice"
           - "GetInvoiceByID"
           - "CreateInvoiceAccessToken"
@@ -281,7 +287,9 @@ permissions:
           - "CreateRefund"
           - "GetRefundByID"
           - "GetPaymentByExternalID"
+          - "GetPaymentByExternalIDForParty"
           - "GetRefundByExternalID"
+          - "GetRefundByExternalIDForParty"
 
           # Payouts
           - "CreatePayout"
@@ -312,7 +320,9 @@ permissions:
           - "GetPaymentInstitutionByRef"
           - "GetPaymentInstitutionPaymentTerms"
           - "GetPaymentInstitutionPayoutMethods"
+          - "GetPaymentInstitutionPayoutMethodsForParty"
           - "GetPaymentInstitutionPayoutSchedules"
+          - "GetPaymentInstitutionPayoutSchedulesForParty"
 
           # ServiceProviders
           - "GetServiceProviderByID"
