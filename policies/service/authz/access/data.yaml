@@ -56,6 +56,7 @@ api:
           - "CreateInvoiceAccessToken"
           - "GetInvoiceByID"
           - "GetInvoiceByExternalID"
+          - "GetInvoiceByExternalIDForParty"
           - "FulfillInvoice"
           - "RescindInvoice"
           - "GetInvoiceEvents"
@@ -64,12 +65,14 @@ api:
           - "GetPayments"
           - "GetPaymentByID"
           - "GetPaymentByExternalID"
+          - "GetPaymentByExternalIDForParty"
           - "CancelPayment"
           - "CapturePayment"
           - "CreateRefund"
           - "GetRefunds"
           - "GetRefundByID"
           - "GetRefundByExternalID"
+          - "GetRefundByExternalIDForParty"
           - "GetChargebacks"
           - "GetChargebackByID"
 
@@ -149,7 +152,9 @@ api:
       - "GetPaymentInstitutionByRef"
       - "GetPaymentInstitutionPaymentTerms"
       - "GetPaymentInstitutionPayoutMethods"
+      - "GetPaymentInstitutionPayoutMethodsForParty"
       - "GetPaymentInstitutionPayoutSchedules"
+      - "GetPaymentInstitutionPayoutSchedulesForParty"
       - "GetScheduleByRef"
   
   AnalyticsAPI:
