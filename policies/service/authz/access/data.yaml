@@ -127,6 +127,7 @@ api:
 
           - "CreateWebhook"
           - "GetWebhooks"
+          - "GetWebhooksForParty"
 
     discretionary:
       invoice:
