@@ -25,6 +25,7 @@ roles:
           - "GetPaymentByID"
           - "CreateWebhook"
           - "GetWebhooks"
+          - "GetWebhooksForParty"
           - "GetWebhookByID"
           - "DeleteWebhookByID"
       OrgManagement:
@@ -199,6 +200,7 @@ roles:
           - "SuspendShopForParty"
           - "CreateWebhook"
           - "GetWebhooks"
+          - "GetWebhooksForParty"
           - "GetWebhookByID"
           - "DeleteWebhookByID"
       OrgManagement:
