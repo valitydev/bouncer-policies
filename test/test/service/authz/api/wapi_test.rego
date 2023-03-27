@@ -79,14 +79,6 @@ test_get_provider_identity_level_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : "GetProviderIdentityLevel"}
 }
 
-discretionary_op_with_common_cases(opId) {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : opId}
-    util.is_forbidden with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : opId, "identity" : "SomeId"}
-    util.is_allowed with input as wapi_public_operation_session_token_ctx
-        with input.wapi.op as {"id" : opId, "identity" : "IdentityId"}
-        with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
 test_list_withdrawals_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "ListWithdrawals",
