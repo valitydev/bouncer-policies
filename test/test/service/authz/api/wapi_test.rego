@@ -88,27 +88,45 @@ discretionary_op_with_common_cases(opId) {
 }
 
 test_list_withdrawals_allowed {
-    discretionary_op_with_common_cases("ListWithdrawals")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListWithdrawals",
+        "party" : "PARTY"
+    }
 }
 
 test_list_wallets_allowed {
-    discretionary_op_with_common_cases("ListWallets")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListWallets",
+        "party" : "PARTY"
+    }
 }
 
 test_list_destinations_allowed {
-    discretionary_op_with_common_cases("ListDestinations")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListDestinations",
+        "party" : "PARTY"
+    }
 }
 
 test_list_deposits_allowed {
-    discretionary_op_with_common_cases("ListDeposits")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListDeposits",
+        "party" : "PARTY"
+    }
 }
 
 test_list_deposit_reverts_allowed {
-    discretionary_op_with_common_cases("ListDepositReverts")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListDepositReverts",
+        "party" : "PARTY"
+    }
 }
 
 test_list_deposit_adjustments_allowed {
-    discretionary_op_with_common_cases("ListDepositAdjustments")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListDepositAdjustments",
+        "party" : "PARTY"
+    }
 }
 
 test_create_identity_with_invalid_auth_method_forbidden {
