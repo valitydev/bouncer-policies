@@ -267,11 +267,6 @@ api:
 
           - 'GetIdentity'
           - 'GetWithdrawalMethods'
-          - 'ListIdentityChallenges'
-          - 'StartIdentityChallenge'
-          - 'GetIdentityChallenge'
-          - 'PollIdentityChallengeEvents'
-          - 'GetIdentityChallengeEvent'
           - 'GetWebhooks'
           - 'GetReports'
 

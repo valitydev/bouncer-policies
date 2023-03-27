@@ -236,46 +236,6 @@ test_get_identity_withdrawal_methods_allowed {
     with input.wallet as context.wallet_pool_with_identity.wallet
 }
 
-test_list_identity_challenges_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "ListIdentityChallenges",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_start_identity_challenge_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "StartIdentityChallenge",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_get_identity_challenge_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "GetIdentityChallenge",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_poll_identity_challenge_events_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "PollIdentityChallengeEvents",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_get_identity_challenge_event_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "GetIdentityChallengeEvent",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
 test_get_webhooks_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "GetWebhooks",
