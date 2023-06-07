@@ -120,6 +120,7 @@ api:
           - "GetPayoutToolByIDForParty"
 
           - "GetMyParty"
+          - "GetPartyByID"
           - "ActivateMyParty"
           - "SuspendMyParty"
 
