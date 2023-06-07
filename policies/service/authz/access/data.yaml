@@ -267,11 +267,6 @@ api:
 
           - 'GetIdentity'
           - 'GetWithdrawalMethods'
-          - 'ListIdentityChallenges'
-          - 'StartIdentityChallenge'
-          - 'GetIdentityChallenge'
-          - 'PollIdentityChallengeEvents'
-          - 'GetIdentityChallengeEvent'
           - 'GetWebhooks'
           - 'GetReports'
 
@@ -316,6 +311,12 @@ api:
         operations:
           - 'CreateIdentity'
           - 'ListIdentities'
+          - 'ListWallets'
+          - 'ListDestinations'
+          - 'ListWithdrawals'
+          - 'ListDeposits'
+          - 'ListDepositReverts'
+          - 'ListDepositAdjustments'
 
     discretionary:
       identity:
@@ -355,12 +356,6 @@ api:
       - 'ListProviderIdentityLevels'
       - 'GetProviderIdentityLevel'
 
-      - 'ListWallets'
-      - 'ListDestinations'
-      - 'ListWithdrawals'
-      - 'ListDeposits'
-      - 'ListDepositReverts'
-      - 'ListDepositAdjustments'
       - 'DownloadFile'
       - 'StoreBankCard'
       - 'GetBankCard'

@@ -79,36 +79,46 @@ test_get_provider_identity_level_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : "GetProviderIdentityLevel"}
 }
 
-discretionary_op_with_common_cases(opId) {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : opId}
-    util.is_forbidden with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : opId, "identity" : "SomeId"}
-    util.is_allowed with input as wapi_public_operation_session_token_ctx
-        with input.wapi.op as {"id" : opId, "identity" : "IdentityId"}
-        with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
 test_list_withdrawals_allowed {
-    discretionary_op_with_common_cases("ListWithdrawals")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListWithdrawals",
+        "party" : "PARTY"
+    }
 }
 
 test_list_wallets_allowed {
-    discretionary_op_with_common_cases("ListWallets")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListWallets",
+        "party" : "PARTY"
+    }
 }
 
 test_list_destinations_allowed {
-    discretionary_op_with_common_cases("ListDestinations")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListDestinations",
+        "party" : "PARTY"
+    }
 }
 
 test_list_deposits_allowed {
-    discretionary_op_with_common_cases("ListDeposits")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListDeposits",
+        "party" : "PARTY"
+    }
 }
 
 test_list_deposit_reverts_allowed {
-    discretionary_op_with_common_cases("ListDepositReverts")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListDepositReverts",
+        "party" : "PARTY"
+    }
 }
 
 test_list_deposit_adjustments_allowed {
-    discretionary_op_with_common_cases("ListDepositAdjustments")
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "ListDepositAdjustments",
+        "party" : "PARTY"
+    }
 }
 
 test_create_identity_with_invalid_auth_method_forbidden {
@@ -231,46 +241,6 @@ test_get_identity_allowed {
 test_get_identity_withdrawal_methods_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "GetWithdrawalMethods",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_list_identity_challenges_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "ListIdentityChallenges",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_start_identity_challenge_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "StartIdentityChallenge",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_get_identity_challenge_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "GetIdentityChallenge",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_poll_identity_challenge_events_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "PollIdentityChallengeEvents",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_get_identity_challenge_event_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "GetIdentityChallengeEvent",
         "identity" : "IdentityId"
     }
     with input.wallet as context.wallet_pool_with_identity.wallet
