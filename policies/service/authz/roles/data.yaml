@@ -226,6 +226,7 @@ roles:
         operations:
           - "GetApiKey"
           - "RevokeApiKey"
+          - "RequestRevokeApiKey"
           - "ListApiKeys"
           - "IssueApiKey"
       ClaimManagement:
