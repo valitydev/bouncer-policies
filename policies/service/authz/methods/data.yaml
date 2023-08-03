@@ -197,6 +197,7 @@ permissions:
         operations:
           - "GetApiKey"
           - "RevokeApiKey"
+          - "RequestRevokeApiKey"
           - "ListApiKeys"
           - "IssueApiKey"
 

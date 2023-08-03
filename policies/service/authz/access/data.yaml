@@ -237,11 +237,13 @@ api:
         operations:
           - "GetApiKey"
           - "RevokeApiKey"
+          - "RequestRevokeApiKey"
           - "ListApiKeys"
           - "IssueApiKey"
       api_key:
         operations:
           - "RevokeApiKey"
+          - "RequestRevokeApiKey"
           - "GetApiKey"
 
   ClaimManagement:
