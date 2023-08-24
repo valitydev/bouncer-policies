@@ -20,6 +20,7 @@ roles:
           - "GetShops"
           - "GetShopsForParty"
           - "GetMyParty"
+          - "GetPartyByID"
           - "GetInvoiceByID"
           - "GetPayments"
           - "GetPaymentByID"
@@ -49,6 +50,7 @@ roles:
       CommonAPI:
         operations:
           - "GetMyParty"
+          - "GetPartyByID"
           - "GetInvoiceByID"
           - "GetPayments"
           - "GetPaymentByID"
@@ -92,6 +94,7 @@ roles:
           - "GetShops"
           - "GetShopsForParty"
           - "GetMyParty"
+          - "GetPartyByID"
           - "GetPayments"
           - "GetPaymentByID"
           - "GetPayoutTools"
@@ -164,6 +167,7 @@ roles:
           - "GetInvoiceEvents"
           - "GetInvoicePaymentMethods"
           - "GetMyParty"
+          - "GetPartyByID"
           - "ActivateMyParty"
           - "SuspendMyParty"
           - "CreatePayment"
@@ -267,11 +271,6 @@ roles:
           - 'GetIdentity'
           - 'GetWithdrawalMethods'
           - 'CreateIdentity'
-          - 'ListIdentityChallenges'
-          - 'StartIdentityChallenge'
-          - 'GetIdentityChallenge'
-          - 'PollIdentityChallengeEvents'
-          - 'GetIdentityChallengeEvent'
           - 'ListWallets'
           - 'GetWallet'
           - 'GetWalletByExternalID'
