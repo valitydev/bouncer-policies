@@ -5,7 +5,7 @@ SERVICE := bouncer-policies
 DOCKER ?= docker
 
 BASE_IMAGE_NAME := docker.io/openpolicyagent/opa
-BASE_IMAGE_TAG := 0.26.0
+BASE_IMAGE_TAG := 0.56.0
 
 .PHONY: manifest test repl
 
