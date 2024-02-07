@@ -44,9 +44,48 @@ roles:
           - "SearchPayments"
           - "SearchRefunds"
           - "SearchInvoiceTemplates"
+
+  WalletManager:
+    apis:
       WalletAPI:
         operations:
+          - 'ListIdentities'
+          - 'GetIdentity'
+          - 'GetWithdrawalMethods'
+          - 'CreateIdentity'
           - 'ListWallets'
+          - 'GetWallet'
+          - 'GetWalletByExternalID'
+          - 'CreateWallet'
+          - 'GetWalletAccount'
+          - 'IssueWalletGrant'
+          - 'ListDestinations'
+          - 'GetDestination'
+          - 'GetDestinationByExternalID'
+          - 'CreateDestination'
+          - 'IssueDestinationGrant'
+          - 'CreateQuote'
+          - 'CreateWithdrawal'
+          - 'GetWithdrawal'
+          - 'GetWithdrawalByExternalID'
+          - 'ListWithdrawals'
+          - 'PollWithdrawalEvents'
+          - 'GetWithdrawalEvents'
+          - 'ListDeposits'
+          - 'ListDepositReverts'
+          - 'ListDepositAdjustments'
+          - 'CreateW2WTransfer'
+          - 'GetW2WTransfer'
+          - 'CreateWebhook'
+          - 'GetWebhooks'
+          - 'GetWebhookByID'
+          - 'DeleteWebhookByID'
+          - 'CreateReport'
+          - 'GetReport'
+          - 'GetReports'
+          - 'DownloadFile'
+          - 'StoreBankCard'
+          - 'GetBankCard'
 
   Accountant:
     apis:
@@ -83,9 +122,6 @@ roles:
           - "CreateReport"
           - "CancelReport"
           - "DownloadFile"
-      WalletAPI:
-        operations:
-          - 'ListWallets'
 
   Manager:
     apis:
