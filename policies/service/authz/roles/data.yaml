@@ -86,6 +86,15 @@ roles:
           - 'DownloadFile'
           - 'StoreBankCard'
           - 'GetBankCard'
+      OrgManagement:
+        operations:
+          - "getOrg"
+          - "getOrgRole"
+          - "getOrgMember"
+          - "cancelOrgMembership"
+          - "inquireOrgMembership"
+          - "listOrgMembership"
+          - "switchContext"
 
   Accountant:
     apis:
