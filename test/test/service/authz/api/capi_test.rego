@@ -455,3 +455,13 @@ test_capi_restricted_shops {
         context.op_capi_get_shops_for_party
     ])
 }
+
+test_capi_restricted_shops_with_user_owner {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_owner,
+        context.session_token_valid,
+        context.op_capi_get_shops_for_party
+    ])
+}
