@@ -400,14 +400,6 @@
         }
     },
 
-    "op_capi_get_payment_institution_payout_schedules": {
-        "capi": {
-            "op": {
-                "id": "GetPaymentInstitutionPayoutSchedules"
-            }
-        }
-    },
-
     "op_capi_update_invoice_template": {
         "capi": {
             "op": {
@@ -556,17 +548,6 @@
             "op": {
                 "id": "SearchInvoices",
                 "invoice": { "id": "INVOICE" },
-                "shop": { "id": "SHOP" },
-                "party": { "id": "PARTY" }
-            }
-        }
-    },
-
-    "op_capi_search_specific_payout": {
-        "capi": {
-            "op": {
-                "id": "SearchPayouts",
-                "payout": { "id": "PAYOUT" },
                 "shop": { "id": "SHOP" },
                 "party": { "id": "PARTY" }
             }
@@ -769,17 +750,6 @@
                 "files": [
                     {"id": "FILE"}
                 ]
-            }
-        }
-    },
-
-    "payouts_payout": {
-        "payouts": {
-            "payout": {
-                "id": "PAYOUT",
-                "party": { "id": "PARTY" },
-                "contract": { "id": "CONTRACT" },
-                "shop": { "id": "SHOP" }
             }
         }
     },

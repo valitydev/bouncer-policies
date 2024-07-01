@@ -25,7 +25,6 @@ permissions:
           - "SearchInvoices"
           - "SearchPayments"
           - "SearchRefunds"
-          - "SearchPayouts"
 
           # Categories
           - "GetCategories"
@@ -103,15 +102,6 @@ permissions:
           - "GetRefundByExternalID"
           - "GetRefundByExternalIDForParty"
 
-          # Payouts
-          - "CreatePayout"
-          - "GetPayout"
-          - "GetPayoutTools"
-          - "GetPayoutToolsForParty"
-          - "GetPayoutToolByID"
-          - "GetPayoutToolByIDForParty"
-          - "GetScheduleByRef"
-
           # Shops
           - "GetShops"
           - "GetShopsForParty"
@@ -130,10 +120,6 @@ permissions:
           - "GetPaymentInstitutions"
           - "GetPaymentInstitutionByRef"
           - "GetPaymentInstitutionPaymentTerms"
-          - "GetPaymentInstitutionPayoutMethods"
-          - "GetPaymentInstitutionPayoutMethodsForParty"
-          - "GetPaymentInstitutionPayoutSchedules"
-          - "GetPaymentInstitutionPayoutSchedulesForParty"
 
           # ServiceProviders
           - "GetServiceProviderByID"
@@ -209,7 +195,6 @@ permissions:
           - "SearchInvoices"
           - "SearchPayments"
           - "SearchRefunds"
-          - "SearchPayouts"
 
           # Categories
           - "GetCategories"
@@ -288,15 +273,6 @@ permissions:
           - "GetRefundByExternalID"
           - "GetRefundByExternalIDForParty"
 
-          # Payouts
-          - "CreatePayout"
-          - "GetPayout"
-          - "GetPayoutTools"
-          - "GetPayoutToolsForParty"
-          - "GetPayoutToolByID"
-          - "GetPayoutToolByIDForParty"
-          - "GetScheduleByRef"
-
           # Shops
           - "GetShops"
           - "GetShopsForParty"
@@ -316,10 +292,6 @@ permissions:
           - "GetPaymentInstitutions"
           - "GetPaymentInstitutionByRef"
           - "GetPaymentInstitutionPaymentTerms"
-          - "GetPaymentInstitutionPayoutMethods"
-          - "GetPaymentInstitutionPayoutMethodsForParty"
-          - "GetPaymentInstitutionPayoutSchedules"
-          - "GetPaymentInstitutionPayoutSchedulesForParty"
 
           # ServiceProviders
           - "GetServiceProviderByID"
