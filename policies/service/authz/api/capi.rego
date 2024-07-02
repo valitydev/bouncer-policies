@@ -8,7 +8,6 @@ import data.service.authz.whitelists
 
 import input.capi.op
 import input.payment_processing
-import input.payouts
 import input.webhooks
 
 api_name := "CommonAPI"
@@ -252,9 +251,6 @@ entity_access_status["invoice_template"] = status {
 entity_access_status["customer"] = status {
     status := customer_access_status(op.customer.id)
 }
-entity_access_status["payout"] = status {
-    status := payout_access_status(op.payout.id)
-}
 entity_access_status["webhook"] = status {
     status := webhook_access_status(op.webhook.id)
 }
@@ -341,12 +337,6 @@ customer_access_status(id) = status {
     customer := payment_processing.customer
     customer.id == id
     status := shop_access_status(customer.shop.id, customer.party.id)
-}
-
-payout_access_status(id) = status {
-    payout := payouts.payout
-    payout.id == id
-    status := shop_access_status(payout.shop.id, payout.party.id)
 }
 
 webhook_access_status(id) = status {

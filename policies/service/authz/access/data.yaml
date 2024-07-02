@@ -37,7 +37,6 @@ api:
           - "CreateCustomer"
           - "CreateInvoiceTemplate"
           - "CreateInvoice"
-          - "CreatePayout"
 
           - "ActivateShop"
           - "SuspendShop"
@@ -48,7 +47,6 @@ api:
 
           - "SearchInvoices"
           - "SearchPayments"
-          - "SearchPayouts"
           - "SearchRefunds"
 
       invoice:
@@ -100,10 +98,6 @@ api:
           - "GetWebhookByID"
           - "DeleteWebhookByID"
 
-      payout:
-        operations:
-          - "GetPayout"
-
       party:
         operations:
           - "GetContracts"
@@ -114,10 +108,6 @@ api:
           - "GetContractByIDForParty"
           - "GetContractAdjustmentsForParty"
           - "GetContractAdjustmentByIDForParty"
-          - "GetPayoutTools"
-          - "GetPayoutToolByID"
-          - "GetPayoutToolsForParty"
-          - "GetPayoutToolByIDForParty"
 
           - "GetMyParty"
           - "GetPartyByID"
@@ -137,10 +127,6 @@ api:
           - "SearchPayments"
           - "SearchRefunds"
 
-      payout:
-        operations:
-          - "SearchPayouts"
-
     universal:
       operations:
       - "GetCategories"
@@ -153,12 +139,8 @@ api:
       - "GetPaymentInstitutions"
       - "GetPaymentInstitutionByRef"
       - "GetPaymentInstitutionPaymentTerms"
-      - "GetPaymentInstitutionPayoutMethods"
-      - "GetPaymentInstitutionPayoutMethodsForParty"
-      - "GetPaymentInstitutionPayoutSchedules"
-      - "GetPaymentInstitutionPayoutSchedulesForParty"
       - "GetScheduleByRef"
-  
+
   AnalyticsAPI:
     restricted:
       shops:
@@ -166,7 +148,6 @@ api:
           - "SearchInvoices"
           - "SearchPayments"
           - "SearchRefunds"
-          - "SearchPayouts"
           - "SearchReports"
           - "SearchChargebacks"
           - "SearchInvoiceTemplates"

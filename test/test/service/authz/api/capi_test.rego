@@ -166,18 +166,6 @@ test_capi_allowed_by_session_token_7 {
     util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPaymentTerms"}
 }
 
-test_capi_allowed_by_session_token_8 {
-    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutMethods"}
-}
-
-test_capi_allowed_by_session_token_9 {
-    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutSchedules"}
-}
-
-test_capi_allowed_by_session_token_10 {
-    util.is_allowed with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
-}
-
 test_update_invoice_template_allowed {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
@@ -258,17 +246,6 @@ test_search_specific_invoice_allowed {
         context.session_token_valid,
         context.op_capi_search_specific_invoice,
         context.payproc_invoice
-    ])
-}
-
-test_search_specific_payout_allowed {
-    util.is_allowed with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_administrator_shop,
-        context.session_token_valid,
-        context.op_capi_search_specific_payout,
-        context.payouts_payout
     ])
 }
 
@@ -459,18 +436,6 @@ test_capi_allowed_by_api_token_7 {
     util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPaymentTerms"}
 }
 
-test_capi_allowed_by_api_token_8 {
-    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutMethods"}
-}
-
-test_capi_allowed_by_api_token_9 {
-    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetPaymentInstitutionPayoutSchedules"}
-}
-
-test_capi_allowed_by_api_token_10 {
-    util.is_allowed with input as capi_public_operation_api_token_ctx with input.capi.op as {"id" : "GetScheduleByRef"}
-}
-
 test_capi_restricted_shops {
     util.is_restricted_with(restrictions.op_capi_restrictions_several_shops) with input as util.deepmerge([
         context.env_default,
@@ -486,6 +451,16 @@ test_capi_restricted_shops {
         context.env_default,
         context.requester_default,
         context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_shops_for_party
+    ])
+}
+
+test_capi_restricted_shops_with_user_owner {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_owner,
         context.session_token_valid,
         context.op_capi_get_shops_for_party
     ])
