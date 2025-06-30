@@ -409,26 +409,6 @@
         }
     },
 
-    "op_capi_create_binding": {
-        "capi": {
-            "op": {
-                "id": "CreateBinding",
-                "customer": { "id": "CUSTOMER" }
-            }
-        }
-    },
-
-
-    "op_capi_get_binding": {
-        "capi": {
-            "op": {
-                "id": "GetBinding",
-                "customer": { "id": "CUSTOMER" },
-                "binding": { "id": "BINDING" }
-            }
-        }
-    },
-
     "op_capi_get_payments": {
         "capi": {
             "op": {
@@ -485,15 +465,6 @@
         }
     },
 
-    "op_capi_get_customer_by_id": {
-        "capi": {
-            "op": {
-                "id": "GetCustomerById",
-                "customer": { "id": "CUSTOMER" }
-            }
-        }
-    },
-
     "op_capi_empty": {
         "capi": {
             "op": {}
@@ -503,24 +474,6 @@
     "op_wapi_empty": {
         "wapi": {
             "op": {}
-        }
-    },
-
-    "op_capi_get_customer_events": {
-        "capi": {
-            "op": {
-                "id": "GetCustomerEvents",
-                "customer": { "id": "CUSTOMER" }
-            }
-        }
-    },
-
-    "op_capi_get_customer_payment_methods": {
-        "capi": {
-            "op": {
-                "id": "GetCustomerPaymentMethods",
-                "customer": { "id": "CUSTOMER" }
-            }
         }
     },
 
@@ -610,14 +563,6 @@
         }
      },
 
-    "payment_tool_customer2": {
-        "payment_tool": {
-            "scope": {
-                "customer": { "id": "CUSTOMER2" }
-            }
-        }
-     },
-
     "payproc_invoice": {
         "payment_processing": {
             "invoice": {
@@ -686,19 +631,6 @@
                 "id": "INVOICE_TEMPLATE",
                 "party": { "id": "PARTY" },
                 "shop": { "id": "SHOP" }
-            }
-        }
-    },
-
-    "payproc_customer": {
-        "payment_processing": {
-            "customer": {
-                "id": "CUSTOMER",
-                "party": { "id": "PARTY" },
-                "shop": { "id": "SHOP" },
-                "bindings": [
-                    { "id": "BINDING" }
-                ]
             }
         }
     },
@@ -843,19 +775,6 @@
             "scope": [
                 {
                     "invoice_template": { "id": "INVOICE_TEMPLATE" },
-                    "party": { "id": "PARTY" }
-                }
-            ]
-        }
-    },
-
-    "customer_access_token_valid": {
-        "auth": {
-            "method": "CustomerAccessToken",
-            "expiration": "2021-01-01T00:00:00Z",
-            "scope": [
-                {
-                    "customer": { "id": "CUSTOMER" },
                     "party": { "id": "PARTY" }
                 }
             ]

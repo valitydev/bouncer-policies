@@ -90,11 +90,6 @@ auth_method_allowed[why] {
 }
 
 auth_method_allowed[why] {
-    input.auth.method == "CustomerAccessToken"
-    capi.customer_access_token.allowed[why]
-}
-
-auth_method_allowed[why] {
     input.auth.method == "InvoiceTemplateAccessToken"
     capi.invoice_template_access_token.allowed[why]
 }
@@ -248,9 +243,6 @@ entity_access_status["invoice"] = status {
 entity_access_status["invoice_template"] = status {
     status := invoice_template_access_status(op.invoice_template.id)
 }
-entity_access_status["customer"] = status {
-    status := customer_access_status(op.customer.id)
-}
 entity_access_status["webhook"] = status {
     status := webhook_access_status(op.webhook.id)
 }
@@ -331,12 +323,6 @@ invoice_template_access_status(id) = status {
     invoice_template := payment_processing.invoice_template
     invoice_template.id == id
     status := shop_access_status(invoice_template.shop.id, invoice_template.party.id)
-}
-
-customer_access_status(id) = status {
-    customer := payment_processing.customer
-    customer.id == id
-    status := shop_access_status(customer.shop.id, customer.party.id)
 }
 
 webhook_access_status(id) = status {

@@ -34,7 +34,6 @@ api:
     mandatory:
       shop:
         operations:
-          - "CreateCustomer"
           - "CreateInvoiceTemplate"
           - "CreateInvoice"
 
@@ -81,17 +80,6 @@ api:
           - "DeleteInvoiceTemplate"
           - "CreateInvoiceWithTemplate"
           - "GetInvoicePaymentMethodsByTemplateID"
-
-      customer:
-        operations:
-          - "GetCustomerById"
-          - "DeleteCustomer"
-          - "GetCustomerEvents"
-          - "CreateCustomerAccessToken"
-          - "CreateBinding"
-          - "GetBindings"
-          - "GetBinding"
-          - "GetCustomerPaymentMethods"
 
       webhook:
         operations:

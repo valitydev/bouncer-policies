@@ -134,7 +134,6 @@ roles:
           - "GetPartyByID"
           - "GetPayments"
           - "GetPaymentByID"
-          - "GetCustomerPaymentMethods"
       OrgManagement:
         operations:
           - "getOrg"
@@ -176,15 +175,6 @@ roles:
           - "GetContractByIDForParty"
           - "GetContractAdjustmentsForParty"
           - "GetContractAdjustmentByIDForParty"
-          - "CreateCustomer"
-          - "GetCustomerById"
-          - "DeleteCustomer"
-          - "CreateCustomerAccessToken"
-          - "CreateBinding"
-          - "GetBindings"
-          - "GetBinding"
-          - "GetCustomerEvents"
-          - "GetCustomerPaymentMethods"
           - "CreateInvoiceTemplate"
           - "GetInvoiceTemplateByID"
           - "UpdateInvoiceTemplate"
