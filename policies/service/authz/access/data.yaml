@@ -242,34 +242,19 @@ api:
 
   WalletAPI:
     mandatory:
-      identity:
-        operations:
-          - 'CreateReport'
-          - 'CreateWebhook'
-          - 'CreateWallet'
-          - 'CreateDestination'
-
-          - 'GetIdentity'
-          - 'GetWithdrawalMethods'
-          - 'GetWebhooks'
-          - 'GetReports'
-
       wallet:
         operations:
           - 'CreateQuote'
           - 'CreateWithdrawal'
-          - 'CreateW2WTransfer'
           - 'GetWallet'
           - 'GetWalletByExternalID'
           - 'GetWalletAccount'
-          - 'IssueWalletGrant'
 
       destination:
         operations:
           - 'CreateWithdrawal'
           - 'GetDestination'
           - 'GetDestinationByExternalID'
-          - 'IssueDestinationGrant'
 
       withdrawal:
         operations:
@@ -277,10 +262,6 @@ api:
           - 'GetWithdrawalByExternalID'
           - 'PollWithdrawalEvents'
           - 'GetWithdrawalEvents'
-
-      w2w_transfer:
-        operations:
-          - 'GetW2WTransfer'
 
       webhook:
         operations:
@@ -293,25 +274,18 @@ api:
 
       party:
         operations:
-          - 'CreateIdentity'
-          - 'ListIdentities'
+          - 'CreateReport'
+          - 'CreateWebhook'
+          - 'CreateDestination'
+
+          - 'GetWebhooks'
+          - 'GetReports'
           - 'ListWallets'
           - 'ListDestinations'
           - 'ListWithdrawals'
           - 'ListDeposits'
-          - 'ListDepositReverts'
-          - 'ListDepositAdjustments'
 
     discretionary:
-      identity:
-        operations:
-          - 'ListWallets'
-          - 'ListDestinations'
-          - 'ListWithdrawals'
-          - 'ListDeposits'
-          - 'ListDepositReverts'
-          - 'ListDepositAdjustments'
-
       destination:
         operations:
           - 'CreateQuote'
@@ -335,10 +309,6 @@ api:
 
       - 'ListProviders'
       - 'GetProvider'
-      - 'ListProviderIdentityClasses'
-      - 'GetProviderIdentityClass'
-      - 'ListProviderIdentityLevels'
-      - 'GetProviderIdentityLevel'
 
       - 'DownloadFile'
       - 'StoreBankCard'

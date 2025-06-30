@@ -5,7 +5,6 @@ import data.service.authz.access
 import data.service.authz.methods
 
 import input.wapi.op
-import input.wapi.grants
 import input.wallet as entities
 
 api_name := "WalletAPI"
@@ -75,14 +74,6 @@ session_token_allowed[why] {
     why := {
         "code": "org_role_allows_operation",
         "description": sprintf("User has role that permits this operation: %v", [role.id])
-    }
-}
-
-session_token_allowed[why] {
-    access_status.grant
-    why := {
-        "code": "grant_allows_operation",
-        "description": "User has grant that permits this operation"
     }
 }
 
@@ -169,9 +160,6 @@ operation_universal {
 entity_access_status["party"] = status {
     status := party_access_status(op.party)
 }
-entity_access_status["identity"] = status {
-    status := identity_access_status(op.identity)
-}
 entity_access_status["wallet"] = status {
     status := wallet_access_status(op.wallet)
 }
@@ -180,9 +168,6 @@ entity_access_status["destination"] = status {
 }
 entity_access_status["withdrawal"] = status {
     status := withdrawal_access_status(op.withdrawal)
-}
-entity_access_status["w2w_transfer"] = status {
-    status := w2w_transfer_access_status(op.w2w_transfer)
 }
 entity_access_status["report"] = status {
     status := report_access_status(op.report)
@@ -210,22 +195,7 @@ party_access_status(id) = status {
     status := {"in_scope": true}
 }
 
-
-identity_access_status(id) = status {
-    identity := find_entity["Identity"][id]
-    status := party_access_status(identity.party)
-}
-
 wallet_access_status(id) = status {
-    wallet := find_entity["Wallet"][id]
-    grant := wallet_grants[_]
-    grant.wallet == id
-    grant.body >= wallet.wallet.body
-    exp := time.parse_rfc3339_ns(grant.expires_on)
-    now := time.parse_rfc3339_ns(input.env.now)
-    now < exp
-    status := {"grant": true}
-} else = status {
     wallet := find_entity["Wallet"][id]
     status := party_access_status(wallet.party)
 }
@@ -235,13 +205,6 @@ user_role_has_party_access(role) {
 }
 
 destination_access_status(id) = status {
-    grant := destination_grants[_]
-    grant.destination == id
-    exp := time.parse_rfc3339_ns(grant.expires_on)
-    now := time.parse_rfc3339_ns(input.env.now)
-    now < exp
-    status := {"grant": true}
-} else = status {
     destination := find_entity["Destination"][id]
     status := party_access_status(destination.party)
 }
@@ -251,30 +214,14 @@ withdrawal_access_status(id) = status {
     status := party_access_status(withdrawal.party)
 }
 
-w2w_transfer_access_status(id) = status {
-    transfer := find_entity["W2WTransfer"][id]
-    userorg := user.org_by_party(transfer.party)
-    status := party_access_status(transfer.party)
-}
-
 report_access_status(id) = status {
     report := find_entity["WalletReport"][id]
-    status := identity_access_status(report.wallet.identity)
+    status := party_access_status(report.party)
 }
 
 webhook_access_status(id) = status {
     webhook := find_entity["WalletWebhook"][id]
-    status := identity_access_status(webhook.wallet.identity)
-}
-
-wallet_grants[grant] {
-    grant := grants[_]
-    grant.wallet
-}
-
-destination_grants[grant] {
-    grant := grants[_]
-    grant.destination
+    status := party_access_status(webhook.party)
 }
 
 find_entity[type] = out {

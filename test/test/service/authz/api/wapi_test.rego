@@ -13,16 +13,21 @@ test_get_residence_apikey_allowed {
     ]) with input.wapi.op as {"id" : "GetResidence"}
 }
 
-test_create_identity_apikey_allowed {
+test_create_withdrawal_apikey_allowed {
     util.is_allowed with input as util.deepmerge([
         context.env_default,
         context.requester_default,
         context.api_key_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {
-        "id" : "CreateIdentity",
-        "party" : "PARTY"
+        "id" : "CreateWithdrawal",
+        "wallet" : "WalletId",
+        "destination" : "DestinationId"
     }
+    with input.wallet as util.concat([
+        context.wallet_pool_with_wallet.wallet,
+        context.wallet_pool_with_destination.wallet
+    ])
 }
 
 wapi_public_operation_session_token_ctx = util.deepmerge([
@@ -63,22 +68,6 @@ test_get_provider_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : "GetProvider"}
 }
 
-test_list_provider_identity_classes_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : "ListProviderIdentityClasses"}
-}
-
-test_get_provider_identity_class_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : "GetProviderIdentityClass"}
-}
-
-test_list_provider_identity_levels_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : "ListProviderIdentityLevels"}
-}
-
-test_get_provider_identity_level_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {"id" : "GetProviderIdentityLevel"}
-}
-
 test_list_withdrawals_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "ListWithdrawals",
@@ -107,21 +96,7 @@ test_list_deposits_allowed {
     }
 }
 
-test_list_deposit_reverts_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "ListDepositReverts",
-        "party" : "PARTY"
-    }
-}
-
-test_list_deposit_adjustments_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "ListDepositAdjustments",
-        "party" : "PARTY"
-    }
-}
-
-test_create_identity_with_invalid_auth_method_forbidden {
+test_create_withdrawal_with_invalid_auth_method_forbidden {
     util.is_forbidden with input as util.deepmerge([
         context.env_default,
         context.requester_default,
@@ -129,12 +104,17 @@ test_create_identity_with_invalid_auth_method_forbidden {
         context.api_key_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {
-        "id" : "CreateIdentity",
-        "party" : "PARTY"
+        "id" : "CreateWithdrawal",
+        "wallet" : "WalletId",
+        "destination" : "DestinationId"
     }
+    with input.wallet as util.concat([
+        context.wallet_pool_with_wallet.wallet,
+        context.wallet_pool_with_destination.wallet
+    ])
 }
 
-test_create_identity_by_owner_allowed {
+test_create_withdrawal_by_owner_allowed {
     util.is_allowed with input as util.deepmerge([
         context.env_default,
         context.requester_default,
@@ -142,23 +122,33 @@ test_create_identity_by_owner_allowed {
         context.session_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {
-        "id" : "CreateIdentity",
-        "party" : "PARTY"
+        "id" : "CreateWithdrawal",
+        "wallet" : "WalletId",
+        "destination" : "DestinationId"
     }
+    with input.wallet as util.concat([
+        context.wallet_pool_with_wallet.wallet,
+        context.wallet_pool_with_destination.wallet
+    ])
 }
 
-test_create_identity_allowed {
+test_create_withdrawal_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "CreateIdentity",
-        "party" : "PARTY"
+        "id" : "CreateWithdrawal",
+        "wallet" : "WalletId",
+        "destination" : "DestinationId"
     }
+    with input.wallet as util.concat([
+        context.wallet_pool_with_wallet.wallet,
+        context.wallet_pool_with_destination.wallet
+    ])
 }
 
-test_list_identities_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "ListIdentities",
-        "party" : "PARTY"
+test_create_withdrawal_forbidden_with_undefined_op_name {
+    util.is_forbidden with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "CreateWithdrawal"
     }
+    with input.wallet as []
 }
 
 test_store_bank_card_allowed {
@@ -194,80 +184,36 @@ test_get_bank_card_forbidden {
 test_create_report_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "CreateReport",
-        "identity" : "IdentityId"
+        "party" : "PARTY"
     }
-    with input.wallet as context.wallet_pool_with_identity.wallet
 }
 
 test_create_webhook_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "CreateWebhook",
-        "identity" : "IdentityId"
+        "party" : "PARTY"
     }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_create_wallet_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "CreateWallet",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_create_wallet_forbidden_with_undefined_op_name {
-    util.is_forbidden with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "CreateWallet"
-    }
-    with input.wallet as []
 }
 
 test_create_destination_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "CreateDestination",
-        "identity" : "IdentityId"
+        "party" : "PARTY"
     }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_get_identity_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "GetIdentity",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_get_identity_withdrawal_methods_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "GetWithdrawalMethods",
-        "identity" : "IdentityId"
-    }
-    with input.wallet as context.wallet_pool_with_identity.wallet
 }
 
 test_get_webhooks_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "GetWebhooks",
-        "identity" : "IdentityId"
+        "party" : "PARTY"
     }
-    with input.wallet as context.wallet_pool_with_identity.wallet
 }
 
 test_get_reports_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "GetReports",
-        "identity" : "IdentityId"
+        "party" : "PARTY"
     }
-    with input.wallet as context.wallet_pool_with_identity.wallet
-}
-
-test_create_w2w_transfer_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "CreateW2WTransfer",
-        "wallet" : "WalletId"
-    }
-    with input.wallet as context.wallet_pool_with_wallet.wallet
 }
 
 test_get_wallet_allowed {
@@ -289,14 +235,6 @@ test_get_wallet_by_external_id_allowed {
 test_get_wallet_account_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "GetWalletAccount",
-        "wallet" : "WalletId"
-    }
-    with input.wallet as context.wallet_pool_with_wallet.wallet
-}
-
-test_issue_wallet_grant_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "IssueWalletGrant",
         "wallet" : "WalletId"
     }
     with input.wallet as context.wallet_pool_with_wallet.wallet
@@ -342,14 +280,6 @@ test_get_destination_by_external_id_allowed {
     with input.wallet as context.wallet_pool_with_destination.wallet
 }
 
-test_issue_destination_grant_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "IssueDestinationGrant",
-        "destination" : "DestinationId"
-    }
-    with input.wallet as context.wallet_pool_with_destination.wallet
-}
-
 test_get_withdrawal_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "GetWithdrawal",
@@ -382,21 +312,12 @@ test_get_withdrawal_events_allowed {
     with input.wallet as context.wallet_pool_with_withdrawal.wallet
 }
 
-test_get_w2w_transfer_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
-        "id" : "GetW2WTransfer",
-        "w2w_transfer" : "W2WTransferId"
-    }
-    with input.wallet as context.wallet_pool_with_w2w_transfer.wallet
-}
-
 test_get_webhook_by_id_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "GetWebhookByID",
         "webhook" : "WebhookId"
     }
     with input.wallet as util.concat([
-        context.wallet_pool_with_identity.wallet,
         context.wallet_pool_with_webhook.wallet
     ])
 }
@@ -407,7 +328,6 @@ test_delete_webhook_by_id_allowed {
         "webhook" : "WebhookId"
     }
     with input.wallet as util.concat([
-        context.wallet_pool_with_identity.wallet,
         context.wallet_pool_with_webhook.wallet
     ])
 }
@@ -418,26 +338,6 @@ test_get_report_allowed {
         "report" : "ReportId"
     }
     with input.wallet as util.concat([
-        context.wallet_pool_with_identity.wallet,
         context.wallet_pool_with_report.wallet
     ])
-}
-
-test_create_w2w_transfer_with_wallet_grant_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx
-        with input.wapi.op as {
-            "id" : "CreateW2WTransfer",
-            "wallet" : "WalletId"
-        }
-        with input.wapi.grants as context.wapi_wallet_grant.wapi.grants
-        with input.wallet as context.wallet_pool_with_another_wallet.wallet
-}
-
-test_get_destination_with_destination_grant_allowed {
-    util.is_allowed with input as wapi_public_operation_session_token_ctx
-        with input.wapi.op as {
-            "id" : "GetDestination",
-            "destination" : "DestinationId"
-        }
-        with input.wapi.grants as context.wapi_destination_grant.wapi.grants
 }
