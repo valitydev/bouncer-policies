@@ -13,7 +13,6 @@ methods:
   - "SessionToken"
   - "ApiKeyToken"
   - "InvoiceAccessToken"
-  - "CustomerAccessToken"
   - "InvoiceTemplateAccessToken"
 
 permissions:
@@ -33,17 +32,6 @@ permissions:
           # Countries
           - "GetCountries"
           - "GetCountryByID"
-
-          # Customers
-          - "CreateCustomer"
-          - "GetCustomerById"
-          - "DeleteCustomer"
-          - "CreateCustomerAccessToken"
-          - "CreateBinding"
-          - "GetBindings"
-          - "GetBinding"
-          - "GetCustomerEvents"
-          - "GetCustomerPaymentMethods"
 
           # InvoiceTemplates
           - "CreateInvoiceTemplate"
@@ -83,7 +71,7 @@ permissions:
           - "SuspendPartyByID"
 
           # Tokens
-          # We only allow payment resource creation with InvoiceAccessToken and CustomerAccessToken
+          # We only allow payment resource creation with InvoiceAccessToken
           # - "CreatePaymentResource"
 
           # Payments
@@ -133,21 +121,14 @@ permissions:
 
       WalletAPI:
         operations:
-          - 'ListIdentities'
-          - 'GetIdentity'
-          - 'GetWithdrawalMethods'
-          - 'CreateIdentity'
           - 'ListWallets'
           - 'GetWallet'
           - 'GetWalletByExternalID'
-          - 'CreateWallet'
           - 'GetWalletAccount'
-          - 'IssueWalletGrant'
           - 'ListDestinations'
           - 'GetDestination'
           - 'GetDestinationByExternalID'
           - 'CreateDestination'
-          - 'IssueDestinationGrant'
           - 'CreateQuote'
           - 'CreateWithdrawal'
           - 'GetWithdrawal'
@@ -156,10 +137,6 @@ permissions:
           - 'PollWithdrawalEvents'
           - 'GetWithdrawalEvents'
           - 'ListDeposits'
-          - 'ListDepositReverts'
-          - 'ListDepositAdjustments'
-          - 'CreateW2WTransfer'
-          - 'GetW2WTransfer'
           - 'CreateWebhook'
           - 'GetWebhooks'
           - 'GetWebhookByID'
@@ -172,10 +149,6 @@ permissions:
           - 'GetCurrency'
           - 'ListProviders'
           - 'GetProvider'
-          - 'ListProviderIdentityClasses'
-          - 'GetProviderIdentityClass'
-          - 'ListProviderIdentityLevels'
-          - 'GetProviderIdentityLevel'
           - 'StoreBankCard'
           - 'GetBankCard'
 
@@ -203,17 +176,6 @@ permissions:
           # Countries
           - "GetCountries"
           - "GetCountryByID"
-
-          # Customers
-          - "CreateCustomer"
-          - "GetCustomerById"
-          - "DeleteCustomer"
-          - "CreateCustomerAccessToken"
-          - "CreateBinding"
-          - "GetBindings"
-          - "GetBinding"
-          - "GetCustomerEvents"
-          - "GetCustomerPaymentMethods"
 
           # InvoiceTemplates
           - "CreateInvoiceTemplate"
@@ -254,7 +216,7 @@ permissions:
           # - "SuspendPartyByID"
 
           # Tokens
-          # We only allow payment resource creation with InvoiceAccessToken and CustomerAccessToken
+          # We only allow payment resource creation with InvoiceAccessToken
           # - "CreatePaymentResource"
 
           # Payments
@@ -305,21 +267,14 @@ permissions:
 
       WalletAPI:
         operations:
-          - 'ListIdentities'
-          - 'GetIdentity'
-          - 'GetWithdrawalMethods'
-          - 'CreateIdentity'
           - 'ListWallets'
           - 'GetWallet'
           - 'GetWalletByExternalID'
-          - 'CreateWallet'
           - 'GetWalletAccount'
-          - 'IssueWalletGrant'
           - 'ListDestinations'
           - 'GetDestination'
           - 'GetDestinationByExternalID'
           - 'CreateDestination'
-          - 'IssueDestinationGrant'
           - 'CreateQuote'
           - 'CreateWithdrawal'
           - 'GetWithdrawal'
@@ -328,10 +283,6 @@ permissions:
           - 'PollWithdrawalEvents'
           - 'GetWithdrawalEvents'
           - 'ListDeposits'
-          - 'ListDepositReverts'
-          - 'ListDepositAdjustments'
-          - 'CreateW2WTransfer'
-          - 'GetW2WTransfer'
           - 'CreateWebhook'
           - 'GetWebhooks'
           - 'GetWebhookByID'
@@ -344,10 +295,6 @@ permissions:
           - 'GetCurrency'
           - 'ListProviders'
           - 'GetProvider'
-          - 'ListProviderIdentityClasses'
-          - 'GetProviderIdentityClass'
-          - 'ListProviderIdentityLevels'
-          - 'GetProviderIdentityLevel'
           - 'StoreBankCard'
           - 'GetBankCard'
 
@@ -366,23 +313,6 @@ permissions:
           # Should we eventually allow this for specific parties only?
           - "GetPayments"
           - "GetPaymentByID"
-
-          # Tokenization
-          - "CreatePaymentResource"
-
-          # ServiceProviders
-          - "GetServiceProviderByID"
-
-  CustomerAccessToken:
-    apis:
-      CommonAPI:
-        operations:
-        # Customer
-          - "GetCustomerById"
-          - "GetCustomerEvents"
-          - "CreateBinding"
-          - "GetBinding"
-          - "GetCustomerPaymentMethods"
 
           # Tokenization
           - "CreatePaymentResource"

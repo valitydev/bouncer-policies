@@ -15,7 +15,7 @@ allowed[why] {
 }
 
 allowed[why] {
-    input.auth.method == ["InvoiceAccessToken", "CustomerAccessToken"][_]
+    input.auth.method == ["InvoiceAccessToken"][_]
     allowed_for_access_token[why]
 }
 

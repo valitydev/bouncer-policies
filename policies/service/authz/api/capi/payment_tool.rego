@@ -34,16 +34,6 @@ forbidden[why] {
     }
 }
 
-forbidden[why] {
-    op.id == "CreateBinding"
-    payment_tool.scope[_]
-    op.customer.id != payment_tool.scope.customer.id
-    why := {
-        "code": "payment_tool_forbidden",
-        "description": "Payment resource forbidden this customer"
-    }
-}
-
 shop_matches_token_scope {
     scope := input.auth.scope[_]
     scope.shop.id == payment_tool.scope.shop.id

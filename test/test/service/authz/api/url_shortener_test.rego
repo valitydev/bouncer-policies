@@ -29,18 +29,6 @@ test_invoice_access_token_allows_shorten_url{
     result.allowed[_].code == "access_token_allows_operation"
 }
 
-test_customer_access_token_allows_shorten_url{
-    result := api.assertions with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.customer_access_token_valid,
-        context.op_shortener_shorten_url
-    ])
-    not result.forbidden
-    count(result.allowed) == 1
-    result.allowed[_].code == "access_token_allows_operation"
-}
-
 test_session_token_valid_shortener_delete_shorten_url {
     result := api.assertions with input as util.deepmerge([
         context.env_default,

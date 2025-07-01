@@ -179,43 +179,6 @@ test_update_invoice_template_allowed {
     count(result.allowed) == 1
 }
 
-test_create_binding_allowed {
-    result := api.assertions with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_administrator,
-        context.session_token_valid,
-        context.op_capi_create_binding,
-        context.payproc_customer
-    ])
-    not result.forbidden
-    count(result.allowed) == 1
-}
-
-test_get_binding_allowed {
-    result := api.assertions with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_administrator,
-        context.session_token_valid,
-        context.op_capi_get_binding,
-        context.payproc_customer
-    ])
-    not result.forbidden
-    count(result.allowed) == 1
-}
-
-test_capi_session_token_and_owner_allowed {
-    util.is_allowed with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.user_owner,
-        context.session_token_valid,
-        context.op_capi_get_binding,
-        context.payproc_customer
-    ])
-}
-
 test_create_webhook_allowed {
     result := api.assertions with input as util.deepmerge([
         context.env_default,

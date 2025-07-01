@@ -49,21 +49,14 @@ roles:
     apis:
       WalletAPI:
         operations:
-          - 'ListIdentities'
-          - 'GetIdentity'
-          - 'GetWithdrawalMethods'
-          - 'CreateIdentity'
           - 'ListWallets'
           - 'GetWallet'
           - 'GetWalletByExternalID'
-          - 'CreateWallet'
           - 'GetWalletAccount'
-          - 'IssueWalletGrant'
           - 'ListDestinations'
           - 'GetDestination'
           - 'GetDestinationByExternalID'
           - 'CreateDestination'
-          - 'IssueDestinationGrant'
           - 'CreateQuote'
           - 'CreateWithdrawal'
           - 'GetWithdrawal'
@@ -72,10 +65,6 @@ roles:
           - 'PollWithdrawalEvents'
           - 'GetWithdrawalEvents'
           - 'ListDeposits'
-          - 'ListDepositReverts'
-          - 'ListDepositAdjustments'
-          - 'CreateW2WTransfer'
-          - 'GetW2WTransfer'
           - 'CreateWebhook'
           - 'GetWebhooks'
           - 'GetWebhookByID'
@@ -145,7 +134,6 @@ roles:
           - "GetPartyByID"
           - "GetPayments"
           - "GetPaymentByID"
-          - "GetCustomerPaymentMethods"
       OrgManagement:
         operations:
           - "getOrg"
@@ -187,15 +175,6 @@ roles:
           - "GetContractByIDForParty"
           - "GetContractAdjustmentsForParty"
           - "GetContractAdjustmentByIDForParty"
-          - "CreateCustomer"
-          - "GetCustomerById"
-          - "DeleteCustomer"
-          - "CreateCustomerAccessToken"
-          - "CreateBinding"
-          - "GetBindings"
-          - "GetBinding"
-          - "GetCustomerEvents"
-          - "GetCustomerPaymentMethods"
           - "CreateInvoiceTemplate"
           - "GetInvoiceTemplateByID"
           - "UpdateInvoiceTemplate"
@@ -304,21 +283,14 @@ roles:
           - "GetCurrentShopBalances"
       WalletAPI:
         operations:
-          - 'ListIdentities'
-          - 'GetIdentity'
-          - 'GetWithdrawalMethods'
-          - 'CreateIdentity'
           - 'ListWallets'
           - 'GetWallet'
           - 'GetWalletByExternalID'
-          - 'CreateWallet'
           - 'GetWalletAccount'
-          - 'IssueWalletGrant'
           - 'ListDestinations'
           - 'GetDestination'
           - 'GetDestinationByExternalID'
           - 'CreateDestination'
-          - 'IssueDestinationGrant'
           - 'CreateQuote'
           - 'CreateWithdrawal'
           - 'GetWithdrawal'
@@ -327,10 +299,6 @@ roles:
           - 'PollWithdrawalEvents'
           - 'GetWithdrawalEvents'
           - 'ListDeposits'
-          - 'ListDepositReverts'
-          - 'ListDepositAdjustments'
-          - 'CreateW2WTransfer'
-          - 'GetW2WTransfer'
           - 'CreateWebhook'
           - 'GetWebhooks'
           - 'GetWebhookByID'
