@@ -49,6 +49,7 @@ forbidden[why] {
 # Restrictions
 
 restrictions[restriction] {
+    input.auth.method == "SessionToken"
     count(access_violations) == 0
     restriction := {
         "capi": {
