@@ -255,6 +255,11 @@ entity_access_restrictions_status["shops"] = status {
 }
 
 restriction_party_access_status(party_id) = status {
+    input.auth.method == "ApiKeyToken"
+    scope := input.auth.scope[_]
+    scope.party.id == party_id
+    status := {"in_scope": true}
+} else = status {
     user.is_owner(party_id)
     status := {"owner": true}
 } else = status {

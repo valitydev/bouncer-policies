@@ -298,6 +298,16 @@ test_unknown_operation_forbidden_no_access {
     util.is_forbidden with input as capi_public_operation_session_token_ctx with input.capi.op as {"id" : "NewOperation"}
 }
 
+test_capi_shops_with_api_token {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_several_roles,
+        context.api_key_token_valid,
+        context.op_capi_get_shops_for_party
+    ])
+}
+
 test_create_invoice_with_api_token {
     util.is_allowed with input as util.deepmerge([
         context.env_default,
