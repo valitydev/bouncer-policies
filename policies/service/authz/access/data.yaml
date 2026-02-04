@@ -41,6 +41,7 @@ api:
           - "SuspendShop"
           - "GetShopByID"
           - "GetShopByIDForParty"
+          - "GetShopCashLimitsForParty"
           - "ActivateShopForParty"
           - "SuspendShopForParty"
 

@@ -95,6 +95,7 @@ permissions:
           - "GetShopsForParty"
           - "GetShopByID"
           - "GetShopByIDForParty"
+          - "GetShopCashLimitsForParty"
           - "ActivateShop"
           - "ActivateShopForParty"
           - "SuspendShop"
@@ -240,6 +241,7 @@ permissions:
           - "GetShopsForParty"
           - "GetShopByID"
           - "GetShopByIDForParty"
+          - "GetShopCashLimitsForParty"
           # We do not allow party/shop activations/suspensions with ApiKeyTokens
           # - "ActivateShop"
           # - "ActivateShopForParty"

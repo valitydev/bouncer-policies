@@ -217,6 +217,7 @@ roles:
           - "GetShopByID"
           - "GetShopsForParty"
           - "GetShopByIDForParty"
+          - "GetShopCashLimitsForParty"
           - "ActivateShopForParty"
           - "SuspendShopForParty"
           - "CreateWebhook"
