@@ -302,9 +302,17 @@ test_capi_shops_with_api_token {
     util.is_allowed with input as util.deepmerge([
         context.env_default,
         context.requester_default,
-        context.user_several_roles,
         context.api_key_token_valid,
         context.op_capi_get_shops_for_party
+    ])
+}
+
+test_capi_shop_limits_with_api_token {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_valid,
+        context.op_capi_get_shop_limits_for_party
     ])
 }
 
@@ -436,5 +444,25 @@ test_capi_restricted_shops_with_user_owner {
         context.user_owner,
         context.session_token_valid,
         context.op_capi_get_shops_for_party
+    ])
+}
+
+test_capi_get_shops_limits_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_shop_limits_for_party
+    ])
+}
+
+test_capi_get_shops_limits_allowed_owner {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_owner,
+        context.session_token_valid,
+        context.op_capi_get_shop_limits_for_party
     ])
 }

@@ -96,12 +96,11 @@ test_list_deposits_allowed {
     }
 }
 
-test_create_withdrawal_with_invalid_auth_method_forbidden {
+test_create_withdrawal_with_wrong_api_key_forbidden {
     util.is_forbidden with input as util.deepmerge([
         context.env_default,
         context.requester_default,
-        context.user_owner,
-        context.api_key_token_valid,
+        context.api_key_token_different_party,
         context.op_wapi_empty
     ]) with input.wapi.op as {
         "id" : "CreateWithdrawal",

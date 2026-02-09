@@ -525,6 +525,16 @@
         }
     },
 
+    "op_capi_get_shop_limits_for_party": {
+        "capi": {
+            "op": {
+                "id": "GetShopCashLimitsForParty",
+                "party": { "id": "PARTY" },
+                "shop": { "id": "SHOP" }
+            }
+        }
+    },
+
     "payment_tool_unlinked": {
         "payment_tool": {
             "expiration": "2021-01-01T00:00:00Z"
