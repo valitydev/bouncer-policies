@@ -466,3 +466,141 @@ test_capi_get_shops_limits_allowed_owner {
         context.op_capi_get_shop_limits_for_party
     ])
 }
+
+# Customer operations
+
+test_create_customer_allowed_administrator {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_create_customer
+    ])
+    not result.forbidden
+    count(result.allowed) == 1
+    result.allowed[_].code == "org_role_allows_operation"
+}
+
+test_create_customer_allowed_owner {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_owner,
+        context.session_token_valid,
+        context.op_capi_create_customer
+    ])
+}
+
+test_get_customer_by_id_allowed_administrator {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_customer_by_id
+    ])
+    not result.forbidden
+    count(result.allowed) == 1
+    result.allowed[_].code == "org_role_allows_operation"
+}
+
+test_get_customer_by_id_allowed_manager {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_with_role_without_scope,
+        context.session_token_valid,
+        context.op_capi_get_customer_by_id
+    ])
+}
+
+test_delete_customer_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_delete_customer
+    ])
+}
+
+test_delete_customer_forbidden_manager {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_default,
+        context.session_token_valid,
+        context.op_capi_delete_customer
+    ])
+}
+
+test_create_customer_access_token_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_create_customer_access_token
+    ])
+}
+
+test_get_customer_payments_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_customer_payments
+    ])
+}
+
+test_get_customer_bank_cards_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_customer_bank_cards
+    ])
+}
+
+test_create_customer_with_api_token {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_valid,
+        context.op_capi_create_customer
+    ])
+}
+
+test_create_customer_with_different_api_token {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_different_party,
+        context.op_capi_create_customer
+    ])
+}
+
+test_get_customer_by_id_with_api_token {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_valid,
+        context.op_capi_get_customer_by_id
+    ])
+}
+
+test_get_customer_by_id_foreign_party_forbidden {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid
+    ]) with input.capi.op as {
+        "id": "GetCustomerByID",
+        "customer": {"id": "CUSTOMER"},
+        "party": {"id": "PARTY_2"}
+    }
+}

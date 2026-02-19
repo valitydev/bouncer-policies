@@ -465,6 +465,77 @@
         }
     },
 
+    "op_capi_create_customer": {
+        "capi": {
+            "op": {
+                "id": "CreateCustomer",
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_get_customer_by_id": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerByID",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_delete_customer": {
+        "capi": {
+            "op": {
+                "id": "DeleteCustomer",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_create_customer_access_token": {
+        "capi": {
+            "op": {
+                "id": "CreateCustomerAccessToken",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_get_customer_payments": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerPayments",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_get_customer_bank_cards": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerBankCards",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "customer_access_token_valid": {
+        "auth": {
+            "method": "CustomerAccessToken",
+            "scope": [
+                {
+                    "customer": { "id": "CUSTOMER" },
+                    "party": { "id": "PARTY" }
+                }
+            ]
+        }
+    },
+
     "op_capi_empty": {
         "capi": {
             "op": {}

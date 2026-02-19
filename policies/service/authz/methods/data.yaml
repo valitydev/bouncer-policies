@@ -14,6 +14,7 @@ methods:
   - "ApiKeyToken"
   - "InvoiceAccessToken"
   - "InvoiceTemplateAccessToken"
+  - "CustomerAccessToken"
 
 permissions:
   SessionToken:
@@ -119,6 +120,15 @@ permissions:
           - "GetWebhooksForParty"
           - "GetWebhookByID"
           - "DeleteWebhookByID"
+
+          # Customers
+          - "CreateCustomer"
+          - "GetCustomerByExternalID"
+          - "GetCustomerByID"
+          - "DeleteCustomer"
+          - "CreateCustomerAccessToken"
+          - "GetCustomerPayments"
+          - "GetCustomerBankCards"
 
       WalletAPI:
         operations:
@@ -267,6 +277,15 @@ permissions:
           - "GetWebhookByID"
           - "DeleteWebhookByID"
 
+          # Customers
+          - "CreateCustomer"
+          - "GetCustomerByExternalID"
+          - "GetCustomerByID"
+          - "DeleteCustomer"
+          - "CreateCustomerAccessToken"
+          - "GetCustomerPayments"
+          - "GetCustomerBankCards"
+
       WalletAPI:
         operations:
           - 'ListWallets'
@@ -333,3 +352,13 @@ permissions:
 
           # ServiceProviders
           - "GetServiceProviderByID"
+
+  CustomerAccessToken:
+    apis:
+      CommonAPI:
+        operations:
+          # Customer
+          - "GetCustomerByExternalID"
+          - "GetCustomerByID"
+          - "GetCustomerPayments"
+          - "GetCustomerBankCards"

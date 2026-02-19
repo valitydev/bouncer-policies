@@ -95,6 +95,11 @@ auth_method_allowed[why] {
     capi.invoice_template_access_token.allowed[why]
 }
 
+auth_method_allowed[why] {
+    input.auth.method == "CustomerAccessToken"
+    capi.customer_access_token.allowed[why]
+}
+
 ##
 
 session_token_allowed[why] {
@@ -243,6 +248,9 @@ entity_access_status["invoice"] = status {
 }
 entity_access_status["invoice_template"] = status {
     status := invoice_template_access_status(op.invoice_template.id)
+}
+entity_access_status["customer"] = status {
+    status := party_access_status(op.party.id)
 }
 entity_access_status["webhook"] = status {
     status := webhook_access_status(op.webhook.id)
