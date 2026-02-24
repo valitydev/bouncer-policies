@@ -1,7 +1,7 @@
 {"1.2.0",
 [{<<"bouncer_proto">>,
   {git,"https://github.com/valitydev/bouncer-proto.git",
-       {ref,"515d01fc849a5b1511d626b466db8ad7307985e1"}},
+       {ref,"2f8a67ffaf8ab3b8725ff26009e8774f428fdb84"}},
   0},
  {<<"jsx">>,{pkg,<<"jsx">>,<<"3.1.0">>},0},
  {<<"thrift">>,
