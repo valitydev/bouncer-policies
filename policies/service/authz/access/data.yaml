@@ -129,6 +129,7 @@ api:
       - "GetPaymentInstitutionByRef"
       - "GetPaymentInstitutionPaymentTerms"
       - "GetScheduleByRef"
+      - "InspectUser"
 
   AnalyticsAPI:
     restricted:
