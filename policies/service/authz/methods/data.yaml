@@ -120,6 +120,8 @@ permissions:
           - "GetWebhookByID"
           - "DeleteWebhookByID"
 
+          # Antifraud
+          - "InspectUser"
       WalletAPI:
         operations:
           - 'ListWallets'
@@ -266,6 +268,9 @@ permissions:
           - "GetWebhooksForParty"
           - "GetWebhookByID"
           - "DeleteWebhookByID"
+
+          # Antifraud
+          - "InspectUser"
 
       WalletAPI:
         operations:

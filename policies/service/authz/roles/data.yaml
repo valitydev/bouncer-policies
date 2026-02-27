@@ -134,6 +134,7 @@ roles:
           - "GetPartyByID"
           - "GetPayments"
           - "GetPaymentByID"
+          - "InspectUser"
       OrgManagement:
         operations:
           - "getOrg"
@@ -225,6 +226,7 @@ roles:
           - "GetWebhooksForParty"
           - "GetWebhookByID"
           - "DeleteWebhookByID"
+          - "InspectUser"
       OrgManagement:
         operations:
           - "listInvitations"
