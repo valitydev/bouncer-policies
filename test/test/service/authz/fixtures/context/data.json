@@ -524,6 +524,24 @@
         }
     },
 
+    "cubasty_customer": {
+        "cubasty": {
+            "customer": {
+                "id": "CUSTOMER",
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "cubasty_customer_foreign": {
+        "cubasty": {
+            "customer": {
+                "id": "CUSTOMER",
+                "party": {"id": "PARTY_2"}
+            }
+        }
+    },
+
     "customer_access_token_valid": {
         "auth": {
             "method": "CustomerAccessToken",

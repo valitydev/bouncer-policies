@@ -7,6 +7,7 @@ package service.authz.api.capi.customer_access_token
 # ```
 
 import input.capi.op
+import input.cubasty
 
 allowed[why] {
     customer_matches_token_scope
@@ -19,5 +20,5 @@ allowed[why] {
 customer_matches_token_scope {
     scope := input.auth.scope[_]
     scope.customer.id == op.customer.id
-    scope.party.id == op.party.id
+    scope.party.id == cubasty.customer.party.id
 }

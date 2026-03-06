@@ -9,7 +9,8 @@ test_customer_access_token_allows_get_customer_by_id {
         context.env_default,
         context.requester_default,
         context.customer_access_token_valid,
-        context.op_capi_get_customer_by_id
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
     ])
     not result.forbidden
     result.allowed[_].code == "customer_access_token_allows_operation"
@@ -20,7 +21,8 @@ test_customer_access_token_allows_get_customer_payments {
         context.env_default,
         context.requester_default,
         context.customer_access_token_valid,
-        context.op_capi_get_customer_payments
+        context.op_capi_get_customer_payments,
+        context.cubasty_customer
     ])
     not result.forbidden
     result.allowed[_].code == "customer_access_token_allows_operation"
@@ -31,7 +33,8 @@ test_customer_access_token_allows_get_customer_bank_cards {
         context.env_default,
         context.requester_default,
         context.customer_access_token_valid,
-        context.op_capi_get_customer_bank_cards
+        context.op_capi_get_customer_bank_cards,
+        context.cubasty_customer
     ])
     not result.forbidden
     result.allowed[_].code == "customer_access_token_allows_operation"
@@ -53,7 +56,8 @@ test_customer_access_token_forbids_delete_customer {
         context.env_default,
         context.requester_default,
         context.customer_access_token_valid,
-        context.op_capi_delete_customer
+        context.op_capi_delete_customer,
+        context.cubasty_customer
     ])
     result.forbidden
     not result.allowed
@@ -64,7 +68,8 @@ test_customer_access_token_forbids_create_customer_access_token {
         context.env_default,
         context.requester_default,
         context.customer_access_token_valid,
-        context.op_capi_create_customer_access_token
+        context.op_capi_create_customer_access_token,
+        context.cubasty_customer
     ])
     result.forbidden
     not result.allowed
@@ -74,26 +79,25 @@ test_customer_access_token_forbids_mismatched_customer {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
         context.requester_default,
-        context.customer_access_token_valid
+        context.customer_access_token_valid,
+        context.cubasty_customer
     ]) with input.capi.op as {
         "id": "GetCustomerByID",
         "customer": {"id": "OTHER_CUSTOMER"},
         "party": {"id": "PARTY"}
     }
-    not result.forbidden
+    result.forbidden
     not result.allowed
 }
 
-test_customer_access_token_forbids_mismatched_party {
+test_customer_access_token_forbids_foreign_cubasty_party {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
         context.requester_default,
-        context.customer_access_token_valid
-    ]) with input.capi.op as {
-        "id": "GetCustomerByID",
-        "customer": {"id": "CUSTOMER"},
-        "party": {"id": "OTHER_PARTY"}
-    }
+        context.customer_access_token_valid,
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer_foreign
+    ])
     result.forbidden
     not result.allowed
 }

@@ -498,7 +498,8 @@ test_get_customer_by_id_allowed_administrator {
         context.requester_default,
         context.user_administrator,
         context.session_token_valid,
-        context.op_capi_get_customer_by_id
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
     ])
     not result.forbidden
     count(result.allowed) == 1
@@ -511,7 +512,8 @@ test_get_customer_by_id_allowed_manager {
         context.requester_default,
         context.user_with_role_without_scope,
         context.session_token_valid,
-        context.op_capi_get_customer_by_id
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
     ])
 }
 
@@ -521,7 +523,8 @@ test_delete_customer_allowed_administrator {
         context.requester_default,
         context.user_administrator,
         context.session_token_valid,
-        context.op_capi_delete_customer
+        context.op_capi_delete_customer,
+        context.cubasty_customer
     ])
 }
 
@@ -531,7 +534,8 @@ test_delete_customer_forbidden_manager {
         context.requester_default,
         context.user_default,
         context.session_token_valid,
-        context.op_capi_delete_customer
+        context.op_capi_delete_customer,
+        context.cubasty_customer
     ])
 }
 
@@ -541,7 +545,8 @@ test_create_customer_access_token_allowed_administrator {
         context.requester_default,
         context.user_administrator,
         context.session_token_valid,
-        context.op_capi_create_customer_access_token
+        context.op_capi_create_customer_access_token,
+        context.cubasty_customer
     ])
 }
 
@@ -551,7 +556,8 @@ test_get_customer_payments_allowed_administrator {
         context.requester_default,
         context.user_administrator,
         context.session_token_valid,
-        context.op_capi_get_customer_payments
+        context.op_capi_get_customer_payments,
+        context.cubasty_customer
     ])
 }
 
@@ -561,7 +567,8 @@ test_get_customer_bank_cards_allowed_administrator {
         context.requester_default,
         context.user_administrator,
         context.session_token_valid,
-        context.op_capi_get_customer_bank_cards
+        context.op_capi_get_customer_bank_cards,
+        context.cubasty_customer
     ])
 }
 
@@ -588,19 +595,18 @@ test_get_customer_by_id_with_api_token {
         context.env_default,
         context.requester_default,
         context.api_key_token_valid,
-        context.op_capi_get_customer_by_id
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
     ])
 }
 
-test_get_customer_by_id_foreign_party_forbidden {
+test_get_customer_by_id_foreign_customer_forbidden {
     util.is_forbidden with input as util.deepmerge([
         context.env_default,
         context.requester_default,
         context.user_administrator,
-        context.session_token_valid
-    ]) with input.capi.op as {
-        "id": "GetCustomerByID",
-        "customer": {"id": "CUSTOMER"},
-        "party": {"id": "PARTY_2"}
-    }
+        context.session_token_valid,
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer_foreign
+    ])
 }

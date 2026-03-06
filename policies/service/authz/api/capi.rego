@@ -9,6 +9,7 @@ import data.service.authz.whitelists
 import input.capi.op
 import input.payment_processing
 import input.webhooks
+import input.cubasty
 
 api_name := "CommonAPI"
 access_matrix := access.api[api_name]
@@ -250,7 +251,7 @@ entity_access_status["invoice_template"] = status {
     status := invoice_template_access_status(op.invoice_template.id)
 }
 entity_access_status["customer"] = status {
-    status := party_access_status(op.party.id)
+    status := customer_access_status(op.customer.id)
 }
 entity_access_status["webhook"] = status {
     status := webhook_access_status(op.webhook.id)
@@ -343,6 +344,12 @@ webhook_access_status(id) = status {
     webhook := webhooks.webhook
     webhook.id == id
     status := party_access_status(webhook.party.id)
+}
+
+customer_access_status(id) = status {
+    customer := cubasty.customer
+    customer.id == id
+    status := party_access_status(customer.party.id)
 }
 
 allowed_operation_for_auth_method {
