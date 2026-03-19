@@ -239,6 +239,7 @@ api:
           - 'GetWallet'
           - 'GetWalletByExternalID'
           - 'GetWalletAccount'
+          - 'GetWalletCashLimits'
 
       destination:
         operations:
