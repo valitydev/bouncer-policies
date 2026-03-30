@@ -98,6 +98,17 @@ test_op_insufficient_input_forbidden {
     ])
 }
 
+test_create_payment_forbidden_foreign_customer_party {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_default,
+        context.session_token_valid,
+        context.op_capi_create_payment_for_customer,
+        object.union(context.payproc_invoice, context.cubasty_customer_foreign)
+    ])
+}
+
 test_get_refund_by_id_allowed {
     result := api.assertions with input as util.deepmerge([
         context.env_default,

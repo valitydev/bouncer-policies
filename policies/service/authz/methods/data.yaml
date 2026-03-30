@@ -363,8 +363,7 @@ permissions:
           - "GetCustomerPayments"
           - "GetCustomerBankCards"
 
-          # Payments (customer can create/view payments)
-          - "CreatePayment"
+          # Payments (customer can view payments)
           - "GetPayments"
           - "GetPaymentByID"
           - "GetInvoiceByID"

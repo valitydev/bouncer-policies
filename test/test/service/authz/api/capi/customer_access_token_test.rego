@@ -40,7 +40,7 @@ test_customer_access_token_allows_get_customer_bank_cards {
     result.allowed[_].code == "customer_access_token_allows_operation"
 }
 
-test_customer_access_token_allows_create_payment {
+test_customer_access_token_forbids_create_payment {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
         context.requester_default,
@@ -48,8 +48,8 @@ test_customer_access_token_allows_create_payment {
         context.op_capi_create_payment_for_customer,
         context.payproc_invoice
     ])
-    not result.forbidden
-    result.allowed[_].code == "customer_access_token_allows_operation_with_customer"
+    result.forbidden
+    not result.allowed
 }
 
 test_customer_access_token_allows_get_payments {
@@ -62,20 +62,6 @@ test_customer_access_token_allows_get_payments {
     ])
     not result.forbidden
     result.allowed[_].code == "customer_access_token_allows_operation_with_customer"
-}
-
-test_customer_access_token_denies_create_payment_wrong_customer {
-    result := api.assertions with input as util.deepmerge([
-        context.env_default,
-        context.requester_default,
-        context.customer_access_token_valid,
-        context.payproc_invoice
-    ]) with input.capi.op as {
-        "id": "CreatePayment",
-        "invoice": {"id": "INVOICE"},
-        "customer": {"id": "OTHER_CUSTOMER"}
-    }
-    not result.allowed
 }
 
 test_customer_access_token_forbids_create_customer {
