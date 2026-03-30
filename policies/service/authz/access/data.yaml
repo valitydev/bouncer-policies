@@ -126,6 +126,9 @@ api:
           - "SearchInvoices"
           - "SearchPayments"
           - "SearchRefunds"
+      customer:
+        operations:
+          - "CreatePayment"
 
     universal:
       operations:

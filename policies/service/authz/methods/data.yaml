@@ -362,3 +362,16 @@ permissions:
           - "GetCustomerByID"
           - "GetCustomerPayments"
           - "GetCustomerBankCards"
+
+          # Payments (customer can create/view payments)
+          - "CreatePayment"
+          - "GetPayments"
+          - "GetPaymentByID"
+          - "GetInvoiceByID"
+          - "GetInvoicePaymentMethods"
+
+          # Tokenization
+          - "CreatePaymentResource"
+
+          # ServiceProviders
+          - "GetServiceProviderByID"

@@ -533,6 +533,26 @@
         }
     },
 
+    "op_capi_create_payment_for_customer": {
+        "capi": {
+            "op": {
+                "id": "CreatePayment",
+                "invoice": { "id": "INVOICE" },
+                "customer": { "id": "CUSTOMER" }
+            }
+        }
+    },
+
+    "op_capi_get_payments_for_customer": {
+        "capi": {
+            "op": {
+                "id": "GetPayments",
+                "invoice": { "id": "INVOICE" },
+                "customer": { "id": "CUSTOMER" }
+            }
+        }
+    },
+
     "cubasty_customer_foreign": {
         "cubasty": {
             "customer": {

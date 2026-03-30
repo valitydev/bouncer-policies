@@ -17,8 +17,22 @@ allowed[why] {
     }
 }
 
+allowed[why] {
+    op_customer_matches_token_scope
+    why := {
+        "code": "customer_access_token_allows_operation_with_customer",
+        "description": "Customer access token allows operation associated with this customer"
+    }
+}
+
 customer_matches_token_scope {
     scope := input.auth.scope[_]
     scope.customer.id == op.customer.id
     scope.party.id == cubasty.customer.party.id
+}
+
+op_customer_matches_token_scope {
+    op.invoice
+    scope := input.auth.scope[_]
+    scope.customer.id == op.customer.id
 }
