@@ -239,6 +239,36 @@ test_get_wallet_account_allowed {
     with input.wallet as context.wallet_pool_with_wallet.wallet
 }
 
+test_get_wallet_cash_limits_allowed {
+    util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
+        "id" : "GetWalletCashLimits",
+        "wallet" : "WalletId"
+    }
+    with input.wallet as context.wallet_pool_with_wallet.wallet
+}
+
+test_get_wallet_cash_limits_owner_allowed {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_owner,
+        context.session_token_valid,
+        context.op_wapi_empty
+    ]) with input.wapi.op as {
+        "id" : "GetWalletCashLimits",
+        "wallet" : "WalletId"
+    }
+    with input.wallet as context.wallet_pool_with_wallet.wallet
+}
+
+test_get_wallet_cash_limits_apikey_allowed {
+    util.is_allowed with input as wapi_public_operation_api_key_token_ctx with input.wapi.op as {
+        "id" : "GetWalletCashLimits",
+        "wallet" : "WalletId"
+    }
+    with input.wallet as context.wallet_pool_with_wallet.wallet
+}
+
 test_create_quote_allowed {
     util.is_allowed with input as wapi_public_operation_session_token_ctx with input.wapi.op as {
         "id" : "CreateQuote",

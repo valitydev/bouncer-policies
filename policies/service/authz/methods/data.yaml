@@ -130,12 +130,15 @@ permissions:
           - "GetCustomerPayments"
           - "GetCustomerBankCards"
 
+          # Antifraud
+          - "InspectUser"
       WalletAPI:
         operations:
           - 'ListWallets'
           - 'GetWallet'
           - 'GetWalletByExternalID'
           - 'GetWalletAccount'
+          - 'GetWalletCashLimits'
           - 'ListDestinations'
           - 'GetDestination'
           - 'GetDestinationByExternalID'
@@ -285,6 +288,9 @@ permissions:
           - "CreateCustomerAccessToken"
           - "GetCustomerPayments"
           - "GetCustomerBankCards"
+          
+          # Antifraud
+          - "InspectUser"
 
       WalletAPI:
         operations:
@@ -292,6 +298,7 @@ permissions:
           - 'GetWallet'
           - 'GetWalletByExternalID'
           - 'GetWalletAccount'
+          - 'GetWalletCashLimits'
           - 'ListDestinations'
           - 'GetDestination'
           - 'GetDestinationByExternalID'

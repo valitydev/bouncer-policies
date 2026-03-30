@@ -53,6 +53,7 @@ roles:
           - 'GetWallet'
           - 'GetWalletByExternalID'
           - 'GetWalletAccount'
+          - 'GetWalletCashLimits'
           - 'ListDestinations'
           - 'GetDestination'
           - 'GetDestinationByExternalID'
@@ -140,6 +141,7 @@ roles:
           - "CreateCustomerAccessToken"
           - "GetCustomerPayments"
           - "GetCustomerBankCards"
+          - "InspectUser"
       OrgManagement:
         operations:
           - "getOrg"
@@ -238,6 +240,7 @@ roles:
           - "CreateCustomerAccessToken"
           - "GetCustomerPayments"
           - "GetCustomerBankCards"
+          - "InspectUser"
       OrgManagement:
         operations:
           - "listInvitations"
@@ -301,6 +304,7 @@ roles:
           - 'GetWallet'
           - 'GetWalletByExternalID'
           - 'GetWalletAccount'
+          - 'GetWalletCashLimits'
           - 'ListDestinations'
           - 'GetDestination'
           - 'GetDestinationByExternalID'
