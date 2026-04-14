@@ -128,11 +128,6 @@ tolerate_no_expiration {
     input.auth.method == "InvoiceTemplateAccessToken"
 }
 
-tolerate_no_expiration {
-    # Customer access tokens have unlimited(undefined) expiration
-    input.auth.method == "CustomerAccessToken"
-}
-
 tolerate_expired_token {
     input.capi
     input.auth.method == "SessionToken"

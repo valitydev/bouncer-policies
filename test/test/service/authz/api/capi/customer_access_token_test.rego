@@ -125,3 +125,14 @@ test_customer_access_token_forbids_foreign_cubasty_party {
     result.forbidden
     not result.allowed
 }
+
+test_customer_access_token_expired_forbidden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.customer_access_token_expired,
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
+    ])
+    result.forbidden[_].code == "auth_expired"
+}

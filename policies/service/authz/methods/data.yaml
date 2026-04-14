@@ -364,20 +364,22 @@ permissions:
     apis:
       CommonAPI:
         operations:
-          # Customer
-          - "GetCustomerByExternalID"
-          - "GetCustomerByID"
-          - "GetCustomerPayments"
-          - "GetCustomerBankCards"
-
-          # Payments (customer can view payments)
-          - "GetPayments"
-          - "GetPaymentByID"
+          # Invoices
           - "GetInvoiceByID"
           - "GetInvoicePaymentMethods"
+
+          # Payments
+          - "GetPayments"
+          - "GetPaymentByID"
 
           # Tokenization
           - "CreatePaymentResource"
 
           # ServiceProviders
           - "GetServiceProviderByID"
+
+          # Customers
+          - "GetCustomerByExternalID"
+          - "GetCustomerByID"
+          - "GetCustomerPayments"
+          - "GetCustomerBankCards"
