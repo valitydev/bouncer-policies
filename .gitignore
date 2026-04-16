@@ -2,3 +2,5 @@
 /validator.escript
 /policies/**/input.json
 /policies/.manifest
+
+.claude
