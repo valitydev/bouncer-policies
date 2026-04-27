@@ -465,6 +465,129 @@
         }
     },
 
+    "op_capi_create_customer": {
+        "capi": {
+            "op": {
+                "id": "CreateCustomer",
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_get_customer_by_id": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerByID",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_delete_customer": {
+        "capi": {
+            "op": {
+                "id": "DeleteCustomer",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_create_customer_access_token": {
+        "capi": {
+            "op": {
+                "id": "CreateCustomerAccessToken",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_get_customer_payments": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerPayments",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_get_customer_bank_cards": {
+        "capi": {
+            "op": {
+                "id": "GetCustomerBankCards",
+                "customer": {"id": "CUSTOMER"},
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "cubasty_customer": {
+        "cubasty": {
+            "customer": {
+                "id": "CUSTOMER",
+                "party": {"id": "PARTY"}
+            }
+        }
+    },
+
+    "op_capi_create_payment_for_customer": {
+        "capi": {
+            "op": {
+                "id": "CreatePayment",
+                "invoice": { "id": "INVOICE" },
+                "customer": { "id": "CUSTOMER" }
+            }
+        }
+    },
+
+    "op_capi_get_payments_for_customer": {
+        "capi": {
+            "op": {
+                "id": "GetPayments",
+                "invoice": { "id": "INVOICE" },
+                "customer": { "id": "CUSTOMER" }
+            }
+        }
+    },
+
+    "cubasty_customer_foreign": {
+        "cubasty": {
+            "customer": {
+                "id": "CUSTOMER",
+                "party": {"id": "PARTY_2"}
+            }
+        }
+    },
+
+    "customer_access_token_valid": {
+        "auth": {
+            "method": "CustomerAccessToken",
+            "expiration": "2051-01-01T00:00:00Z",
+            "scope": [
+                {
+                    "customer": { "id": "CUSTOMER" },
+                    "party": { "id": "PARTY" }
+                }
+            ]
+        }
+    },
+
+    "customer_access_token_expired": {
+        "auth": {
+            "method": "CustomerAccessToken",
+            "expiration": "2020-02-02T00:00:00Z",
+            "scope": [
+                {
+                    "customer": { "id": "CUSTOMER" },
+                    "party": { "id": "PARTY" }
+                }
+            ]
+        }
+    },
+
     "op_capi_empty": {
         "capi": {
             "op": {}

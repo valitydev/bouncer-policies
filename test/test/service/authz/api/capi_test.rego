@@ -98,6 +98,17 @@ test_op_insufficient_input_forbidden {
     ])
 }
 
+test_create_payment_forbidden_foreign_customer_party {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_default,
+        context.session_token_valid,
+        context.op_capi_create_payment_for_customer,
+        object.union(context.payproc_invoice, context.cubasty_customer_foreign)
+    ])
+}
+
 test_get_refund_by_id_allowed {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
@@ -464,5 +475,149 @@ test_capi_get_shops_limits_allowed_owner {
         context.user_owner,
         context.session_token_valid,
         context.op_capi_get_shop_limits_for_party
+    ])
+}
+
+# Customer operations
+
+test_create_customer_allowed_administrator {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_create_customer
+    ])
+    not result.forbidden
+    count(result.allowed) == 1
+    result.allowed[_].code == "org_role_allows_operation"
+}
+
+test_create_customer_allowed_owner {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_owner,
+        context.session_token_valid,
+        context.op_capi_create_customer
+    ])
+}
+
+test_get_customer_by_id_allowed_administrator {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
+    ])
+    not result.forbidden
+    count(result.allowed) == 1
+    result.allowed[_].code == "org_role_allows_operation"
+}
+
+test_get_customer_by_id_allowed_manager {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_with_role_without_scope,
+        context.session_token_valid,
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
+    ])
+}
+
+test_delete_customer_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_delete_customer,
+        context.cubasty_customer
+    ])
+}
+
+test_delete_customer_forbidden_manager {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_default,
+        context.session_token_valid,
+        context.op_capi_delete_customer,
+        context.cubasty_customer
+    ])
+}
+
+test_create_customer_access_token_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_create_customer_access_token,
+        context.cubasty_customer
+    ])
+}
+
+test_get_customer_payments_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_customer_payments,
+        context.cubasty_customer
+    ])
+}
+
+test_get_customer_bank_cards_allowed_administrator {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_customer_bank_cards,
+        context.cubasty_customer
+    ])
+}
+
+test_create_customer_with_api_token {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_valid,
+        context.op_capi_create_customer
+    ])
+}
+
+test_create_customer_with_different_api_token {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_different_party,
+        context.op_capi_create_customer
+    ])
+}
+
+test_get_customer_by_id_with_api_token {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_valid,
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
+    ])
+}
+
+test_get_customer_by_id_foreign_customer_forbidden {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer_foreign
     ])
 }

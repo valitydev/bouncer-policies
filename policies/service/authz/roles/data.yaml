@@ -135,6 +135,12 @@ roles:
           - "GetPartyByID"
           - "GetPayments"
           - "GetPaymentByID"
+          - "CreateCustomer"
+          - "GetCustomerByID"
+          - "GetCustomerByExternalID"
+          - "CreateCustomerAccessToken"
+          - "GetCustomerPayments"
+          - "GetCustomerBankCards"
           - "InspectUser"
       OrgManagement:
         operations:
@@ -227,6 +233,13 @@ roles:
           - "GetWebhooksForParty"
           - "GetWebhookByID"
           - "DeleteWebhookByID"
+          - "CreateCustomer"
+          - "GetCustomerByExternalID"
+          - "GetCustomerByID"
+          - "DeleteCustomer"
+          - "CreateCustomerAccessToken"
+          - "GetCustomerPayments"
+          - "GetCustomerBankCards"
           - "InspectUser"
       OrgManagement:
         operations:

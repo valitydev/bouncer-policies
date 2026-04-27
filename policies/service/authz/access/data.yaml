@@ -87,6 +87,15 @@ api:
           - "GetWebhookByID"
           - "DeleteWebhookByID"
 
+      customer:
+        operations:
+          - "GetCustomerByExternalID"
+          - "GetCustomerByID"
+          - "DeleteCustomer"
+          - "CreateCustomerAccessToken"
+          - "GetCustomerPayments"
+          - "GetCustomerBankCards"
+
       party:
         operations:
           - "GetContracts"
@@ -105,6 +114,8 @@ api:
 
           - "GetShops"
 
+          - "CreateCustomer"
+
           - "CreateWebhook"
           - "GetWebhooks"
           - "GetWebhooksForParty"
@@ -115,6 +126,9 @@ api:
           - "SearchInvoices"
           - "SearchPayments"
           - "SearchRefunds"
+      customer:
+        operations:
+          - "CreatePayment"
 
     universal:
       operations:
