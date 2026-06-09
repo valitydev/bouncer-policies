@@ -400,6 +400,15 @@
         }
     },
 
+    "op_capi_create_invoice_checkout_url": {
+        "capi": {
+            "op": {
+                "id": "CreateInvoiceCheckoutUrl",
+                "invoice": { "id": "INVOICE" }
+            }
+        }
+    },
+
     "op_capi_update_invoice_template": {
         "capi": {
             "op": {

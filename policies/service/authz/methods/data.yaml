@@ -48,6 +48,7 @@ permissions:
           - "CreateInvoice"
           - "GetInvoiceByID"
           - "CreateInvoiceAccessToken"
+          - "CreateInvoiceCheckoutUrl"
           - "GetInvoiceEvents"
           - "FulfillInvoice"
           - "GetInvoicePaymentMethods"
@@ -205,6 +206,7 @@ permissions:
           - "CreateInvoice"
           - "GetInvoiceByID"
           - "CreateInvoiceAccessToken"
+          - "CreateInvoiceCheckoutUrl"
           - "GetInvoiceEvents"
           - "FulfillInvoice"
           - "GetInvoicePaymentMethods"
@@ -288,7 +290,7 @@ permissions:
           - "CreateCustomerAccessToken"
           - "GetCustomerPayments"
           - "GetCustomerBankCards"
-          
+
           # Antifraud
           - "InspectUser"
 
