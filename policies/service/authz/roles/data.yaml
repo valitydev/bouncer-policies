@@ -191,7 +191,7 @@ roles:
           - "GetInvoicePaymentMethodsByTemplateID"
           - "CreateInvoice"
           - "CreateInvoiceAccessToken"
-          - "CreateInvoiceCheckoutUrl"
+          - "CreateInvoiceUrl"
           - "GetInvoiceByID"
           - "GetInvoiceByExternalID"
           - "GetInvoiceByExternalIDForParty"
