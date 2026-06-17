@@ -52,6 +52,7 @@ api:
       invoice:
         operations:
           - "CreateInvoiceAccessToken"
+          - "CreateInvoiceUrl"
           - "GetInvoiceByID"
           - "GetInvoiceByExternalID"
           - "GetInvoiceByExternalIDForParty"

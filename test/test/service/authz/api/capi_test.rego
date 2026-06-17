@@ -76,6 +76,19 @@ test_create_invoice_access_token_allowed {
     count(result.allowed) == 1
 }
 
+test_create_invoice_access_url {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator,
+        context.session_token_valid,
+        context.op_capi_create_invoice_url,
+        context.payproc_invoice
+    ])
+    not result.forbidden
+    count(result.allowed) == 1
+}
+
 test_insufficient_input_forbidden {
     util.is_forbidden with input as util.deepmerge([
         context.env_default,
