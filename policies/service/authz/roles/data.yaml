@@ -38,6 +38,10 @@ roles:
           - "inquireOrgMembership"
           - "listOrgMembership"
           - "switchContext"
+      ApiKeyMgmt:
+        operations:
+          - "GetApiKey"
+          - "ListApiKeys"
       AnalyticsAPI:
         operations:
           - "SearchInvoices"
