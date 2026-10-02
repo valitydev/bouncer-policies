@@ -123,8 +123,28 @@ ip_whitelists[whitelist] {
     }
 }
 
+forbidden[why] {
+    input.auth.method == "ApiKeyToken"
+    party_id := object.get(input.party, "id", "undefined")
+    not api_key_party_in_scope(party_id)
+    why := {
+        "code": "party_context_mismatch",
+        "description": sprintf(
+            "Party context %s does not match api key scope",
+            [party_id]
+        )
+    }
+}
+
+api_key_party_in_scope(party_id) {
+    input.auth.scope[_].party.id == party_id
+}
+
+# Party context is provided only for a party that belongs to an organization.
+# A party without an organization has no whitelist to apply.
 ip_whitelists[whitelist] {
     input.auth.method == "ApiKeyToken"
+    api_key_party_in_scope(input.party.id)
     ranges := input.party.organization.allowed_ips
     count(ranges) > 0
     whitelist := {

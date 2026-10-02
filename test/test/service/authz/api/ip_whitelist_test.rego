@@ -366,6 +366,29 @@ test_api_key_without_party_fragment_allowed {
     ])
 }
 
+test_api_key_party_context_of_another_party_forbidden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_valid,
+        context.op_capi_create_invoice,
+        context.party_allowed_ips
+    ]) with input.party.id as "PARTY_2"
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "party_context_mismatch"
+}
+
+test_api_key_party_context_without_id_forbidden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.api_key_token_valid,
+        context.op_capi_create_invoice
+    ]) with input.party as {"organization": {"id": "ORG", "allowed_ips": ["203.0.113.0/24"]}}
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "party_context_mismatch"
+}
+
 test_api_key_without_requester_ip_forbidden {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
