@@ -14,6 +14,16 @@ test_orgmgmt_allowed_org_owner {
     ])
 }
 
+test_orgmgmt_forbidden_when_organization_id_is_party_id {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_owner,
+        context.session_token_valid,
+        context.op_orgmgmt_create_invitation
+    ]) with input.orgmgmt.op.organization.id as "PARTY"
+}
+
 test_forbidden_user_without_orgs {
     util.is_forbidden with input as util.deepmerge([
         context.env_default,

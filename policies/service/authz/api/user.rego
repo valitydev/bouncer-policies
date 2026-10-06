@@ -2,12 +2,12 @@ package service.authz.api.user
 
 import data.service.authz.roles
 
-is_owner(party_id) {
+is_party_owner(party_id) {
     organization := org_by_party(party_id)
     input.user.id == organization.owner.id
 }
 
-is_owner(org_id) {
+is_org_owner(org_id) {
     organization := org_by_org_id(org_id)
     input.user.id == organization.owner.id
 }

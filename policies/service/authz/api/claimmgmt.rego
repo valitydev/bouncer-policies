@@ -122,7 +122,7 @@ entity_access_status["claim"] = status {
 }
 
 claim_access_status(id) = status {
-    user.is_owner(id)
+    user.is_party_owner(id)
     status := {"owner": true}
 } else = status {
     userorg := user.org_by_party(id)
