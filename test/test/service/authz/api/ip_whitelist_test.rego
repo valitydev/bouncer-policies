@@ -139,6 +139,32 @@ test_session_outside_party_does_not_override_inside_party {
     result.forbidden[_].code == "ip_not_whitelisted"
 }
 
+test_session_every_org_in_scope_must_whitelist_ip {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_two_orgs_allowed_ips,
+        context.session_token_valid,
+        context.op_capi_get_refunds,
+        context.payproc_invoice
+    ]) with input.capi.op.party as {"id": "PARTY_2"}
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_session_every_org_in_scope_must_whitelist_ip_mirror {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.user_administrator_two_orgs_allowed_ips,
+        context.session_token_valid,
+        context.op_capi_get_refunds,
+        context.payproc_invoice
+    ]) with input.capi.op.party as {"id": "PARTY_2"}
+       with input.requester.ip as "203.0.113.5"
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
+}
+
 test_session_orgmgmt_ip_not_whitelisted_forbidden {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
@@ -180,6 +206,83 @@ test_session_wapi_inside_wallet_party_forbidden {
     ])
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_session_wapi_wallet_party_forbidden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_wapi_empty
+    ]) with input.wapi.op as {"id": "GetWallet", "wallet": "WalletId"}
+       with input.wallet as context.wallet_pool_with_wallet.wallet
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_session_wapi_destination_party_forbidden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_wapi_empty
+    ]) with input.wapi.op as {"id": "GetDestination", "destination": "DestinationId"}
+       with input.wallet as context.wallet_pool_with_destination.wallet
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_session_wapi_withdrawal_party_forbidden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_wapi_empty
+    ]) with input.wapi.op as {"id": "GetWithdrawal", "withdrawal": "WithdrawalId"}
+       with input.wallet as context.wallet_pool_with_withdrawal.wallet
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_session_wapi_report_party_forbidden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_wapi_empty
+    ]) with input.wapi.op as {"id": "GetReport", "report": "ReportId"}
+       with input.wallet as context.wallet_pool_with_report.wallet
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_session_wapi_webhook_party_forbidden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_wapi_empty
+    ]) with input.wapi.op as {"id": "GetWebhookByID", "webhook": "WebhookId"}
+       with input.wallet as context.wallet_pool_with_webhook.wallet
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_session_wapi_foreign_object_id_skips_whitelist {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_wapi_empty
+    ]) with input.wapi.op as {"id": "GetWithdrawal", "withdrawal": "AnotherWithdrawalId"}
+       with input.wallet as context.wallet_pool_with_withdrawal.wallet
+    not forbidden_code(result, "ip_not_whitelisted")
 }
 
 test_session_without_requester_ip_forbidden {
@@ -266,6 +369,33 @@ test_session_anapi_report_and_file_party_not_overridden {
     result.forbidden[_].code == "ip_not_whitelisted"
 }
 
+test_session_anapi_report_party_not_overridden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_anapi_get_report,
+        context.reports_report
+    ]) with input.anapi.op.party as {"id": "NOT_MY_PARTY"}
+    forbidden_code(result, "ip_not_whitelisted")
+}
+
+test_session_anapi_file_party_not_overridden {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.reports_report
+    ]) with input.anapi.op as {
+        "id": "DownloadFile",
+        "party": {"id": "NOT_MY_PARTY"},
+        "file": {"id": "FILE"}
+    }
+    forbidden_code(result, "ip_not_whitelisted")
+}
+
 test_session_apikey_entity_party_not_overridden {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
@@ -288,6 +418,84 @@ test_session_binapi_op_party_selects_org {
     ]) with input.binapi.op.party as {"id": "PARTY"}
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_session_foreign_invoice_id_skips_whitelist {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_capi_get_refunds,
+        context.payproc_invoice
+    ]) with input.capi.op.invoice.id as "ANOTHER_INVOICE"
+    not forbidden_code(result, "ip_not_whitelisted")
+}
+
+test_session_foreign_invoice_template_id_skips_whitelist {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_capi_get_invoice_template_by_id,
+        context.payproc_invoice_template
+    ]) with input.capi.op.invoice_template.id as "ANOTHER_INVOICE_TEMPLATE"
+    not forbidden_code(result, "ip_not_whitelisted")
+}
+
+test_session_foreign_webhook_id_skips_whitelist {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_capi_delete_webhook,
+        context.webhooks_webhook
+    ]) with input.capi.op.webhook.id as "ANOTHER_WEBHOOK"
+    not forbidden_code(result, "ip_not_whitelisted")
+}
+
+test_session_foreign_customer_id_skips_whitelist {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_capi_get_customer_by_id,
+        context.cubasty_customer
+    ]) with input.capi.op.customer.id as "ANOTHER_CUSTOMER"
+       with input.capi.op.party as {"id": "NOT_MY_PARTY"}
+    not forbidden_code(result, "ip_not_whitelisted")
+}
+
+test_session_foreign_report_and_file_id_skips_whitelist {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.reports_report
+    ]) with input.anapi.op as {
+        "id": "DownloadFile",
+        "party": {"id": "NOT_MY_PARTY"},
+        "report": {"id": "ANOTHER_REPORT"},
+        "file": {"id": "ANOTHER_FILE"}
+    }
+    not forbidden_code(result, "ip_not_whitelisted")
+}
+
+test_session_foreign_api_key_id_skips_whitelist {
+    result := api.assertions with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_apikeymgmt_get_api_key_1,
+        context.api_key_apikey_1
+    ]) with input.apikeymgmt.op.api_key.id as "ANOTHER_APIKEY"
+       with input.apikeymgmt.op.party as {"id": "NOT_MY_PARTY"}
+    not forbidden_code(result, "ip_not_whitelisted")
 }
 
 test_session_ignores_party_fragment_whitelist {
@@ -429,6 +637,34 @@ session_refunds_with_allowed_ips(allowed_ips, ip) = ctx {
             }]
         }}
     ])
+}
+
+test_plain_ipv4_entry_neighbour_forbidden {
+    result := api.assertions with input as session_refunds_with_allowed_ips(
+        ["95.217.228.176"], "95.217.228.177"
+    )
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
+}
+
+test_ipv4_cidr_entry_allowed {
+    util.is_allowed with input as session_refunds_with_allowed_ips(
+        ["95.217.228.0/24"], "95.217.228.177"
+    )
+}
+
+test_plain_ipv6_entry_matches_itself_allowed {
+    util.is_allowed with input as session_refunds_with_allowed_ips(
+        ["2001:db8::1"], "2001:db8::1"
+    )
+}
+
+test_plain_ipv6_entry_neighbour_forbidden {
+    result := api.assertions with input as session_refunds_with_allowed_ips(
+        ["2001:db8::1"], "2001:db8::2"
+    )
+    count(result.forbidden) == 1
+    result.forbidden[_].code == "ip_not_whitelisted"
 }
 
 test_non_string_whitelist_entry_still_forbids {
