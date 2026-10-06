@@ -107,8 +107,8 @@ forbidden[why] {
     why := {
         "code": "ip_not_whitelisted",
         "description": sprintf(
-            "Requester IP address is not whitelisted for %s with ranges: %s",
-            [whitelist.subject, concat(", ", whitelist.ranges)]
+            "Requester IP address %s is not whitelisted for %s",
+            [input.requester.ip, whitelist.subject]
         )
     }
 }
@@ -123,6 +123,20 @@ ip_whitelists[whitelist] {
     }
 }
 
+# Party context is provided only for a party that belongs to an organization.
+# A party without an organization has no whitelist to apply.
+ip_whitelists[whitelist] {
+    input.auth.method == "ApiKeyToken"
+    api_key_party_in_scope(input.party.id)
+    ranges := input.party.organization.allowed_ips
+    count(ranges) > 0
+    whitelist := {
+        "subject": sprintf("party %s", [input.party.id]),
+        "ranges": ranges
+    }
+}
+
+# Party context of an api key request must describe a party from the key scope.
 forbidden[why] {
     input.auth.method == "ApiKeyToken"
     party_id := object.get(input.party, "id", "undefined")
@@ -136,21 +150,18 @@ forbidden[why] {
     }
 }
 
-api_key_party_in_scope(party_id) {
-    input.auth.scope[_].party.id == party_id
+forbidden[why] {
+    input.auth.method == "ApiKeyToken"
+    input.party
+    not is_object(input.party)
+    why := {
+        "code": "party_context_mismatch",
+        "description": "Party context is malformed"
+    }
 }
 
-# Party context is provided only for a party that belongs to an organization.
-# A party without an organization has no whitelist to apply.
-ip_whitelists[whitelist] {
-    input.auth.method == "ApiKeyToken"
-    api_key_party_in_scope(input.party.id)
-    ranges := input.party.organization.allowed_ips
-    count(ranges) > 0
-    whitelist := {
-        "subject": sprintf("party %s", [object.get(input.party, "id", "undefined")]),
-        "ranges": ranges
-    }
+api_key_party_in_scope(party_id) {
+    input.auth.scope[_].party.id == party_id
 }
 
 forbidden[why] {
@@ -215,6 +226,8 @@ tolerate_expired_token {
 # party of the verified object op refers to. Every one of them is checked, so a
 # forged op party can only add a whitelist, never replace the object's one.
 # Org management names the organization itself.
+# Party and organization ids are matched against both org.id and org.party.id,
+# the same way user.is_owner does, so every org that may grant access is checked.
 session_orgs_in_scope[org] {
     org := input.user.orgs[_]
     org_in_request_scope(org)
@@ -225,7 +238,15 @@ org_in_request_scope(org) {
 }
 
 org_in_request_scope(org) {
+    org.id == request_party_ids[_]
+}
+
+org_in_request_scope(org) {
     org.id == request_org_ids[_]
+}
+
+org_in_request_scope(org) {
+    org.party.id == request_org_ids[_]
 }
 
 request_org_ids[id] {
