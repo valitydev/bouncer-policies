@@ -1521,5 +1521,189 @@
                 }
             }
         ]
+    },
+
+    "requester_foreign": {
+        "requester": {
+            "ip": "198.51.100.10"
+        }
+    },
+
+    "requester_doc_ipv6": {
+        "requester": {
+            "ip": "2001:db8::1"
+        }
+    },
+
+    "user_administrator_allowed_ips": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ],
+                    "allowed_ips": [
+                        "95.217.228.0/24",
+                        "95.217.228.176",
+                        "2001:db8::/32",
+                        "2001:db8::1"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "user_administrator_foreign_allowed_ips": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ],
+                    "allowed_ips": ["203.0.113.0/24"]
+                }
+            ]
+        }
+    },
+
+    "user_administrator_empty_allowed_ips": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ],
+                    "allowed_ips": []
+                }
+            ]
+        }
+    },
+
+    "user_administrator_whitelist_other_org": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ]
+                },
+                {
+                    "id": "ORG_2",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY_2" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ],
+                    "allowed_ips": ["203.0.113.0/24"]
+                }
+            ]
+        }
+    },
+
+    "party_allowed_ips": {
+        "party": {
+            "id": "PARTY",
+            "organization": {
+                "id": "ORG",
+                "owner": { "id": "OWNER" },
+                "allowed_ips": [
+                    "95.217.228.0/24",
+                    "95.217.228.176",
+                    "2001:db8::/32",
+                    "2001:db8::1"
+                ]
+            }
+        }
+    },
+
+    "party_foreign_allowed_ips": {
+        "party": {
+            "id": "PARTY",
+            "organization": {
+                "id": "ORG",
+                "owner": { "id": "OWNER" },
+                "allowed_ips": ["203.0.113.0/24"]
+            }
+        }
+    },
+
+    "party_malformed_allowed_ips": {
+        "party": {
+            "id": "PARTY",
+            "organization": {
+                "id": "ORG",
+                "owner": { "id": "OWNER" },
+                "allowed_ips": [
+                    "not-an-ip",
+                    "95.217.228.0/33",
+                    " 95.217.228.176",
+                    "95.217.228.176"
+                ]
+            }
+        }
+    },
+
+    "party_only_malformed_allowed_ips": {
+        "party": {
+            "id": "PARTY",
+            "organization": {
+                "id": "ORG",
+                "owner": { "id": "OWNER" },
+                "allowed_ips": ["not-an-ip", "95.217.228.0/33"]
+            }
+        }
+    },
+
+    "party_empty_allowed_ips": {
+        "party": {
+            "id": "PARTY",
+            "organization": {
+                "id": "ORG",
+                "owner": { "id": "OWNER" },
+                "allowed_ips": []
+            }
+        }
+    },
+
+    "user_administrator_two_orgs_allowed_ips": {
+        "user": {
+            "id": "USER",
+            "orgs": [
+                {
+                    "id": "ORG",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ],
+                    "allowed_ips": ["203.0.113.0/24"]
+                },
+                {
+                    "id": "ORG_2",
+                    "owner": { "id": "OWNER" },
+                    "party": { "id": "PARTY_2" },
+                    "roles": [
+                        {"id": "Administrator"}
+                    ],
+                    "allowed_ips": ["95.217.228.0/24"]
+                }
+            ]
+        }
     }
 }

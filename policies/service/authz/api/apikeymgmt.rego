@@ -118,7 +118,7 @@ entity_access_status["api_key"] = status {
 }
 
 party_access_status(party_id) = status {
-    user.is_owner(party_id)
+    user.is_party_owner(party_id)
     status := {"owner": true}
 } else = status {
     userorg := user.org_by_party(party_id)

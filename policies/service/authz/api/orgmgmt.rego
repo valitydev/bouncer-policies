@@ -142,7 +142,7 @@ entity_access_status["organization"] = status {
 }
 
 organization_access_status(id) = status {
-    user.is_owner(id)
+    user.is_org_owner(id)
     status := {"owner": true}
 } else = status {
     userorg := user.org_by_org_id(id)

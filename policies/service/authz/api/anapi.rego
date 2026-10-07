@@ -179,7 +179,7 @@ entity_access_restrictions_status["shops"] = status {
 }
 
 party_access_status(id) = status {
-    user.is_owner(id)
+    user.is_party_owner(id)
     status := {"owner": true}
 } else = status {
     userorg := user.org_by_party(id)
@@ -189,7 +189,7 @@ party_access_status(id) = status {
 }
 
 shop_access_status(id, party_id) = status {
-    user.is_owner(party_id)
+    user.is_party_owner(party_id)
     status := {"owner": true}
 } else = status {
     userorg := user.org_by_party(party_id)

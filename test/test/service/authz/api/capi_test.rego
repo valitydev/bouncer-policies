@@ -516,6 +516,16 @@ test_create_customer_allowed_owner {
     ])
 }
 
+test_create_customer_forbidden_when_party_id_is_org_id {
+    util.is_forbidden with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_owner,
+        context.session_token_valid,
+        context.op_capi_create_customer
+    ]) with input.capi.op.party.id as "ORG"
+}
+
 test_get_customer_by_id_allowed_administrator {
     result := api.assertions with input as util.deepmerge([
         context.env_default,
