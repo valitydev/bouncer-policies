@@ -1,0 +1,4 @@
+# Organization IP whitelist for SessionToken.
+# Off while dashboard users recover from locking themselves out with allowed_ips.
+# Set to true to enforce it again. ApiKeyToken is not controlled by this flag.
+session_ip_whitelist: false

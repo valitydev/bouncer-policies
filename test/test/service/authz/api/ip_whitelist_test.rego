@@ -8,8 +8,20 @@ forbidden_code(result, code) {
     result.forbidden[_].code == code
 }
 
-# Session token: whitelists of the organizations selected by the party on op
+# Session token IP whitelist is off by default (features.session_ip_whitelist).
+# The cases below turn it on and check organizations selected by the party on op
 # and by the verified object the operation refers to. All of them apply.
+
+test_session_ip_whitelist_disabled_by_default {
+    util.is_allowed with input as util.deepmerge([
+        context.env_default,
+        context.requester_default,
+        context.user_administrator_foreign_allowed_ips,
+        context.session_token_valid,
+        context.op_capi_get_refunds,
+        context.payproc_invoice
+    ])
+}
 
 test_session_ip_in_org_whitelist_allowed {
     util.is_allowed with input as util.deepmerge([
@@ -19,7 +31,7 @@ test_session_ip_in_org_whitelist_allowed {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
 }
 
 test_session_ipv6_in_org_whitelist_allowed {
@@ -30,7 +42,7 @@ test_session_ipv6_in_org_whitelist_allowed {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
 }
 
 test_session_ip_not_in_org_whitelist_forbidden {
@@ -41,7 +53,7 @@ test_session_ip_not_in_org_whitelist_forbidden {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -54,7 +66,7 @@ test_session_empty_org_whitelist_allowed {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
 }
 
 test_session_whitelist_of_another_org_ignored {
@@ -65,7 +77,7 @@ test_session_whitelist_of_another_org_ignored {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
 }
 
 test_session_capi_op_party_selects_org {
@@ -75,7 +87,7 @@ test_session_capi_op_party_selects_org {
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid,
         context.op_capi_create_webhook
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -87,7 +99,7 @@ test_session_anapi_op_party_selects_org {
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid,
         context.op_anapi_reports
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -99,7 +111,7 @@ test_session_claimmgmt_op_party_selects_org {
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid,
         context.op_claimmgmt_createClaim
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -110,7 +122,7 @@ test_session_apikeymgmt_op_party_selects_org {
         context.requester_default,
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid
-    ]) with input.apikeymgmt.op as {"id": "IssueApiKey", "party": {"id": "PARTY"}}
+    ]) with input.apikeymgmt.op as {"id": "IssueApiKey", "party": {"id": "PARTY"}} with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -122,7 +134,7 @@ test_session_op_party_of_foreign_org_skips_whitelist {
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid,
         context.op_capi_create_webhook
-    ]) with input.capi.op.party as {"id": "NOT_MY_PARTY"}
+    ]) with input.capi.op.party as {"id": "NOT_MY_PARTY"} with data.service.authz.features.session_ip_whitelist as true
     not forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -134,7 +146,7 @@ test_session_outside_party_does_not_override_inside_party {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ]) with input.capi.op.party as {"id": "PARTY_2"}
+    ]) with input.capi.op.party as {"id": "PARTY_2"} with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -147,7 +159,7 @@ test_session_every_org_in_scope_must_whitelist_ip {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ]) with input.capi.op.party as {"id": "PARTY_2"}
+    ]) with input.capi.op.party as {"id": "PARTY_2"} with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -160,7 +172,7 @@ test_session_every_org_in_scope_must_whitelist_ip_mirror {
         context.op_capi_get_refunds,
         context.payproc_invoice
     ]) with input.capi.op.party as {"id": "PARTY_2"}
-       with input.requester.ip as "203.0.113.5"
+       with input.requester.ip as "203.0.113.5" with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -172,7 +184,7 @@ test_session_orgmgmt_ip_not_whitelisted_forbidden {
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid,
         context.op_orgmgmt_switch_context
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -184,7 +196,7 @@ test_session_wapi_op_party_selects_org {
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid,
         context.op_wapi_empty
-    ]) with input.wapi.op as {"id": "ListWithdrawals", "party": "PARTY"}
+    ]) with input.wapi.op as {"id": "ListWithdrawals", "party": "PARTY"} with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -203,7 +215,7 @@ test_session_wapi_inside_wallet_party_forbidden {
     } with input.wallet as util.concat([
         context.wallet_pool_with_wallet.wallet,
         context.wallet_pool_with_destination.wallet
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -216,7 +228,7 @@ test_session_wapi_wallet_party_forbidden {
         context.session_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {"id": "GetWallet", "wallet": "WalletId"}
-       with input.wallet as context.wallet_pool_with_wallet.wallet
+       with input.wallet as context.wallet_pool_with_wallet.wallet with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -229,7 +241,7 @@ test_session_wapi_destination_party_forbidden {
         context.session_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {"id": "GetDestination", "destination": "DestinationId"}
-       with input.wallet as context.wallet_pool_with_destination.wallet
+       with input.wallet as context.wallet_pool_with_destination.wallet with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -242,7 +254,7 @@ test_session_wapi_withdrawal_party_forbidden {
         context.session_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {"id": "GetWithdrawal", "withdrawal": "WithdrawalId"}
-       with input.wallet as context.wallet_pool_with_withdrawal.wallet
+       with input.wallet as context.wallet_pool_with_withdrawal.wallet with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -255,7 +267,7 @@ test_session_wapi_report_party_forbidden {
         context.session_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {"id": "GetReport", "report": "ReportId"}
-       with input.wallet as context.wallet_pool_with_report.wallet
+       with input.wallet as context.wallet_pool_with_report.wallet with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -268,7 +280,7 @@ test_session_wapi_webhook_party_forbidden {
         context.session_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {"id": "GetWebhookByID", "webhook": "WebhookId"}
-       with input.wallet as context.wallet_pool_with_webhook.wallet
+       with input.wallet as context.wallet_pool_with_webhook.wallet with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -281,7 +293,7 @@ test_session_wapi_foreign_object_id_skips_whitelist {
         context.session_token_valid,
         context.op_wapi_empty
     ]) with input.wapi.op as {"id": "GetWithdrawal", "withdrawal": "AnotherWithdrawalId"}
-       with input.wallet as context.wallet_pool_with_withdrawal.wallet
+       with input.wallet as context.wallet_pool_with_withdrawal.wallet with data.service.authz.features.session_ip_whitelist as true
     not forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -292,7 +304,7 @@ test_session_without_requester_ip_forbidden {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "requester_ip_missing"
 }
@@ -304,7 +316,7 @@ test_session_without_whitelist_and_requester_ip_allowed {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
 }
 
 test_session_op_without_org_skips_whitelist {
@@ -314,7 +326,7 @@ test_session_op_without_org_skips_whitelist {
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid,
         context.op_shortener_shorten_url
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
 }
 
 test_session_invoice_template_party_forbidden {
@@ -325,7 +337,7 @@ test_session_invoice_template_party_forbidden {
         context.session_token_valid,
         context.op_capi_get_invoice_template_by_id,
         context.payproc_invoice_template
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -338,7 +350,7 @@ test_session_webhook_party_forbidden {
         context.session_token_valid,
         context.op_capi_delete_webhook,
         context.webhooks_webhook
-    ])
+    ]) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -351,7 +363,7 @@ test_session_customer_party_not_overridden_by_op_party {
         context.session_token_valid,
         context.op_capi_get_customer_by_id,
         context.cubasty_customer
-    ]) with input.capi.op.party as {"id": "NOT_MY_PARTY"}
+    ]) with input.capi.op.party as {"id": "NOT_MY_PARTY"} with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -364,7 +376,7 @@ test_session_anapi_report_and_file_party_not_overridden {
         context.session_token_valid,
         context.op_anapi_download_file,
         context.reports_report
-    ]) with input.anapi.op.party as {"id": "NOT_MY_PARTY"}
+    ]) with input.anapi.op.party as {"id": "NOT_MY_PARTY"} with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -377,7 +389,7 @@ test_session_anapi_report_party_not_overridden {
         context.session_token_valid,
         context.op_anapi_get_report,
         context.reports_report
-    ]) with input.anapi.op.party as {"id": "NOT_MY_PARTY"}
+    ]) with input.anapi.op.party as {"id": "NOT_MY_PARTY"} with data.service.authz.features.session_ip_whitelist as true
     forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -392,7 +404,7 @@ test_session_anapi_file_party_not_overridden {
         "id": "DownloadFile",
         "party": {"id": "NOT_MY_PARTY"},
         "file": {"id": "FILE"}
-    }
+    } with data.service.authz.features.session_ip_whitelist as true
     forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -404,7 +416,7 @@ test_session_apikey_entity_party_not_overridden {
         context.session_token_valid,
         context.op_apikeymgmt_get_api_key_1,
         context.api_key_apikey_1
-    ]) with input.apikeymgmt.op.party as {"id": "NOT_MY_PARTY"}
+    ]) with input.apikeymgmt.op.party as {"id": "NOT_MY_PARTY"} with data.service.authz.features.session_ip_whitelist as true
     forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -415,7 +427,7 @@ test_session_binapi_op_party_selects_org {
         context.user_administrator_foreign_allowed_ips,
         context.session_token_valid,
         context.op_binapi_lookup_card_info
-    ]) with input.binapi.op.party as {"id": "PARTY"}
+    ]) with input.binapi.op.party as {"id": "PARTY"} with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -428,7 +440,7 @@ test_session_foreign_invoice_id_skips_whitelist {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ]) with input.capi.op.invoice.id as "ANOTHER_INVOICE"
+    ]) with input.capi.op.invoice.id as "ANOTHER_INVOICE" with data.service.authz.features.session_ip_whitelist as true
     not forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -440,7 +452,7 @@ test_session_foreign_invoice_template_id_skips_whitelist {
         context.session_token_valid,
         context.op_capi_get_invoice_template_by_id,
         context.payproc_invoice_template
-    ]) with input.capi.op.invoice_template.id as "ANOTHER_INVOICE_TEMPLATE"
+    ]) with input.capi.op.invoice_template.id as "ANOTHER_INVOICE_TEMPLATE" with data.service.authz.features.session_ip_whitelist as true
     not forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -452,7 +464,7 @@ test_session_foreign_webhook_id_skips_whitelist {
         context.session_token_valid,
         context.op_capi_delete_webhook,
         context.webhooks_webhook
-    ]) with input.capi.op.webhook.id as "ANOTHER_WEBHOOK"
+    ]) with input.capi.op.webhook.id as "ANOTHER_WEBHOOK" with data.service.authz.features.session_ip_whitelist as true
     not forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -465,7 +477,7 @@ test_session_foreign_customer_id_skips_whitelist {
         context.op_capi_get_customer_by_id,
         context.cubasty_customer
     ]) with input.capi.op.customer.id as "ANOTHER_CUSTOMER"
-       with input.capi.op.party as {"id": "NOT_MY_PARTY"}
+       with input.capi.op.party as {"id": "NOT_MY_PARTY"} with data.service.authz.features.session_ip_whitelist as true
     not forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -481,7 +493,7 @@ test_session_foreign_report_and_file_id_skips_whitelist {
         "party": {"id": "NOT_MY_PARTY"},
         "report": {"id": "ANOTHER_REPORT"},
         "file": {"id": "ANOTHER_FILE"}
-    }
+    } with data.service.authz.features.session_ip_whitelist as true
     not forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -494,7 +506,7 @@ test_session_foreign_api_key_id_skips_whitelist {
         context.op_apikeymgmt_get_api_key_1,
         context.api_key_apikey_1
     ]) with input.apikeymgmt.op.api_key.id as "ANOTHER_APIKEY"
-       with input.apikeymgmt.op.party as {"id": "NOT_MY_PARTY"}
+       with input.apikeymgmt.op.party as {"id": "NOT_MY_PARTY"} with data.service.authz.features.session_ip_whitelist as true
     not forbidden_code(result, "ip_not_whitelisted")
 }
 
@@ -506,7 +518,7 @@ test_session_ignores_party_fragment_whitelist {
         context.session_token_valid,
         context.op_capi_get_refunds,
         context.payproc_invoice
-    ]) with input.party as context.party_foreign_allowed_ips.party
+    ]) with input.party as context.party_foreign_allowed_ips.party with data.service.authz.features.session_ip_whitelist as true
 }
 
 # Api key: whitelist from the party context fragment.
@@ -642,7 +654,7 @@ session_refunds_with_allowed_ips(allowed_ips, ip) = ctx {
 test_plain_ipv4_entry_neighbour_forbidden {
     result := api.assertions with input as session_refunds_with_allowed_ips(
         ["95.217.228.176"], "95.217.228.177"
-    )
+    ) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -650,19 +662,19 @@ test_plain_ipv4_entry_neighbour_forbidden {
 test_ipv4_cidr_entry_allowed {
     util.is_allowed with input as session_refunds_with_allowed_ips(
         ["95.217.228.0/24"], "95.217.228.177"
-    )
+    ) with data.service.authz.features.session_ip_whitelist as true
 }
 
 test_plain_ipv6_entry_matches_itself_allowed {
     util.is_allowed with input as session_refunds_with_allowed_ips(
         ["2001:db8::1"], "2001:db8::1"
-    )
+    ) with data.service.authz.features.session_ip_whitelist as true
 }
 
 test_plain_ipv6_entry_neighbour_forbidden {
     result := api.assertions with input as session_refunds_with_allowed_ips(
         ["2001:db8::1"], "2001:db8::2"
-    )
+    ) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -670,7 +682,7 @@ test_plain_ipv6_entry_neighbour_forbidden {
 test_non_string_whitelist_entry_still_forbids {
     result := api.assertions with input as session_refunds_with_allowed_ips(
         ["203.0.113.0/24", 5], "95.217.228.176"
-    )
+    ) with data.service.authz.features.session_ip_whitelist as true
     count(result.forbidden) == 1
     result.forbidden[_].code == "ip_not_whitelisted"
 }
@@ -678,7 +690,7 @@ test_non_string_whitelist_entry_still_forbids {
 test_ip_not_whitelisted_description {
     result := api.assertions with input as session_refunds_with_allowed_ips(
         ["95.217.228.176"], "95.217.228.177"
-    )
+    ) with data.service.authz.features.session_ip_whitelist as true
     result.forbidden[_].description ==
         "Requester IP address 95.217.228.177 is not whitelisted for organization ORG"
 }

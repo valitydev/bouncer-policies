@@ -11,6 +11,7 @@ import data.service.authz.api.claimmgmt
 import data.service.authz.api.apikeymgmt
 import data.service.authz.blacklists
 import data.service.authz.whitelists
+import data.service.authz.features
 import data.service.authz.roles
 import data.service.authz.org
 import data.service.authz.judgement
@@ -85,7 +86,9 @@ forbidden[why] {
     }
 }
 
-# IP whitelist. Only SessionToken and ApiKeyToken are checked.
+# IP whitelist. ApiKeyToken is always checked. SessionToken is checked only
+# when features.session_ip_whitelist is true; it is off so a configured
+# allowed_ips list cannot lock a dashboard session out.
 # A missing or empty allowed_ips means the whitelist is not configured.
 # Entries are IP addresses or CIDR ranges. Malformed entries are skipped.
 forbidden[why] {
@@ -114,6 +117,7 @@ forbidden[why] {
 }
 
 ip_whitelists[whitelist] {
+    features.session_ip_whitelist == true
     input.auth.method == "SessionToken"
     org := session_orgs_in_scope[_]
     count(org.allowed_ips) > 0
