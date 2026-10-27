@@ -267,7 +267,7 @@ request_party_ids[id] {
 }
 
 request_party_ids[id] {
-    id := input.transaction_search.op.party.id
+    id := input.transaction_search.op.party
 }
 
 request_party_ids[id] {

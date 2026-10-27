@@ -9,8 +9,8 @@ import input.wallet
 
 api_name := "TransactionSearchAPI"
 operation_name := "GetTransactionByID"
-transaction_id := op.transaction.id
-party_id := op.party.id
+transaction_id := op.transaction
+party_id := op.party
 
 forbidden[why] {
     not transaction_id
@@ -108,9 +108,9 @@ transaction_search_role_allowed {
 }
 
 matching_payment {
-    payment := payment_processing.payment
-    payment.id == transaction_id
-    payment.party.id == party_id
+    invoice := payment_processing.invoice
+    invoice.party.id == party_id
+    invoice.payments[_].id == transaction_id
 }
 
 matching_withdrawal {

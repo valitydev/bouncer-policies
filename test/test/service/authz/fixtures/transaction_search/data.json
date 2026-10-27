@@ -10,11 +10,11 @@
       "orgs": [{"id": "ORG", "owner": {"id": "OWNER"}, "party": {"id": "PARTY"}, "roles": [{"id": "TransactionSearcher"}]}]
     },
     "transaction_search": {
-      "op": {"id": "GetTransactionByID", "transaction": {"id": "TRANSACTION"}, "party": {"id": "PARTY"}}
+      "op": {"id": "GetTransactionByID", "transaction": "TRANSACTION", "party": "PARTY"}
     }
   },
   "payment": {
-    "payment_processing": {"payment": {"id": "TRANSACTION", "party": {"id": "PARTY"}}}
+    "payment_processing": {"invoice": {"id": "INVOICE", "party": {"id": "PARTY"}, "payments": [{"id": "TRANSACTION"}]}}
   },
   "withdrawal": {
     "wallet": [{"type": "Withdrawal", "id": "TRANSACTION", "party": "PARTY"}]

@@ -13,6 +13,14 @@ test_payment_allowed {
     util.is_allowed with input as payment_context
 }
 
+test_payment_among_multiple_payments_allowed {
+    util.is_allowed with input as payment_context with input.payment_processing.invoice.payments as [{"id": "OTHER"}, {"id": "TRANSACTION"}]
+}
+
+test_invoice_id_does_not_match_payment {
+    util.is_forbidden with input as payment_context with input.transaction_search.op.transaction as "INVOICE"
+}
+
 test_withdrawal_allowed {
     util.is_allowed with input as withdrawal_context
 }
@@ -23,7 +31,7 @@ test_mismatched_transaction_forbidden {
 }
 
 forbidden_transaction(ctx) {
-    util.is_forbidden with input as ctx with input.transaction_search.op.transaction.id as "OTHER"
+    util.is_forbidden with input as ctx with input.transaction_search.op.transaction as "OTHER"
 }
 
 test_mismatched_party_forbidden {
@@ -32,18 +40,20 @@ test_mismatched_party_forbidden {
 }
 
 forbidden_party(ctx) {
-    result := api.assertions with input as ctx with input.transaction_search.op.party.id as "OTHER"
+    result := api.assertions with input as ctx with input.transaction_search.op.party as "OTHER"
     result.forbidden[_].code == "transaction_not_found"
 }
 
 test_missing_fields_forbidden {
     patches := [
         {"transaction_search": {"op": {}}},
-        {"transaction_search": {"op": {"id": "GetTransactionByID", "party": {"id": "PARTY"}}}},
-        {"transaction_search": {"op": {"id": "GetTransactionByID", "transaction": {"id": "TRANSACTION"}}}},
+        {"transaction_search": {"op": {"id": "GetTransactionByID", "party": "PARTY"}}},
+        {"transaction_search": {"op": {"id": "GetTransactionByID", "transaction": "TRANSACTION"}}},
         {"payment_processing": {}},
-        {"payment_processing": {"payment": {"id": "TRANSACTION"}}},
-        {"payment_processing": {"payment": {"party": {"id": "PARTY"}}}},
+        {"payment_processing": {"invoice": {"payments": [{"id": "TRANSACTION"}]}}},
+        {"payment_processing": {"invoice": {"party": {"id": "PARTY"}}}},
+        {"payment_processing": {"invoice": {"party": {"id": "PARTY"}, "payments": []}}},
+        {"payment_processing": {"invoice": {"party": {"id": "PARTY"}, "payments": [{}]}}},
         {"user": {}},
         {"auth": {}}
     ]
