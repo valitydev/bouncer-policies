@@ -7,6 +7,7 @@ import data.service.authz.api.anapi
 import data.service.authz.api.capi
 import data.service.authz.api.orgmgmt
 import data.service.authz.api.wapi
+import data.service.authz.api.transaction_search
 import data.service.authz.api.claimmgmt
 import data.service.authz.api.apikeymgmt
 import data.service.authz.blacklists
@@ -178,6 +179,11 @@ forbidden[why] {
 }
 
 forbidden[why] {
+    input.transaction_search
+    transaction_search.forbidden[why]
+}
+
+forbidden[why] {
     input.claimmgmt
     claimmgmt.forbidden[why]
 }
@@ -258,6 +264,10 @@ request_party_ids[id] {
 
 request_party_ids[id] {
     id := input.wapi.op.party
+}
+
+request_party_ids[id] {
+    id := input.transaction_search.op.party
 }
 
 request_party_ids[id] {
@@ -391,6 +401,11 @@ allowed[why] {
 allowed[why] {
     input.wapi
     wapi.allowed[why]
+}
+
+allowed[why] {
+    input.transaction_search
+    transaction_search.allowed[why]
 }
 
 allowed[why] {

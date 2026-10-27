@@ -133,6 +133,9 @@ permissions:
 
           # Antifraud
           - "InspectUser"
+      TransactionSearchAPI:
+        operations:
+          - "GetTransactionByID"
       WalletAPI:
         operations:
           - 'ListWallets'
