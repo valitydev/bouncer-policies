@@ -1,4 +1,7 @@
 {
+  "$metadata": {
+      "type": "TransactionSearch"
+  },
   "base": {
     "env": {"now": "2026-01-01T00:00:00Z"},
     "auth": {"method": "SessionToken", "expiration": "2027-01-01T00:00:00Z"},
