@@ -1,0 +1,19 @@
+{
+  "base": {
+    "env": {"now": "2026-01-01T00:00:00Z"},
+    "auth": {"method": "SessionToken", "expiration": "2027-01-01T00:00:00Z"},
+    "user": {
+      "id": "USER",
+      "orgs": [{"id": "ORG", "owner": {"id": "OWNER"}, "party": {"id": "PARTY"}, "roles": [{"id": "TransactionSearcher"}]}]
+    },
+    "transaction_search": {
+      "op": {"id": "GetTransactionByID", "transaction": {"id": "TRANSACTION"}, "party": {"id": "PARTY"}}
+    }
+  },
+  "payment": {
+    "payment_processing": {"payment": {"id": "TRANSACTION", "party": {"id": "PARTY"}}}
+  },
+  "withdrawal": {
+    "wallet": [{"type": "Withdrawal", "id": "TRANSACTION", "party": "PARTY"}]
+  }
+}

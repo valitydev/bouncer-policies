@@ -13,6 +13,12 @@ description: >
    * a set of accessible operations per each of those APIs.
 
 roles:
+  TransactionSearcher:
+    apis:
+      TransactionSearchAPI:
+        operations:
+          - "GetTransactionByID"
+
   Integrator:
     apis:
       CommonAPI:
